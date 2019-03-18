@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 
-package sistemainvenatario;
+package sistemainventario;
+import Vista.frmLogin;
 
 
 
@@ -18,7 +19,7 @@ public class SistemaInvenatario {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        login login1 =new login();
+        frmLogin login1 = new frmLogin();
         
     }
     
