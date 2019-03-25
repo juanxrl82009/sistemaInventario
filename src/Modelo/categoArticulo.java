@@ -11,4 +11,17 @@ package Modelo;
  */
 public class categoArticulo {
     
+    private int idCategoriaArticulo;
+    private String descripcion;
+
+    public int getIdCategoriaArticulo() {
+        return idCategoriaArticulo;
+    }
+
+    public void setIdCategoriaArticulo(int idCategoriaArticulo) {
+        this.idCategoriaArticulo = idCategoriaArticulo;
+    }
+    
+    
+    
 }
