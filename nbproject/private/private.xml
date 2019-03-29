@@ -3,12 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Usuario/Downloads/sistemaInventario-master%20(3)/sistemaInventario-master/src/Modelo/articulo.java</file>
-            <file>file:/C:/Users/Usuario/Downloads/sistemaInventario-master%20(3)/sistemaInventario-master/src/Modelo/proveedor.java</file>
-            <file>file:/C:/Users/Usuario/Downloads/sistemaInventario-master%20(3)/sistemaInventario-master/src/Modelo/usuario.java</file>
-            <file>file:/C:/Users/Usuario/Downloads/sistemaInventario-master%20(3)/sistemaInventario-master/src/Modelo/categoArticulo.java</file>
-            <file>file:/C:/Users/Usuario/Downloads/sistemaInventario-master%20(3)/sistemaInventario-master/src/Modelo/cliente.java</file>
-            <file>file:/C:/Users/Usuario/Downloads/sistemaInventario-master%20(3)/sistemaInventario-master/src/Modelo/cuenta.java</file>
+            <file>file:/home/invitado/Descargas/sistemaInventario-master/src/Modelo/CategoArticulo.java</file>
+            <file>file:/home/invitado/Descargas/sistemaInventario-master/src/Modelo/Cliente.java</file>
+            <file>file:/home/invitado/Descargas/sistemaInventario-master/src/Modelo/Usuario.java</file>
+            <file>file:/home/invitado/Descargas/sistemaInventario-master/src/Modelo/Articulo.java</file>
+            <file>file:/home/invitado/Descargas/sistemaInventario-master/src/Modelo/Cuenta.java</file>
+            <file>file:/home/invitado/Descargas/sistemaInventario-master/src/Modelo/Proveedor.java</file>
         </group>
     </open-files>
 </project-private>

@@ -9,12 +9,13 @@ package Modelo;
  *
  * @author John Castro
  */
-public class articulo {
+public class Articulo {
     
     private int idArticulo;
     private String nomArticulo;
-    private int idCategoria;
-    private String nitProveedor;
+    private int idCategoriaArticulo;
+    private int nitProveedor;
+    private int codBarra;
     private int costo;
 
     public int getIdArticulo() {
@@ -29,37 +30,45 @@ public class articulo {
         return nomArticulo;
     }
 
-    public void setNomArticulo(String nomArticulo) {
+    public void setNombreArticulo(String nomArticulo) {
         this.nomArticulo = nomArticulo;
     }
 
-    public int getIdCategoria() {
-        return idCategoria;
+    public int getIdCategoriaArticulo() {
+        return idCategoriaArticulo;
     }
 
-    public void setIdCategoria(int idCategoria) {
-        this.idCategoria = idCategoria;
+    public void setIdCategoriaArticulo(int idCategoriaArticulo) {
+        this.idCategoriaArticulo = idCategoriaArticulo;
     }
 
-    public String getNitProveedor() {
+    public int getNitProveedor() {
         return nitProveedor;
     }
-    public void setNitProveedor(String nitProveedor) {
+
+    public void setNitProveedor(int nitProveedor) {
         this.nitProveedor = nitProveedor;
     }
-    
+
+    public int getCodBarra() {
+        return codBarra;
+    }
+
+    public void setCodBarraArticuo(int codBarra) {
+        this.codBarra = codBarra;
+    }
+
     public int getCosto() {
         return costo;
     }
-    
-     public void setCosto(int costo) {
+
+    public void setCosto(int costo) {
         this.costo = costo;
     }
 
+ 
    
 
-  
-    
-    
+ 
     
 }

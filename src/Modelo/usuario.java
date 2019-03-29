@@ -5,17 +5,19 @@
  */
 package Modelo;
 
+import java.util.Date;
+
 /**
  *
  * @author John Castro
  */
-public class usuario {
+public class Usuario {
     
     private int idUsuario;
     private String nombre;
     private int telefono;
     private String direccion;
-
+    private Date fechaNacimiento;
   
     public int getIdUsuario() {
         return idUsuario;
@@ -50,6 +52,14 @@ public class usuario {
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
+    }
+
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
     }
     
     

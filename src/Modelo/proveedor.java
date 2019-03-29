@@ -9,18 +9,18 @@ package Modelo;
  *
  * @author John Castro
  */
-public class proveedor {
+public class Proveedor {
     
-    private String nit;
+    private int nit;
     private String nomProveedor;
     private String direccion;
-    private int telofono;
+    private String telofono;
 
-    public String getNit() {
+    public int getNit() {
         return nit;
     }
 
-    public void setNit(String nit) {
+    public void setNit(int nit) {
         this.nit = nit;
     }
 
@@ -41,11 +41,11 @@ public class proveedor {
         this.direccion = direccion;
     }
 
-    public int getTelofono() {
+    public String getTelofono() {
         return telofono;
     }
 
-    public void setTelofono(int telofono) {
+    public void setTelofono(String telofono) {
         this.telofono = telofono;
     }
     

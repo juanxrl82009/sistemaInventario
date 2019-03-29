@@ -9,11 +9,11 @@ package Modelo;
  *
  * @author John Castro
  */
-public class cliente {
+public class Cliente {
     private int idCliente;
-    private String nomCliente;
+    private String nombre;
     private String direccion;
-    private int telefono;
+    private String telefono;
 
     public int getIdCliente() {
         return idCliente;
@@ -23,12 +23,12 @@ public class cliente {
         this.idCliente = idCliente;
     }
 
-    public String getNomCliente() {
-        return nomCliente;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNomCliente(String nomCliente) {
-        this.nomCliente = nomCliente;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getDireccion() {
@@ -39,11 +39,11 @@ public class cliente {
         this.direccion = direccion;
     }
 
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
     

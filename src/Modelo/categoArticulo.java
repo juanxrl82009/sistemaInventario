@@ -9,17 +9,25 @@ package Modelo;
  *
  * @author John Castro
  */
-public class categoArticulo {
+public class CategoArticulo {
     
-    private int idCategoriaArticulo;
+    private int idCategoArticulo;
     private String descripcion;
 
     public int getIdCategoriaArticulo() {
-        return idCategoriaArticulo;
+        return idCategoArticulo;
     }
 
     public void setIdCategoriaArticulo(int idCategoriaArticulo) {
-        this.idCategoriaArticulo = idCategoriaArticulo;
+        this.idCategoArticulo = idCategoriaArticulo;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
     
     

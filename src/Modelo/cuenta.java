@@ -9,31 +9,36 @@ package Modelo;
  *
  * @author John Castro
  */
-public class cuenta {
+public class Cuenta {
     
-    private String id;
-    private String  contrasena;;
-
-    public String getId() {
-        return id;
+    private int     idCuenta;
+    private String  contraseña;
+    private int     idCategoria;
+    
+    public int getIdCuenta() {
+        return idCuenta;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setIdCuenta(int idCuenta) {
+        this.idCuenta = idCuenta;
     }
 
-    public String getContrasena() {
-        return contrasena;
+    public String getContraseña() {
+        return contraseña;
     }
 
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
+    }
+
+    public int getIdCategoCuenta() {
+        return idCategoria;
+    }
+
+    public void setIdCategoCuenta(int idCategoria) {
+        this.idCategoria = idCategoria;
     }
             
-    public cuenta(){
-        
-    }
-    
-    
+ 
     
 }
