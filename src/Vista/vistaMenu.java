@@ -44,8 +44,7 @@ public class vistaMenu extends javax.swing.JFrame {
        SimpleDateFormat format=new SimpleDateFormat(pmAm);
        Calendar hoy=Calendar.getInstance();
        labelHora.setText(String.format(format.format(sistHora), hoy));
-   
-    
+   jPopupMenu1.add(jButton1);
     }
 
  
@@ -62,6 +61,8 @@ public class vistaMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         labelTitulo = new javax.swing.JLabel();
         botonCliente = new javax.swing.JButton();
@@ -80,6 +81,22 @@ public class vistaMenu extends javax.swing.JFrame {
         labelFecha = new javax.swing.JLabel();
         labelHora = new javax.swing.JLabel();
         labelUsuario = new javax.swing.JLabel();
+
+        jPopupMenu1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Salir");
+        jButton1.setAlignmentX(0.5F);
+        jButton1.setBorder(null);
+        jButton1.setMaximumSize(new java.awt.Dimension(30, 20));
+        jButton1.setPreferredSize(new java.awt.Dimension(40, 30));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jButton1.getAccessibleContext().setAccessibleName("Salir");
+        jButton1.getAccessibleContext().setAccessibleDescription("Salir");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -200,19 +217,16 @@ public class vistaMenu extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(botonCompras)
                         .addGap(18, 18, 18)
-                        .addComponent(labelCompras)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(labelCompras))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(botonCliente)
                             .addComponent(botonProveedores))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(labelCliente)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(labelCliente)
                             .addComponent(labelProveedores))))
-                .addGap(49, 49, 49)
+                .addGap(7, 7, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,7 +240,7 @@ public class vistaMenu extends javax.swing.JFrame {
                         .addComponent(botonSalir)
                         .addGap(18, 18, 18)
                         .addComponent(labelSalir)))
-                .addGap(10, 81, Short.MAX_VALUE))
+                .addGap(10, 123, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 700, 440));
@@ -247,6 +261,7 @@ public class vistaMenu extends javax.swing.JFrame {
         labelUsuario.setForeground(new java.awt.Color(255, 255, 255));
         labelUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/usuarioSmall.png"))); // NOI18N
         labelUsuario.setText("Usuario");
+        labelUsuario.setComponentPopupMenu(jPopupMenu1);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -281,6 +296,8 @@ public class vistaMenu extends javax.swing.JFrame {
 
     private void botonClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonClienteActionPerformed
         // TODO add your handling code here:
+        vistaUsuario vUsuario= new vistaUsuario();
+         
     }//GEN-LAST:event_botonClienteActionPerformed
 
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
@@ -290,7 +307,16 @@ public class vistaMenu extends javax.swing.JFrame {
             frmLogin login = new frmLogin();
             this.setVisible(false);
         }
+          
     }//GEN-LAST:event_botonSalirActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        if(evt.getSource()==jButton1){
+            frmLogin login = new frmLogin();
+            this.setVisible(false);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     
         
@@ -306,8 +332,10 @@ public class vistaMenu extends javax.swing.JFrame {
     private javax.swing.JButton botonProveedores;
     private javax.swing.JButton botonReportes;
     private javax.swing.JButton botonSalir;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JLabel labelCliente;
     private javax.swing.JLabel labelCompras;
     private javax.swing.JLabel labelFacturacion;

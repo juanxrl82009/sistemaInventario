@@ -134,7 +134,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JPasswordField" name="cajaContrase&#xf1;a">
+        <Component class="javax.swing.JPasswordField" name="cajaTextoContrasenna">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Quicksand" size="18" style="0"/>

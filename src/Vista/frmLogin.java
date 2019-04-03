@@ -5,12 +5,24 @@
  */
 package Vista;
 
+import Modelo.Conexion;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author John Castro
  */
 public class frmLogin extends javax.swing.JFrame {
-
+Conexion con=new Conexion();
+    Connection cn;
+    Statement st;
+    ResultSet rs;
+    int id;
+    boolean verificacion;/*boleano que nos ayudara a identificar si el login es correocto o incorrecto*/
     /**
      * Creates new form frmLogin
      */
@@ -36,7 +48,7 @@ public class frmLogin extends javax.swing.JFrame {
         cajaTextoUsuario = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
-        cajaContraseña = new javax.swing.JPasswordField();
+        cajaTextoContrasenna = new javax.swing.JPasswordField();
         labelImagen1 = new javax.swing.JLabel();
         labelImagen2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -80,9 +92,9 @@ public class frmLogin extends javax.swing.JFrame {
         jSeparator2.setForeground(new java.awt.Color(64, 132, 253));
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, 210, 10));
 
-        cajaContraseña.setFont(new java.awt.Font("Quicksand", 0, 18)); // NOI18N
-        cajaContraseña.setBorder(null);
-        jPanel1.add(cajaContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 210, 30));
+        cajaTextoContrasenna.setFont(new java.awt.Font("Quicksand", 0, 18)); // NOI18N
+        cajaTextoContrasenna.setBorder(null);
+        jPanel1.add(cajaTextoContrasenna, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 210, 30));
 
         labelImagen1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/bloquear.png"))); // NOI18N
         jPanel1.add(labelImagen1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, 30, 30));
@@ -107,15 +119,53 @@ public class frmLogin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    void verificarLogin(){
+         int usuarioBD=0;
+    String b="";
+     String usuarioCajaTexto= new String();
+     String contrasenna= new String();
+     int usuarioInt;
+     usuarioCajaTexto=cajaTextoUsuario.getText();/*Obtiene lo que hay en la caja de texto*/
+     /*contrasenna=cajaTextoContrasenna.getPassword(); solo se puede en array de caracteres*/
+      
+    String sql="SELECT idCuenta, idPassCuenta FROM Cuenta WHERE idCuenta=" + usuarioCajaTexto;/*Consulta en postgresql
+    donde busca el usuario que se ingreso en la caja de texto en la base de datos*/
+    try{
+   
+        cn=con.getConnection();
+        st=cn.createStatement();
+        rs=st.executeQuery(sql);   
+       
+        while(rs.next()){
+        usuarioBD=rs.getInt("idCuenta");/*deben llamarse exactamente igual a como esta en la tabla*/
+       /* b=rs.getString("idPassCuenta"); deben llamarse exactamente igual a como esta en la tabla*/
+        }
+  usuarioInt=Integer.valueOf(usuarioCajaTexto);/*Convierte lo de la el usuario ingresado en la caja de texto y lo convierte
+  a int para poderlo comparar con el de la base de datos*/
+    if(usuarioInt==usuarioBD && usuarioBD!=0)
+    {
+        verificacion=true;
+    }else 
+        verificacion=false;
+   
+    }catch(SQLException e){}
+   
+    }
+    
     private void cajaTextoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaTextoUsuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cajaTextoUsuarioActionPerformed
 
     private void botonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonLoginActionPerformed
-        if(evt.getSource()==botonLogin){
+       verificarLogin();
+       
+        if(Boolean.TRUE.equals(verificacion)){
             vistaMenu menu = new vistaMenu();
             this.setVisible(false);
-        }// TODO add your handling code here:
+        }
+        else JOptionPane.showMessageDialog(jPanel1,"Datos Erroneos, ingreselos de nuevo");
+// TODO add your handling code here:
     }//GEN-LAST:event_botonLoginActionPerformed
 
     /**
@@ -125,7 +175,7 @@ public class frmLogin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonLogin;
-    private javax.swing.JPasswordField cajaContraseña;
+    private javax.swing.JPasswordField cajaTextoContrasenna;
     private javax.swing.JTextField cajaTextoUsuario;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
