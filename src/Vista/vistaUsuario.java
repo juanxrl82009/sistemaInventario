@@ -5,12 +5,14 @@
  */
 package Vista;
 
+import Control.ControlCuenta;
 import Control.ControlUsuario;
 import Modelo.Conexion;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -24,7 +26,8 @@ public class vistaUsuario extends javax.swing.JFrame {
     ResultSet rs;
     DefaultTableModel modelo;
     int id;
-    ControlUsuario control=new ControlUsuario();/*un objeto control para manejar los usuarios*/
+    ControlUsuario controlU=new ControlUsuario();/*un objeto control para manejar los usuarios*/
+    ControlCuenta controlC=new ControlCuenta();/*un objeto control para manejar las cuentas*/
     
     /**
      * Creates new form vistaUsuario
@@ -63,6 +66,17 @@ public class vistaUsuario extends javax.swing.JFrame {
       /*  modelo.addRow(Datos);
         tablaUsuarios.setModel(modelo);*/
     }catch(SQLException e){}
+    }
+    
+    void limpiarTabla(){
+        
+        for(int i=0; i<=tablaUsuarios.getRowCount(); i++){
+            
+            modelo.removeRow(i);
+            i=i-1;
+        
+        }
+    
     }
 
 
@@ -260,6 +274,8 @@ public class vistaUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
+        
+        this.listar();
         // TODO add your handling code here:
     }//GEN-LAST:event_botonModificarActionPerformed
 
@@ -268,16 +284,24 @@ public class vistaUsuario extends javax.swing.JFrame {
         
         try{
             /*se le asignan los atribujos que se ingreso en las cajas de texto a un objeto usuario*/
-        control.getUsuario().setIdUsuario(Integer.valueOf(cajaTextoId.getText()));
-        control.getUsuario().setNombre(cajaTextoNombre.getText());
-        control.getUsuario().setTelefono(Integer.valueOf(cajaTextoTelefono.getText()));
-        control.agregar();/*se ejecuta el metodo que agrega un usuario a la base de datos*/
-        this.listar();
+        controlU.getUsuario().setIdUsuario(Integer.valueOf(cajaTextoId.getText()));
+        controlU.getUsuario().setNombre(cajaTextoNombre.getText());
+        controlU.getUsuario().setTelefono(Integer.valueOf(cajaTextoTelefono.getText()));
+        controlU.agregar();/*se ejecuta el metodo que agrega un usuario a la base de datos*/
+         
+            /*se le asignan los atribujos que se ingreso en las cajas de texto a un objeto cuenta*/
+        controlC.getCuenta().setIdCuenta(Integer.valueOf(cajaTextoId.getText()));
+        controlC.getCuenta().setContraseña(cajaTextoPassword.getText());
+        controlC.getCuenta().setIdCategoCuenta(Integer.valueOf(cajaTextoCategoria.getText()));
+        controlC.agregarCuenta();/*se ejecuta el metodo que agrega una cuenta a la base de datos*/
+        limpiarTabla();
         
         
         
+    
         }catch(Exception e){}
-  
+        JOptionPane.showMessageDialog(null,"Usario registrado con exito");
+        listar();
     }//GEN-LAST:event_botonAñadirActionPerformed
 
     /**

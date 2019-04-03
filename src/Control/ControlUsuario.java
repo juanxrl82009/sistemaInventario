@@ -33,15 +33,13 @@ public class ControlUsuario {
     {
     /*Se le asigna a un string el insert en la base de datos*/
          String sqlUsuario="INSERT INTO Usuario VALUES"
-                 + "("+usuario.getIdUsuario()+",'"+ usuario.getNombre()+"',"+usuario.getTelefono()+")";
-         String sqlCuenta="INSERT INTO Cuenta VALUES"
-                 + "()";
+                 + "("+usuario.getIdUsuario()+",'"+ usuario.getNombre()+"',"+usuario.getTelefono()+");";
+        
     try{
        /*se establece coneccion con la base de datos y se le introduce la consulta*/
         cn=con.getConnection();
         st=cn.createStatement();
         rs=st.executeQuery(sqlUsuario); /*se ejecuta en la base de datos*/
-       /* rs=st.executeQuery(sqlCuenta); */
         }catch(SQLException e){}
     }
 
