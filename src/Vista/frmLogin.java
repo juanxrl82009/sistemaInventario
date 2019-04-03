@@ -127,10 +127,14 @@ Conexion con=new Conexion();
      String contrasenna= new String();
      int usuarioInt;
      usuarioCajaTexto=cajaTextoUsuario.getText();/*Obtiene lo que hay en la caja de texto*/
+      contrasenna=String.valueOf(cajaTextoContrasenna.getPassword());
+     /*Obtiene lo que hay en la caja de texto*/
      /*contrasenna=cajaTextoContrasenna.getPassword(); solo se puede en array de caracteres*/
       
-    String sql="SELECT idCuenta, idPassCuenta FROM Cuenta WHERE idCuenta=" + usuarioCajaTexto;/*Consulta en postgresql
+    //String sql="SELECT idCuenta, idPassCuenta FROM Cuenta WHERE idCuenta=" + usuarioCajaTexto;
+    /*Consulta en postgresql
     donde busca el usuario que se ingreso en la caja de texto en la base de datos*/
+    String sql="SELECT * FROM Cuenta WHERE idCuenta = " + usuarioCajaTexto + "AND idPassCuenta = crypt('" + contrasenna + "', idPassCuenta)";
     try{
    
         cn=con.getConnection();
