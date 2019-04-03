@@ -116,6 +116,11 @@ public class vistaMenu extends javax.swing.JFrame {
         botonReportes.setBackground(new java.awt.Color(255, 255, 255));
         botonReportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/perfiles.png"))); // NOI18N
         botonReportes.setBorder(null);
+        botonReportes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonReportesActionPerformed(evt);
+            }
+        });
 
         botonSalir.setBackground(new java.awt.Color(255, 255, 255));
         botonSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/desconectarte.png"))); // NOI18N
@@ -200,19 +205,16 @@ public class vistaMenu extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(botonCompras)
                         .addGap(18, 18, 18)
-                        .addComponent(labelCompras)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(labelCompras))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(botonCliente)
                             .addComponent(botonProveedores))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(labelCliente)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(labelCliente)
                             .addComponent(labelProveedores))))
-                .addGap(49, 49, 49)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -291,6 +293,14 @@ public class vistaMenu extends javax.swing.JFrame {
             this.setVisible(false);
         }
     }//GEN-LAST:event_botonSalirActionPerformed
+
+    private void botonReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonReportesActionPerformed
+        // TODO add your handling code here:
+        if(evt.getSource()==botonReportes){
+            vistaReportes reportes = new vistaReportes();
+            this.setVisible(false);
+        }
+    }//GEN-LAST:event_botonReportesActionPerformed
 
     
         
