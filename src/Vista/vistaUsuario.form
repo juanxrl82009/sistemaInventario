@@ -73,11 +73,11 @@
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="labelFechaN" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="cajaTextoFechaN" min="-2" pref="83" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="cajaTextoFormatoFechaN" min="-2" pref="111" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
                                       <Component id="botonAñadir" min="-2" pref="73" max="-2" attributes="0"/>
                                       <Group type="103" alignment="1" groupAlignment="0" attributes="0">
@@ -93,7 +93,7 @@
                                           <Component id="botonEliminar" min="-2" pref="65" max="-2" attributes="0"/>
                                       </Group>
                                       <Component id="cajaTextoPassword" alignment="0" min="-2" pref="83" max="-2" attributes="0"/>
-                                      <Component id="cajaTextoCategoria" alignment="0" min="-2" pref="82" max="-2" attributes="0"/>
+                                      <Component id="cajaComboCategoria" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -108,7 +108,7 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                   <Component id="labelTitulo" min="-2" pref="40" max="-2" attributes="0"/>
-                  <EmptySpace pref="21" max="32767" attributes="0"/>
+                  <EmptySpace pref="23" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="labelPassword" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="labelId" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -119,8 +119,8 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="labelCategoria" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="labelNombre" alignment="3" max="32767" attributes="0"/>
-                      <Component id="cajaTextoCategoria" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="cajaTextoNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cajaComboCategoria" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -129,7 +129,7 @@
                   </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace pref="27" max="32767" attributes="0"/>
+                          <EmptySpace pref="25" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="botonAñadir" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                               <Component id="botonEliminar" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
@@ -141,7 +141,7 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="labelFechaN" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="cajaTextoFechaN" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cajaTextoFormatoFechaN" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
@@ -245,11 +245,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="cajaTextoTelefono">
         </Component>
-        <Component class="javax.swing.JTextField" name="cajaTextoFechaN">
-        </Component>
         <Component class="javax.swing.JTextField" name="cajaTextoPassword">
-        </Component>
-        <Component class="javax.swing.JTextField" name="cajaTextoCategoria">
         </Component>
         <Component class="javax.swing.JTextField" name="cajaTextoNombre">
         </Component>
@@ -293,6 +289,34 @@
               <Border info="null"/>
             </Property>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cajaComboCategoria">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="2">
+                <StringItem index="0" value="Administrador"/>
+                <StringItem index="1" value="Cajero"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <AccessibilityProperties>
+            <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="cajaComboCategoria"/>
+            <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value=""/>
+          </AccessibilityProperties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JFormattedTextField" name="cajaTextoFormatoFechaN">
+          <Properties>
+            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+              <Format format="dd-MM-yyyy" subtype="-1" type="1"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="dd-mm-aaaa"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cajaTextoFormatoFechaNActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

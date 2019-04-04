@@ -100,14 +100,14 @@ public class vistaUsuario extends javax.swing.JFrame {
         labelPassword = new javax.swing.JLabel();
         labelCategoria = new javax.swing.JLabel();
         cajaTextoTelefono = new javax.swing.JTextField();
-        cajaTextoFechaN = new javax.swing.JTextField();
         cajaTextoPassword = new javax.swing.JTextField();
-        cajaTextoCategoria = new javax.swing.JTextField();
         cajaTextoNombre = new javax.swing.JTextField();
         cajaTextoId = new javax.swing.JTextField();
         botonAñadir = new javax.swing.JButton();
         botonModificar = new javax.swing.JButton();
         botonEliminar = new javax.swing.JButton();
+        cajaComboCategoria = new javax.swing.JComboBox<>();
+        cajaTextoFormatoFechaN = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -173,6 +173,16 @@ public class vistaUsuario extends javax.swing.JFrame {
         botonEliminar.setText("Eliminar");
         botonEliminar.setBorder(null);
 
+        cajaComboCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Cajero" }));
+
+        cajaTextoFormatoFechaN.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd-MM-yyyy"))));
+        cajaTextoFormatoFechaN.setToolTipText("dd-mm-aaaa");
+        cajaTextoFormatoFechaN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cajaTextoFormatoFechaNActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelUsuariosLayout = new javax.swing.GroupLayout(panelUsuarios);
         panelUsuarios.setLayout(panelUsuariosLayout);
         panelUsuariosLayout.setHorizontalGroup(
@@ -202,9 +212,9 @@ public class vistaUsuario extends javax.swing.JFrame {
                                         .addComponent(cajaTextoTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(panelUsuariosLayout.createSequentialGroup()
                                         .addComponent(labelFechaN)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(cajaTextoFechaN, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(83, 83, 83)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(cajaTextoFormatoFechaN, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(47, 47, 47)
                                 .addGroup(panelUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(botonAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(panelUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -217,7 +227,7 @@ public class vistaUsuario extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)
                                         .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(cajaTextoPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cajaTextoCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(cajaComboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(92, Short.MAX_VALUE))
         );
         panelUsuariosLayout.setVerticalGroup(
@@ -225,7 +235,7 @@ public class vistaUsuario extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelUsuariosLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(labelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addGroup(panelUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelPassword)
                     .addComponent(labelId)
@@ -235,15 +245,15 @@ public class vistaUsuario extends javax.swing.JFrame {
                 .addGroup(panelUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelCategoria)
                     .addComponent(labelNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cajaTextoCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cajaTextoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cajaTextoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cajaComboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(panelUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelTelefono)
                     .addComponent(cajaTextoTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(panelUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelUsuariosLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                         .addGroup(panelUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(botonAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -253,11 +263,14 @@ public class vistaUsuario extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(panelUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(labelFechaN)
-                            .addComponent(cajaTextoFechaN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cajaTextoFormatoFechaN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
         );
+
+        cajaComboCategoria.getAccessibleContext().setAccessibleName("cajaComboCategoria");
+        cajaComboCategoria.getAccessibleContext().setAccessibleDescription("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -287,12 +300,17 @@ public class vistaUsuario extends javax.swing.JFrame {
         controlU.getUsuario().setIdUsuario(Integer.valueOf(cajaTextoId.getText()));
         controlU.getUsuario().setNombre(cajaTextoNombre.getText());
         controlU.getUsuario().setTelefono(Integer.valueOf(cajaTextoTelefono.getText()));
+        controlU.getUsuario().setFechaNacimiento(cajaTextoFormatoFechaN.getText());
         controlU.agregar();/*se ejecuta el metodo que agrega un usuario a la base de datos*/
          
             /*se le asignan los atribujos que se ingreso en las cajas de texto a un objeto cuenta*/
         controlC.getCuenta().setIdCuenta(Integer.valueOf(cajaTextoId.getText()));
         controlC.getCuenta().setContraseña(cajaTextoPassword.getText());
-        controlC.getCuenta().setIdCategoCuenta(Integer.valueOf(cajaTextoCategoria.getText()));
+        if ("Administrador".equals(String.valueOf(cajaComboCategoria.getSelectedItem()))){
+            controlC.getCuenta().setIdCategoCuenta(1);
+        }else{
+            controlC.getCuenta().setIdCategoCuenta(2);
+        }
         controlC.agregarCuenta();/*se ejecuta el metodo que agrega una cuenta a la base de datos*/
         limpiarTabla();
         
@@ -303,6 +321,10 @@ public class vistaUsuario extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null,"Usario registrado con exito");
         listar();
     }//GEN-LAST:event_botonAñadirActionPerformed
+
+    private void cajaTextoFormatoFechaNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaTextoFormatoFechaNActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cajaTextoFormatoFechaNActionPerformed
 
     /**
      * @param args the command line arguments
@@ -343,8 +365,8 @@ public class vistaUsuario extends javax.swing.JFrame {
     private javax.swing.JButton botonAñadir;
     private javax.swing.JButton botonEliminar;
     private javax.swing.JButton botonModificar;
-    private javax.swing.JTextField cajaTextoCategoria;
-    private javax.swing.JTextField cajaTextoFechaN;
+    private javax.swing.JComboBox<String> cajaComboCategoria;
+    private javax.swing.JFormattedTextField cajaTextoFormatoFechaN;
     private javax.swing.JTextField cajaTextoId;
     private javax.swing.JTextField cajaTextoNombre;
     private javax.swing.JTextField cajaTextoPassword;
