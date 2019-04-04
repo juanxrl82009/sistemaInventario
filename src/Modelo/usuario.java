@@ -17,7 +17,7 @@ public class Usuario {
     private String nombre;
     private int telefono;
     private String direccion;
-    private Date fechaNacimiento;
+    private String fechaNacimiento;
   
     public int getIdUsuario() {
         return idUsuario;
@@ -54,11 +54,11 @@ public class Usuario {
         this.direccion = direccion;
     }
 
-    public Date getFechaNacimiento() {
+    public String getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
+    public void setFechaNacimiento(String fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
     
