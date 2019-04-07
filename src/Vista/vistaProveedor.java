@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.*;
 
 /**
  *
@@ -38,20 +39,21 @@ public class vistaProveedor extends javax.swing.JFrame {
         void listar(){
         modelo=(DefaultTableModel)tablaProveedores.getModel();
         /*Se almacena la consulta sql en un string*/
-        String sql="SELECT nitproveedor, nombreprovedor, direccionproveedor " +
+        String sql="SELECT * " +
                "FROM Proveedor";
     try{
        /*se establece coneccion con la base de datos y se le introduce la consulta*/
         cn=con.getConnection();
         st=cn.createStatement();
         rs=st.executeQuery(sql);   
-        Object[] Datos= new Object[3]; /*Un array donde se almacenan las filas de la tabla. el tamaño del
+        Object[] Datos= new Object[4]; /*Un array donde se almacenan las filas de la tabla. el tamaño del
         array debe ser el numero de columnas que tenga nuestra consulta*/
         /*modelo=(DefaultTableModel)tablaUsuarios.getModel();*/
         while(rs.next()){
         Datos[0]=rs.getInt("nitproveedor");/*deben llamarse exactamente igual a como esta en la tabla*/
         Datos[1]=rs.getString("nombreprovedor");/*deben llamarse exactamente igual a como esta en la tabla*/
-        Datos[2]=rs.getString("direccionproveedor");/*deben llamarse exactamente igual a como esta en la tabla*/
+        Datos[2]=rs.getString("direccionproveedor");
+        Datos[3]=rs.getString("telefonoproveedor");/*/*deben llamarse exactamente igual a como esta en la tabla*/
         modelo.addRow(Datos);
         }
         
@@ -103,11 +105,11 @@ public class vistaProveedor extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nit", "Nombre", "Dirección"
+                "Nit", "Nombre", "Dirección", "Telefono"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -117,6 +119,11 @@ public class vistaProveedor extends javax.swing.JFrame {
         tablaProveedores.setFocusable(false);
         tablaProveedores.setGridColor(new java.awt.Color(153, 153, 153));
         tablaProveedores.getTableHeader().setReorderingAllowed(false);
+        tablaProveedores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tablaProveedoresMousePressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaProveedores);
 
         labelTitulo.setFont(new java.awt.Font("Quicksand", 0, 36)); // NOI18N
@@ -150,6 +157,11 @@ public class vistaProveedor extends javax.swing.JFrame {
         botonEliminar.setBackground(new java.awt.Color(51, 172, 234));
         botonEliminar.setText("Eliminar");
         botonEliminar.setBorder(null);
+        botonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEliminarActionPerformed(evt);
+            }
+        });
 
         labelNombre1.setText("Dirección");
 
@@ -201,12 +213,13 @@ public class vistaProveedor extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(labelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelId)
-                    .addComponent(cajaTextoNit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(labelNombre1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cajaTextoDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cajaTextoDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(labelId)
+                        .addComponent(cajaTextoNit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -242,13 +255,45 @@ public class vistaProveedor extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null,"Usario registrado con exito");
         listar();
     }//GEN-LAST:event_botonAñadirActionPerformed
-
+    
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
+        try{
+            /*se le asignan los atribujos que se ingreso en las cajas de texto a un objeto usuario*/
+            controlP.getProveedor().setNit(Integer.valueOf(cajaTextoNit.getText()));
+            controlP.getProveedor().setNomProveedor(cajaTextoNombre.getText());
+            controlP.getProveedor().setTelefono(cajaTextoTelefono.getText());
+            controlP.getProveedor().setDireccion(cajaTextoDireccion.getText());
+            controlP.modificar();/*se ejecuta el metodo que agrega una cuenta a la base de datos*/
+            limpiarTabla();
 
-        this.listar();
+        }catch(Exception e){}
+        JOptionPane.showMessageDialog(null,"Proveedor modificado con exito");
+        listar();
         // TODO add your handling code here:
     }//GEN-LAST:event_botonModificarActionPerformed
 
+    private void tablaProveedoresMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaProveedoresMousePressed
+        cajaTextoNit.setText(String.valueOf(tablaProveedores.getValueAt(tablaProveedores.getSelectedRow(), 0)));
+        cajaTextoNombre.setText(String.valueOf(tablaProveedores.getValueAt(tablaProveedores.getSelectedRow(), 1)));
+        cajaTextoTelefono.setText(String.valueOf(tablaProveedores.getValueAt(tablaProveedores.getSelectedRow(), 2)));
+        cajaTextoDireccion.setText(String.valueOf(tablaProveedores.getValueAt(tablaProveedores.getSelectedRow(), 3)));
+    }//GEN-LAST:event_tablaProveedoresMousePressed
+
+    private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
+        try{
+            /*se le asignan los atribujos que se ingreso en las cajas de texto a un objeto usuario*/
+            controlP.getProveedor().setNit(Integer.valueOf(cajaTextoNit.getText()));
+            controlP.getProveedor().setNomProveedor(cajaTextoNombre.getText());
+            controlP.getProveedor().setTelefono(cajaTextoTelefono.getText());
+            controlP.getProveedor().setDireccion(cajaTextoDireccion.getText());
+            controlP.eliminar();/*se ejecuta el metodo que agrega una cuenta a la base de datos*/
+            limpiarTabla();
+
+        }catch(Exception e){}
+        JOptionPane.showMessageDialog(null,"Proveedor eliminado con exito");
+        listar();// TODO add your handling code here:
+    }//GEN-LAST:event_botonEliminarActionPerformed
+ 
     /**
      * @param args the command line arguments
      */
