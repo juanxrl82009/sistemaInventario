@@ -41,11 +41,11 @@ public class Proveedor {
         this.direccion = direccion;
     }
 
-    public String getTelofono() {
+    public String getTelefono() {
         return telofono;
     }
 
-    public void setTelofono(String telofono) {
+    public void setTelefono(String telofono) {
         this.telofono = telofono;
     }
     
