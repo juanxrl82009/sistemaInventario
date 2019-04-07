@@ -95,10 +95,10 @@ public class vistaMenu extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jButton1.getAccessibleContext().setAccessibleName("Salir");
         jButton1.getAccessibleContext().setAccessibleDescription("Salir");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -121,6 +121,11 @@ public class vistaMenu extends javax.swing.JFrame {
         botonProveedores.setBackground(new java.awt.Color(255, 255, 255));
         botonProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/camion-de-reparto.png"))); // NOI18N
         botonProveedores.setBorder(null);
+        botonProveedores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonProveedoresActionPerformed(evt);
+            }
+        });
 
         botonCompras.setBackground(new java.awt.Color(255, 255, 255));
         botonCompras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/carro-de-la-compra.png"))); // NOI18N
@@ -317,6 +322,10 @@ public class vistaMenu extends javax.swing.JFrame {
             this.setVisible(false);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void botonProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonProveedoresActionPerformed
+        vistaProveedor vProveedor= new vistaProveedor();        // TODO add your handling code here:
+    }//GEN-LAST:event_botonProveedoresActionPerformed
 
     
         

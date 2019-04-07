@@ -110,6 +110,7 @@ public class vistaUsuario extends javax.swing.JFrame {
         cajaTextoFormatoFechaN = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         panelUsuarios.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -314,7 +315,7 @@ public class vistaUsuario extends javax.swing.JFrame {
         controlC.agregarCuenta();/*se ejecuta el metodo que agrega una cuenta a la base de datos*/
         limpiarTabla();
         
-        
+        //puto el que lo lea
         
     
         }catch(Exception e){}
