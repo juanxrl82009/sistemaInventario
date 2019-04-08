@@ -27,9 +27,11 @@ Conexion con=new Conexion();
      * Creates new form frmLogin
      */
     public frmLogin() {
-        this.setLocationRelativeTo(null);
+               
+        this.setUndecorated(true);
         this.setVisible(true);
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -51,9 +53,9 @@ Conexion con=new Conexion();
         cajaTextoContrasenna = new javax.swing.JPasswordField();
         labelImagen1 = new javax.swing.JLabel();
         labelImagen2 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
         labelFotoUsuario = new javax.swing.JLabel();
         botonLogin = new javax.swing.JButton();
+        BotonCerrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -102,7 +104,6 @@ Conexion con=new Conexion();
 
         labelImagen2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/entrar.png"))); // NOI18N
         jPanel1.add(labelImagen2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 260, -1, 30));
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 340, -1, -1));
 
         labelFotoUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/usuario.png"))); // NOI18N
         jPanel1.add(labelFotoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, -1, -1));
@@ -114,6 +115,14 @@ Conexion con=new Conexion();
             }
         });
         jPanel1.add(botonLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, -1, -1));
+
+        BotonCerrar.setText("X");
+        BotonCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonCerrarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(BotonCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(343, 10, 50, 30));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 400));
 
@@ -173,17 +182,21 @@ Conexion con=new Conexion();
 // TODO add your handling code here:
     }//GEN-LAST:event_botonLoginActionPerformed
 
+    private void BotonCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCerrarActionPerformed
+        dispose();
+    }//GEN-LAST:event_BotonCerrarActionPerformed
+
     /**
      * @param args the command line arguments
      */
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotonCerrar;
     private javax.swing.JButton botonLogin;
     private javax.swing.JPasswordField cajaTextoContrasenna;
     private javax.swing.JTextField cajaTextoUsuario;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel labelContrasenna;

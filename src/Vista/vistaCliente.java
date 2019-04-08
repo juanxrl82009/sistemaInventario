@@ -5,7 +5,7 @@
  */
 package Vista;
 
-import Control.ControlProveedor;
+import Control.ControlCliente;
 import Modelo.Conexion;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -19,18 +19,18 @@ import java.awt.event.*;
  *
  * @author Daniel Luna
  */
-public class vistaProveedor extends javax.swing.JFrame {
+public class vistaCliente extends javax.swing.JFrame {
     Conexion con=new Conexion();
     Connection cn;
     Statement st;
     ResultSet rs;
     DefaultTableModel modelo;
     int id;
-    ControlProveedor controlP=new ControlProveedor();/*un objeto control para manejar los usuarios*/
+    ControlCliente controlC=new ControlCliente();/*un objeto control para manejar los usuarios*/
     /**
      * Creates new form vistaProvedor
      */
-    public vistaProveedor() {
+    public vistaCliente() {
         this.setUndecorated(true);
         this.setVisible(true);
         initComponents();
@@ -39,10 +39,10 @@ public class vistaProveedor extends javax.swing.JFrame {
     }
 
         void listar(){
-        modelo=(DefaultTableModel)tablaProveedores.getModel();
+        modelo=(DefaultTableModel)tablaClientes.getModel();
         /*Se almacena la consulta sql en un string*/
         String sql="SELECT * " +
-               "FROM Proveedor";
+               "FROM Cliente";
     try{
        /*se establece coneccion con la base de datos y se le introduce la consulta*/
         cn=con.getConnection();
@@ -52,10 +52,10 @@ public class vistaProveedor extends javax.swing.JFrame {
         array debe ser el numero de columnas que tenga nuestra consulta*/
         /*modelo=(DefaultTableModel)tablaUsuarios.getModel();*/
         while(rs.next()){
-        Datos[0]=rs.getInt("nitproveedor");/*deben llamarse exactamente igual a como esta en la tabla*/
-        Datos[1]=rs.getString("nombreprovedor");/*deben llamarse exactamente igual a como esta en la tabla*/
-        Datos[2]=rs.getString("direccionproveedor");
-        Datos[3]=rs.getString("telefonoproveedor");/*/*deben llamarse exactamente igual a como esta en la tabla*/
+        Datos[0]=rs.getInt("idcliente");/*deben llamarse exactamente igual a como esta en la tabla*/
+        Datos[1]=rs.getString("nombrecliente");/*deben llamarse exactamente igual a como esta en la tabla*/
+        Datos[2]=rs.getString("direccioncliente");
+        Datos[3]=rs.getString("telefonocliente");/*/*deben llamarse exactamente igual a como esta en la tabla*/
         modelo.addRow(Datos);
         }
         
@@ -66,7 +66,7 @@ public class vistaProveedor extends javax.swing.JFrame {
         
         void limpiarTabla(){
         
-        for(int i=0; i<=tablaProveedores.getRowCount(); i++){
+        for(int i=0; i<=tablaClientes.getRowCount(); i++){
             
             modelo.removeRow(i);
             i=i-1;
@@ -84,7 +84,7 @@ public class vistaProveedor extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablaProveedores = new javax.swing.JTable();
+        tablaClientes = new javax.swing.JTable();
         labelTitulo = new javax.swing.JLabel();
         labelId = new javax.swing.JLabel();
         cajaTextoNit = new javax.swing.JTextField();
@@ -102,8 +102,8 @@ public class vistaProveedor extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        tablaProveedores.setFont(new java.awt.Font("Quicksand", 0, 11)); // NOI18N
-        tablaProveedores.setModel(new javax.swing.table.DefaultTableModel(
+        tablaClientes.setFont(new java.awt.Font("Quicksand", 0, 11)); // NOI18N
+        tablaClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -119,19 +119,19 @@ public class vistaProveedor extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tablaProveedores.setFocusable(false);
-        tablaProveedores.setGridColor(new java.awt.Color(153, 153, 153));
-        tablaProveedores.getTableHeader().setReorderingAllowed(false);
-        tablaProveedores.addMouseListener(new java.awt.event.MouseAdapter() {
+        tablaClientes.setFocusable(false);
+        tablaClientes.setGridColor(new java.awt.Color(153, 153, 153));
+        tablaClientes.getTableHeader().setReorderingAllowed(false);
+        tablaClientes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                tablaProveedoresMousePressed(evt);
+                tablaClientesMousePressed(evt);
             }
         });
-        jScrollPane1.setViewportView(tablaProveedores);
+        jScrollPane1.setViewportView(tablaClientes);
 
         labelTitulo.setFont(new java.awt.Font("Quicksand", 0, 36)); // NOI18N
         labelTitulo.setForeground(new java.awt.Color(102, 102, 102));
-        labelTitulo.setText("Proveedores");
+        labelTitulo.setText("Clientes");
 
         labelId.setText("NIT");
 
@@ -259,53 +259,53 @@ public class vistaProveedor extends javax.swing.JFrame {
 
         try{
             /*se le asignan los atribujos que se ingreso en las cajas de texto a un objeto usuario*/
-            controlP.getProveedor().setNit(Integer.valueOf(cajaTextoNit.getText()));
-            controlP.getProveedor().setNomProveedor(cajaTextoNombre.getText());
-            controlP.getProveedor().setTelefono(cajaTextoTelefono.getText());
-            controlP.getProveedor().setDireccion(cajaTextoDireccion.getText());
-            controlP.agregar();/*se ejecuta el metodo que agrega una cuenta a la base de datos*/
+            controlC.getCliente().setIdCliente(Integer.valueOf(cajaTextoNit.getText()));
+            controlC.getCliente().setNombre(cajaTextoNombre.getText());
+            controlC.getCliente().setTelefono(cajaTextoTelefono.getText());
+            controlC.getCliente().setDireccion(cajaTextoDireccion.getText());
+            controlC.agregar();/*se ejecuta el metodo que agrega una cuenta a la base de datos*/
             limpiarTabla();
 
         }catch(Exception e){}
-        JOptionPane.showMessageDialog(null,"Usario registrado con exito");
+        JOptionPane.showMessageDialog(null,"Cliente registrado con exito");
         listar();
     }//GEN-LAST:event_botonAñadirActionPerformed
     
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
         try{
             /*se le asignan los atribujos que se ingreso en las cajas de texto a un objeto usuario*/
-            controlP.getProveedor().setNit(Integer.valueOf(cajaTextoNit.getText()));
-            controlP.getProveedor().setNomProveedor(cajaTextoNombre.getText());
-            controlP.getProveedor().setTelefono(cajaTextoTelefono.getText());
-            controlP.getProveedor().setDireccion(cajaTextoDireccion.getText());
-            controlP.modificar();/*se ejecuta el metodo que agrega una cuenta a la base de datos*/
+            controlC.getCliente().setIdCliente(Integer.valueOf(cajaTextoNit.getText()));
+            controlC.getCliente().setNombre(cajaTextoNombre.getText());
+            controlC.getCliente().setTelefono(cajaTextoTelefono.getText());
+            controlC.getCliente().setDireccion(cajaTextoDireccion.getText());
+            controlC.modificar();/*se ejecuta el metodo que agrega una cuenta a la base de datos*/
             limpiarTabla();
 
         }catch(Exception e){}
-        JOptionPane.showMessageDialog(null,"Proveedor modificado con exito");
+        JOptionPane.showMessageDialog(null,"Cliente modificado con exito");
         listar();
         // TODO add your handling code here:
     }//GEN-LAST:event_botonModificarActionPerformed
 
-    private void tablaProveedoresMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaProveedoresMousePressed
-        cajaTextoNit.setText(String.valueOf(tablaProveedores.getValueAt(tablaProveedores.getSelectedRow(), 0)));
-        cajaTextoNombre.setText(String.valueOf(tablaProveedores.getValueAt(tablaProveedores.getSelectedRow(), 1)));
-        cajaTextoTelefono.setText(String.valueOf(tablaProveedores.getValueAt(tablaProveedores.getSelectedRow(), 2)));
-        cajaTextoDireccion.setText(String.valueOf(tablaProveedores.getValueAt(tablaProveedores.getSelectedRow(), 3)));
-    }//GEN-LAST:event_tablaProveedoresMousePressed
+    private void tablaClientesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClientesMousePressed
+        cajaTextoNit.setText(String.valueOf(tablaClientes.getValueAt(tablaClientes.getSelectedRow(), 0)));
+        cajaTextoNombre.setText(String.valueOf(tablaClientes.getValueAt(tablaClientes.getSelectedRow(), 1)));
+        cajaTextoTelefono.setText(String.valueOf(tablaClientes.getValueAt(tablaClientes.getSelectedRow(), 2)));
+        cajaTextoDireccion.setText(String.valueOf(tablaClientes.getValueAt(tablaClientes.getSelectedRow(), 3)));
+    }//GEN-LAST:event_tablaClientesMousePressed
 
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
         try{
             /*se le asignan los atribujos que se ingreso en las cajas de texto a un objeto usuario*/
-            controlP.getProveedor().setNit(Integer.valueOf(cajaTextoNit.getText()));
-            controlP.getProveedor().setNomProveedor(cajaTextoNombre.getText());
-            controlP.getProveedor().setTelefono(cajaTextoTelefono.getText());
-            controlP.getProveedor().setDireccion(cajaTextoDireccion.getText());
-            controlP.eliminar();/*se ejecuta el metodo que agrega una cuenta a la base de datos*/
+            controlC.getCliente().setIdCliente(Integer.valueOf(cajaTextoNit.getText()));
+            controlC.getCliente().setNombre(cajaTextoNombre.getText());
+            controlC.getCliente().setTelefono(cajaTextoTelefono.getText());
+            controlC.getCliente().setDireccion(cajaTextoDireccion.getText());
+            controlC.eliminar();/*se ejecuta el metodo que agrega una cuenta a la base de datos*/
             limpiarTabla();
 
         }catch(Exception e){}
-        JOptionPane.showMessageDialog(null,"Proveedor eliminado con exito");
+        JOptionPane.showMessageDialog(null,"Cliente eliminado con exito");
         listar();// TODO add your handling code here:
     }//GEN-LAST:event_botonEliminarActionPerformed
 
@@ -344,7 +344,7 @@ public class vistaProveedor extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new vistaProveedor().setVisible(true);
+                new vistaCliente().setVisible(true);
             }
         });
     }
@@ -364,6 +364,6 @@ public class vistaProveedor extends javax.swing.JFrame {
     private javax.swing.JLabel labelNombre1;
     private javax.swing.JLabel labelTelefono;
     private javax.swing.JLabel labelTitulo;
-    private javax.swing.JTable tablaProveedores;
+    private javax.swing.JTable tablaClientes;
     // End of variables declaration//GEN-END:variables
 }

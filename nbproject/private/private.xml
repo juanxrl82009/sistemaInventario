@@ -5,7 +5,7 @@
             <url>src/Vista/vistaUsuario.java</url>
             <bookmark id="2">
                 <name/>
-                <line>287</line>
+                <line>305</line>
                 <key/>
             </bookmark>
         </file>
@@ -20,8 +20,7 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Usuario/Desktop/Nueva%20carpeta/sistemaInventario-master/sistemaInventario-master/src/Modelo/Proveedor.java</file>
-            <file>file:/C:/Users/Usuario/Desktop/Nueva%20carpeta/sistemaInventario-master/sistemaInventario-master/src/Vista/vistaProveedor.java</file>
+            <file>file:/D:/Users/Daniel%20Luna/Documents/Universidad/Desarrollo%20de%20software/Gestion%20Inventario/sistemaInventario/src/Vista/frmLogin.java</file>
         </group>
     </open-files>
 </project-private>

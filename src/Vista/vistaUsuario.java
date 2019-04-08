@@ -33,8 +33,10 @@ public class vistaUsuario extends javax.swing.JFrame {
      * Creates new form vistaUsuario
      */
     public vistaUsuario() {
+          this.setUndecorated(true);
+          this.setVisible(true);
           initComponents();
-          setVisible(true);
+          this.setLocationRelativeTo(null);
           listar();
     }
     
@@ -108,6 +110,7 @@ public class vistaUsuario extends javax.swing.JFrame {
         botonEliminar = new javax.swing.JButton();
         cajaComboCategoria = new javax.swing.JComboBox<>();
         cajaTextoFormatoFechaN = new javax.swing.JFormattedTextField();
+        BotonCerrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -184,6 +187,13 @@ public class vistaUsuario extends javax.swing.JFrame {
             }
         });
 
+        BotonCerrar.setText("X");
+        BotonCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonCerrarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelUsuariosLayout = new javax.swing.GroupLayout(panelUsuarios);
         panelUsuarios.setLayout(panelUsuariosLayout);
         panelUsuariosLayout.setHorizontalGroup(
@@ -192,7 +202,9 @@ public class vistaUsuario extends javax.swing.JFrame {
                 .addGroup(panelUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelUsuariosLayout.createSequentialGroup()
                         .addGap(58, 58, 58)
-                        .addComponent(labelTitulo))
+                        .addComponent(labelTitulo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BotonCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelUsuariosLayout.createSequentialGroup()
                         .addGap(124, 124, 124)
                         .addGroup(panelUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -228,14 +240,20 @@ public class vistaUsuario extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)
                                         .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(cajaTextoPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cajaComboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(92, Short.MAX_VALUE))
+                                    .addComponent(cajaComboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 82, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         panelUsuariosLayout.setVerticalGroup(
             panelUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelUsuariosLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(labelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelUsuariosLayout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(labelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelUsuariosLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(BotonCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addGroup(panelUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelPassword)
@@ -327,6 +345,10 @@ public class vistaUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cajaTextoFormatoFechaNActionPerformed
 
+    private void BotonCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCerrarActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_BotonCerrarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -363,6 +385,7 @@ public class vistaUsuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotonCerrar;
     private javax.swing.JButton botonAñadir;
     private javax.swing.JButton botonEliminar;
     private javax.swing.JButton botonModificar;

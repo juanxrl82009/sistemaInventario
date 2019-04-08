@@ -22,8 +22,11 @@ public class vistaMenu extends javax.swing.JFrame {
      * Creates new form vistaMenu
      */
     public vistaMenu() {
+        
+        this.setUndecorated(true);
+        this.setVisible(true);
         initComponents();
-        setVisible(true);
+        this.setLocationRelativeTo(null);
       
         /* En estas lineas se crea un objeto de tipo fecha, se le cambia el formato y
         se le implementa al label de la fecha*/
@@ -70,13 +73,13 @@ public class vistaMenu extends javax.swing.JFrame {
         botonCompras = new javax.swing.JButton();
         botonFacturacion = new javax.swing.JButton();
         botonReportes = new javax.swing.JButton();
-        botonSalir = new javax.swing.JButton();
+        botonUsuarios = new javax.swing.JButton();
         labelCliente = new javax.swing.JLabel();
         labelProveedores = new javax.swing.JLabel();
         labelCompras = new javax.swing.JLabel();
         labelFacturacion = new javax.swing.JLabel();
         labelReportes = new javax.swing.JLabel();
-        labelSalir = new javax.swing.JLabel();
+        labelUsuarios = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         labelFecha = new javax.swing.JLabel();
         labelHora = new javax.swing.JLabel();
@@ -139,12 +142,12 @@ public class vistaMenu extends javax.swing.JFrame {
         botonReportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/perfiles.png"))); // NOI18N
         botonReportes.setBorder(null);
 
-        botonSalir.setBackground(new java.awt.Color(255, 255, 255));
-        botonSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/desconectarte.png"))); // NOI18N
-        botonSalir.setBorder(null);
-        botonSalir.addActionListener(new java.awt.event.ActionListener() {
+        botonUsuarios.setBackground(new java.awt.Color(255, 255, 255));
+        botonUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/usuario.png"))); // NOI18N
+        botonUsuarios.setBorder(null);
+        botonUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonSalirActionPerformed(evt);
+                botonUsuariosActionPerformed(evt);
             }
         });
 
@@ -168,49 +171,50 @@ public class vistaMenu extends javax.swing.JFrame {
         labelReportes.setForeground(new java.awt.Color(102, 102, 102));
         labelReportes.setText("Reportes");
 
-        labelSalir.setFont(new java.awt.Font("Quicksand", 0, 18)); // NOI18N
-        labelSalir.setForeground(new java.awt.Color(102, 102, 102));
-        labelSalir.setText("Salir");
+        labelUsuarios.setFont(new java.awt.Font("Quicksand", 0, 18)); // NOI18N
+        labelUsuarios.setForeground(new java.awt.Color(102, 102, 102));
+        labelUsuarios.setText("Usuarios");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(292, 292, 292)
+                .addComponent(labelTitulo)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(79, 79, 79)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(79, 79, 79)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(labelCliente)
-                                .addGap(159, 159, 159)
-                                .addComponent(labelProveedores))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(botonCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(168, 168, 168)
-                                        .addComponent(botonProveedores))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(botonFacturacion)
-                                        .addGap(168, 168, 168)
-                                        .addComponent(botonReportes))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(labelFacturacion)
-                                        .addGap(126, 126, 126)
-                                        .addComponent(labelReportes)))
-                                .addGap(162, 162, 162)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(botonCompras)
-                                    .addComponent(botonSalir)
-                                    .addComponent(labelCompras)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(17, 17, 17)
-                                        .addComponent(labelSalir))))))
+                        .addComponent(botonCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(166, 166, 166)
+                        .addComponent(botonProveedores))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(292, 292, 292)
-                        .addComponent(labelTitulo)))
-                .addContainerGap(66, Short.MAX_VALUE))
+                        .addComponent(botonFacturacion)
+                        .addGap(168, 168, 168)
+                        .addComponent(botonReportes))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(labelFacturacion)
+                        .addGap(126, 126, 126)
+                        .addComponent(labelReportes))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(labelCliente)
+                        .addGap(159, 159, 159)
+                        .addComponent(labelProveedores)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
+                        .addComponent(labelCompras)
+                        .addGap(75, 75, 75))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(118, 118, 118)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(labelUsuarios)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(botonUsuarios)
+                                .addComponent(botonCompras)))
+                        .addGap(28, 28, 28))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -220,9 +224,9 @@ public class vistaMenu extends javax.swing.JFrame {
                 .addGap(42, 42, 42)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(botonCompras)
+                        .addComponent(botonUsuarios)
                         .addGap(18, 18, 18)
-                        .addComponent(labelCompras))
+                        .addComponent(labelUsuarios))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(botonCliente)
@@ -231,7 +235,7 @@ public class vistaMenu extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelCliente)
                             .addComponent(labelProveedores))))
-                .addGap(7, 7, Short.MAX_VALUE)
+                .addGap(11, 11, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -242,10 +246,10 @@ public class vistaMenu extends javax.swing.JFrame {
                             .addComponent(labelFacturacion)
                             .addComponent(labelReportes)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(botonSalir)
+                        .addComponent(botonCompras)
                         .addGap(18, 18, 18)
-                        .addComponent(labelSalir)))
-                .addGap(10, 123, Short.MAX_VALUE))
+                        .addComponent(labelCompras)))
+                .addContainerGap(119, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 700, 440));
@@ -301,35 +305,27 @@ public class vistaMenu extends javax.swing.JFrame {
 
     private void botonClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonClienteActionPerformed
         // TODO add your handling code here:
-        vistaUsuario vUsuario= new vistaUsuario();
+        vistaCliente vCliente= new vistaCliente();
+        //vistaUsuario vUsuario= new vistaUsuario();
          
     }//GEN-LAST:event_botonClienteActionPerformed
 
-    private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
+    private void botonUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonUsuariosActionPerformed
         // TODO add your handling code here:
         
-        if(evt.getSource()==botonSalir){
-            frmLogin login = new frmLogin();
-            this.setVisible(false);
-        }
+        vistaUsuario vUsuario= new vistaUsuario();
           
-    }//GEN-LAST:event_botonSalirActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        if(evt.getSource()==jButton1){
-            frmLogin login = new frmLogin();
-            this.setVisible(false);
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_botonUsuariosActionPerformed
 
     private void botonProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonProveedoresActionPerformed
         vistaProveedor vProveedor= new vistaProveedor();        // TODO add your handling code here:
     }//GEN-LAST:event_botonProveedoresActionPerformed
 
-    
-        
-    /**
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+         frmLogin login = new frmLogin();
+            this.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
+       /**
      * @param args the command line arguments
      */
     
@@ -340,7 +336,7 @@ public class vistaMenu extends javax.swing.JFrame {
     private javax.swing.JButton botonFacturacion;
     private javax.swing.JButton botonProveedores;
     private javax.swing.JButton botonReportes;
-    private javax.swing.JButton botonSalir;
+    private javax.swing.JButton botonUsuarios;
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -352,8 +348,8 @@ public class vistaMenu extends javax.swing.JFrame {
     private javax.swing.JLabel labelHora;
     private javax.swing.JLabel labelProveedores;
     private javax.swing.JLabel labelReportes;
-    private javax.swing.JLabel labelSalir;
     private javax.swing.JLabel labelTitulo;
     private javax.swing.JLabel labelUsuario;
+    private javax.swing.JLabel labelUsuarios;
     // End of variables declaration//GEN-END:variables
 }
