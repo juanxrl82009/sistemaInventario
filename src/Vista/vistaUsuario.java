@@ -137,6 +137,11 @@ public class vistaUsuario extends javax.swing.JFrame {
         tablaUsuarios.setFocusable(false);
         tablaUsuarios.setGridColor(new java.awt.Color(153, 153, 153));
         tablaUsuarios.getTableHeader().setReorderingAllowed(false);
+        tablaUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tablaUsuariosMousePressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaUsuarios);
 
         labelTitulo.setFont(new java.awt.Font("Quicksand", 0, 36)); // NOI18N
@@ -176,6 +181,11 @@ public class vistaUsuario extends javax.swing.JFrame {
         botonEliminar.setBackground(new java.awt.Color(51, 172, 234));
         botonEliminar.setText("Eliminar");
         botonEliminar.setBorder(null);
+        botonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEliminarActionPerformed(evt);
+            }
+        });
 
         cajaComboCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Cajero" }));
 
@@ -348,6 +358,24 @@ public class vistaUsuario extends javax.swing.JFrame {
     private void BotonCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCerrarActionPerformed
         this.dispose();
     }//GEN-LAST:event_BotonCerrarActionPerformed
+
+    private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
+        try{
+            /*se le asignan los atribujos que se ingreso en las cajas de texto a un objeto usuario*/
+            controlU.getUsuario().setIdUsuario(Integer.valueOf(cajaTextoId.getText()));
+            controlC.getCuenta().setIdCuenta(Integer.valueOf(cajaTextoId.getText()));
+            controlC.eliminar();
+            controlU.eliminar();/*se ejecuta el metodo que agrega una cuenta a la base de datos*/
+            limpiarTabla();
+
+        }catch(Exception e){}
+        JOptionPane.showMessageDialog(null,"Proveedor eliminado con exito");
+        listar();// TODO add your handling code here:        // TODO add your handling code here:
+    }//GEN-LAST:event_botonEliminarActionPerformed
+
+    private void tablaUsuariosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaUsuariosMousePressed
+        cajaTextoId.setText(String.valueOf(tablaUsuarios.getValueAt(tablaUsuarios.getSelectedRow(), 0)));        // TODO add your handling code here:
+    }//GEN-LAST:event_tablaUsuariosMousePressed
 
     /**
      * @param args the command line arguments

@@ -34,7 +34,7 @@ public class ControlProveedor {
     {
     /*Se le asigna a un string el insert en la base de datos*/
          String sqlProveedor="INSERT INTO Proveedor VALUES"
-                 + "("+proveedor.getNit()+",'"+ proveedor.getNomProveedor()+"', '"+proveedor.getTelefono()+"', '"+proveedor.getDireccion()+"');";
+                 + "("+proveedor.getNit()+",'"+ proveedor.getNomProveedor()+"', '"+proveedor.getDireccion()+"', '"+proveedor.getTelefono()+"');";
         
     try{
        /*se establece coneccion con la base de datos y se le introduce la consulta*/

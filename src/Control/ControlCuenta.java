@@ -38,6 +38,20 @@ public class ControlCuenta {
         }catch(SQLException e){}
     }
     
+    public void eliminar()
+    {
+    /*Se le asigna a un string el insert en la base de datos*/
+         String sqlCuenta="DELETE FROM Cuenta "
+                 + "WHERE idcuenta = " +cuenta.getIdCuenta()+";";
+        
+    try{
+       /*se establece coneccion con la base de datos y se le introduce la consulta*/
+        cn=con.getConnection();
+        st=cn.createStatement();
+        rs=st.executeQuery(sqlCuenta); /*se ejecuta en la base de datos*/
+        }catch(SQLException e){}
+    }
+    
     public Cuenta getCuenta() {
         return cuenta;
     }

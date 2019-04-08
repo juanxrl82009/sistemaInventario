@@ -48,7 +48,7 @@ public class ControlCliente {
     {
     /*Se le asigna a un string el insert en la base de datos*/
          String sqlCliente="UPDATE Cliente "
-                 + "SET nombrecliente = '"+cliente.getNombre()+"', direccioncliente = '"+cliente.getDireccion()+"', telefonocliente = '"+cliente.getTelefono()+"' WHERE idcliente = " +cliente.getIdCliente()+";";
+                 + "SET nombrecliente = '"+cliente.getNombre()+"', telefonocliente = '"+cliente.getTelefono()+"', direccioncliente = '"+cliente.getDireccion()+"' WHERE idcliente = " +cliente.getIdCliente()+";";
         
     try{
        /*se establece coneccion con la base de datos y se le introduce la consulta*/

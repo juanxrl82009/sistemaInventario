@@ -42,6 +42,20 @@ public class ControlUsuario {
         rs=st.executeQuery(sqlUsuario); /*se ejecuta en la base de datos*/
         }catch(SQLException e){}
     }
+    
+        public void eliminar()
+    {
+    /*Se le asigna a un string el insert en la base de datos*/
+         String sqlUsuario="DELETE FROM Usuario "
+                 + "WHERE idusuario = " +usuario.getIdUsuario()+";";
+        
+    try{
+       /*se establece coneccion con la base de datos y se le introduce la consulta*/
+        cn=con.getConnection();
+        st=cn.createStatement();
+        rs=st.executeQuery(sqlUsuario); /*se ejecuta en la base de datos*/
+        }catch(SQLException e){}
+    }
 
     public Usuario getUsuario() {
         return usuario;

@@ -290,8 +290,8 @@ public class vistaProveedor extends javax.swing.JFrame {
     private void tablaProveedoresMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaProveedoresMousePressed
         cajaTextoNit.setText(String.valueOf(tablaProveedores.getValueAt(tablaProveedores.getSelectedRow(), 0)));
         cajaTextoNombre.setText(String.valueOf(tablaProveedores.getValueAt(tablaProveedores.getSelectedRow(), 1)));
-        cajaTextoTelefono.setText(String.valueOf(tablaProveedores.getValueAt(tablaProveedores.getSelectedRow(), 2)));
-        cajaTextoDireccion.setText(String.valueOf(tablaProveedores.getValueAt(tablaProveedores.getSelectedRow(), 3)));
+        cajaTextoDireccion.setText(String.valueOf(tablaProveedores.getValueAt(tablaProveedores.getSelectedRow(), 2)));
+        cajaTextoTelefono.setText(String.valueOf(tablaProveedores.getValueAt(tablaProveedores.getSelectedRow(), 3)));
     }//GEN-LAST:event_tablaProveedoresMousePressed
 
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
