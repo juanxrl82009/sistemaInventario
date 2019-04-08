@@ -183,7 +183,7 @@ Conexion con=new Conexion();
     }//GEN-LAST:event_botonLoginActionPerformed
 
     private void BotonCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCerrarActionPerformed
-        dispose();
+        System.exit(0);
     }//GEN-LAST:event_BotonCerrarActionPerformed
 
     /**

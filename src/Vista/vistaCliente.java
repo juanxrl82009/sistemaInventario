@@ -310,7 +310,7 @@ public class vistaCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_botonEliminarActionPerformed
 
     private void BotonCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCerrarActionPerformed
-        this.setVisible(false);
+        dispose();
     }//GEN-LAST:event_BotonCerrarActionPerformed
  
     /**

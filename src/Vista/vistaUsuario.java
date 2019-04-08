@@ -346,7 +346,7 @@ public class vistaUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_cajaTextoFormatoFechaNActionPerformed
 
     private void BotonCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCerrarActionPerformed
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_BotonCerrarActionPerformed
 
     /**
