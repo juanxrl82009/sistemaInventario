@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  * @author John Castro
  */
 public class frmLogin extends javax.swing.JFrame {
-Conexion con=new Conexion();
+    Conexion con=new Conexion();
     Connection cn;
     Statement st;
     ResultSet rs;
@@ -28,7 +28,7 @@ Conexion con=new Conexion();
      */
     public frmLogin() {
                
-        this.setUndecorated(true);
+        //this.setUndecorated(true);
         this.setVisible(true);
         initComponents();
         this.setLocationRelativeTo(null);
@@ -55,7 +55,6 @@ Conexion con=new Conexion();
         labelImagen2 = new javax.swing.JLabel();
         labelFotoUsuario = new javax.swing.JLabel();
         botonLogin = new javax.swing.JButton();
-        BotonCerrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -65,17 +64,17 @@ Conexion con=new Conexion();
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        labelIniciarSesion.setFont(new java.awt.Font("Quicksand", 0, 24)); // NOI18N
+        labelIniciarSesion.setFont(new java.awt.Font("Decker", 0, 24)); // NOI18N
         labelIniciarSesion.setForeground(new java.awt.Color(102, 102, 102));
         labelIniciarSesion.setText("Iniciar Sesión");
-        jPanel1.add(labelIniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 190, 30));
+        jPanel1.add(labelIniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, -1, 30));
 
-        labelContrasenna.setFont(new java.awt.Font("Quicksand", 0, 14)); // NOI18N
+        labelContrasenna.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
         labelContrasenna.setForeground(new java.awt.Color(102, 102, 102));
         labelContrasenna.setText("Contraseña");
         jPanel1.add(labelContrasenna, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, 110, 20));
 
-        labelUsuario.setFont(new java.awt.Font("Quicksand", 0, 14)); // NOI18N
+        labelUsuario.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
         labelUsuario.setForeground(new java.awt.Color(102, 102, 102));
         labelUsuario.setText("Usuario");
         jPanel1.add(labelUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 80, 20));
@@ -108,21 +107,16 @@ Conexion con=new Conexion();
         labelFotoUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/usuario.png"))); // NOI18N
         jPanel1.add(labelFotoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, -1, -1));
 
-        botonLogin.setText("Log in");
+        botonLogin.setBackground(new java.awt.Color(64, 132, 253));
+        botonLogin.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        botonLogin.setForeground(new java.awt.Color(255, 255, 255));
+        botonLogin.setText("Ingresar");
         botonLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonLoginActionPerformed(evt);
             }
         });
-        jPanel1.add(botonLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, -1, -1));
-
-        BotonCerrar.setText("X");
-        BotonCerrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonCerrarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(BotonCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(343, 10, 50, 30));
+        jPanel1.add(botonLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 300, 120, 40));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 400));
 
@@ -131,41 +125,41 @@ Conexion con=new Conexion();
 
     
     void verificarLogin(){
-         int usuarioBD=0;
-    String b="";
-     String usuarioCajaTexto= new String();
-     String contrasenna= new String();
-     int usuarioInt;
-     usuarioCajaTexto=cajaTextoUsuario.getText();/*Obtiene lo que hay en la caja de texto*/
-      contrasenna=String.valueOf(cajaTextoContrasenna.getPassword());
-     /*Obtiene lo que hay en la caja de texto*/
-     /*contrasenna=cajaTextoContrasenna.getPassword(); solo se puede en array de caracteres*/
+        int usuarioBD=0;
+        String b="";
+        String usuarioCajaTexto= new String();
+        String contrasenna= new String();
+        int usuarioInt;
+        usuarioCajaTexto=cajaTextoUsuario.getText();/*Obtiene lo que hay en la caja de texto*/
+        contrasenna=String.valueOf(cajaTextoContrasenna.getPassword());
+        /*Obtiene lo que hay en la caja de texto*/
+        /*contrasenna=cajaTextoContrasenna.getPassword(); solo se puede en array de caracteres*/
       
-    //String sql="SELECT idCuenta, idPassCuenta FROM Cuenta WHERE idCuenta=" + usuarioCajaTexto;
-    /*Consulta en postgresql
-    donde busca el usuario que se ingreso en la caja de texto en la base de datos*/
-    String sql="SELECT * FROM Cuenta WHERE idCuenta = " + usuarioCajaTexto + "AND idPassCuenta = crypt('" + contrasenna + "', idPassCuenta)";
-    try{
+        //String sql="SELECT idCuenta, idPassCuenta FROM Cuenta WHERE idCuenta=" + usuarioCajaTexto;
+        /*Consulta en postgresql
+        donde busca el usuario que se ingreso en la caja de texto en la base de datos*/
+        String sql="SELECT * FROM Cuenta WHERE idCuenta = " + usuarioCajaTexto + "AND idPassCuenta = crypt('" + contrasenna + "', idPassCuenta)";
+        try{
    
-        cn=con.getConnection();
-        st=cn.createStatement();
-        rs=st.executeQuery(sql);   
+            cn=con.getConnection();
+            st=cn.createStatement();
+            rs=st.executeQuery(sql);   
        
-        while(rs.next()){
-        usuarioBD=rs.getInt("idCuenta");/*deben llamarse exactamente igual a como esta en la tabla*/
-       /* b=rs.getString("idPassCuenta"); deben llamarse exactamente igual a como esta en la tabla*/
+            while(rs.next()){
+                usuarioBD=rs.getInt("idCuenta");/*deben llamarse exactamente igual a como esta en la tabla*/
+           /* b=rs.getString("idPassCuenta"); deben llamarse exactamente igual a como esta en la tabla*/
+            }
+            usuarioInt=Integer.valueOf(usuarioCajaTexto);/*Convierte lo de la el usuario ingresado en la caja de texto y lo convierte
+            a int para poderlo comparar con el de la base de datos*/
+            if(usuarioInt==usuarioBD && usuarioBD!=0)
+            {
+                verificacion=true;
+            }else 
+                verificacion=false;
+   
+        }catch(SQLException e){}
+   
         }
-  usuarioInt=Integer.valueOf(usuarioCajaTexto);/*Convierte lo de la el usuario ingresado en la caja de texto y lo convierte
-  a int para poderlo comparar con el de la base de datos*/
-    if(usuarioInt==usuarioBD && usuarioBD!=0)
-    {
-        verificacion=true;
-    }else 
-        verificacion=false;
-   
-    }catch(SQLException e){}
-   
-    }
     
     private void cajaTextoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaTextoUsuarioActionPerformed
         // TODO add your handling code here:
@@ -182,17 +176,12 @@ Conexion con=new Conexion();
 // TODO add your handling code here:
     }//GEN-LAST:event_botonLoginActionPerformed
 
-    private void BotonCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCerrarActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_BotonCerrarActionPerformed
-
     /**
      * @param args the command line arguments
      */
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BotonCerrar;
     private javax.swing.JButton botonLogin;
     private javax.swing.JPasswordField cajaTextoContrasenna;
     private javax.swing.JTextField cajaTextoUsuario;

@@ -23,35 +23,37 @@ public class vistaMenu extends javax.swing.JFrame {
      */
     public vistaMenu() {
         
-        this.setUndecorated(true);
+        //this.setUndecorated(true);
         this.setVisible(true);
         initComponents();
         this.setLocationRelativeTo(null);
+        
+
       
         /* En estas lineas se crea un objeto de tipo fecha, se le cambia el formato y
         se le implementa al label de la fecha*/
         Date sistFecha=new Date();
         SimpleDateFormat formato= new SimpleDateFormat("dd-MMM-YYY");
         labelFecha.setText(formato.format(sistFecha));
-         Timer tiempo=new Timer(100, new vistaMenu.horas());
-         tiempo.start();
+        Timer tiempo=new Timer(100, new vistaMenu.horas());
+        tiempo.start();
          
     }
     
     /*Se crea esta clase para poder implementar la hora en tiempo real*/
     class horas implements ActionListener{
    
-    public void actionPerformed(ActionEvent e){
-       Date sistHora=new Date();
-       String pmAm="hh:mm:ss a";
-       SimpleDateFormat format=new SimpleDateFormat(pmAm);
-       Calendar hoy=Calendar.getInstance();
-       labelHora.setText(String.format(format.format(sistHora), hoy));
-   jPopupMenu1.add(jButton1);
-    }
+        public void actionPerformed(ActionEvent e){
+           Date sistHora=new Date();
+           String pmAm="hh:mm:ss a";
+           SimpleDateFormat format=new SimpleDateFormat(pmAm);
+           Calendar hoy=Calendar.getInstance();
+           labelHora.setText(String.format(format.format(sistHora), hoy));
+           jPopupMenu1.add(jButton1);
+        }
 
  
-}
+    }
     
     
 
@@ -101,12 +103,13 @@ public class vistaMenu extends javax.swing.JFrame {
         jButton1.getAccessibleContext().setAccessibleDescription("Salir");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        labelTitulo.setFont(new java.awt.Font("Quicksand", 0, 36)); // NOI18N
+        labelTitulo.setFont(new java.awt.Font("Decker", 0, 36)); // NOI18N
         labelTitulo.setForeground(new java.awt.Color(102, 102, 102));
         labelTitulo.setText("Menú");
 
@@ -151,27 +154,27 @@ public class vistaMenu extends javax.swing.JFrame {
             }
         });
 
-        labelCliente.setFont(new java.awt.Font("Quicksand", 0, 18)); // NOI18N
+        labelCliente.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
         labelCliente.setForeground(new java.awt.Color(102, 102, 102));
         labelCliente.setText("Clientes");
 
-        labelProveedores.setFont(new java.awt.Font("Quicksand", 0, 18)); // NOI18N
+        labelProveedores.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
         labelProveedores.setForeground(new java.awt.Color(102, 102, 102));
         labelProveedores.setText("Proveedores");
 
-        labelCompras.setFont(new java.awt.Font("Quicksand", 0, 18)); // NOI18N
+        labelCompras.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
         labelCompras.setForeground(new java.awt.Color(102, 102, 102));
         labelCompras.setText("Compras");
 
-        labelFacturacion.setFont(new java.awt.Font("Quicksand", 0, 18)); // NOI18N
+        labelFacturacion.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
         labelFacturacion.setForeground(new java.awt.Color(102, 102, 102));
         labelFacturacion.setText("Facturación");
 
-        labelReportes.setFont(new java.awt.Font("Quicksand", 0, 18)); // NOI18N
+        labelReportes.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
         labelReportes.setForeground(new java.awt.Color(102, 102, 102));
         labelReportes.setText("Reportes");
 
-        labelUsuarios.setFont(new java.awt.Font("Quicksand", 0, 18)); // NOI18N
+        labelUsuarios.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
         labelUsuarios.setForeground(new java.awt.Color(102, 102, 102));
         labelUsuarios.setText("Usuarios");
 
@@ -180,10 +183,6 @@ public class vistaMenu extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(292, 292, 292)
-                .addComponent(labelTitulo)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(79, 79, 79)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -191,37 +190,35 @@ public class vistaMenu extends javax.swing.JFrame {
                         .addGap(166, 166, 166)
                         .addComponent(botonProveedores))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(botonFacturacion)
-                        .addGap(168, 168, 168)
-                        .addComponent(botonReportes))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(labelFacturacion)
-                        .addGap(126, 126, 126)
-                        .addComponent(labelReportes))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(labelCliente)
-                        .addGap(159, 159, 159)
-                        .addComponent(labelProveedores)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
-                        .addComponent(labelCompras)
-                        .addGap(75, 75, 75))
+                        .addGap(167, 167, 167)
+                        .addComponent(labelProveedores))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(118, 118, 118)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(labelUsuarios)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(botonUsuarios)
-                                .addComponent(botonCompras)))
-                        .addGap(28, 28, 28))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botonFacturacion)
+                            .addComponent(labelFacturacion))
+                        .addGap(136, 136, 136)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelReportes)
+                            .addComponent(botonReportes))))
+                .addGap(110, 110, 110)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botonUsuarios)
+                    .addComponent(botonCompras)
+                    .addComponent(labelCompras)
+                    .addComponent(labelUsuarios))
+                .addContainerGap(103, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(291, 291, 291)
+                .addComponent(labelTitulo)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(46, 46, 46)
                 .addComponent(labelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
+                .addGap(62, 62, 62)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(botonUsuarios)
@@ -249,24 +246,24 @@ public class vistaMenu extends javax.swing.JFrame {
                         .addComponent(botonCompras)
                         .addGap(18, 18, 18)
                         .addComponent(labelCompras)))
-                .addContainerGap(119, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 700, 440));
 
         jPanel2.setBackground(new java.awt.Color(64, 132, 253));
 
-        labelFecha.setFont(new java.awt.Font("Quicksand", 0, 14)); // NOI18N
+        labelFecha.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
         labelFecha.setForeground(new java.awt.Color(255, 255, 255));
         labelFecha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/calendario.png"))); // NOI18N
         labelFecha.setText("Fecha");
 
-        labelHora.setFont(new java.awt.Font("Quicksand", 0, 14)); // NOI18N
+        labelHora.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
         labelHora.setForeground(new java.awt.Color(255, 255, 255));
         labelHora.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/reloj.png"))); // NOI18N
         labelHora.setText("Hora");
 
-        labelUsuario.setFont(new java.awt.Font("Quicksand", 0, 14)); // NOI18N
+        labelUsuario.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
         labelUsuario.setForeground(new java.awt.Color(255, 255, 255));
         labelUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/usuarioSmall.png"))); // NOI18N
         labelUsuario.setText("Usuario");
@@ -281,9 +278,9 @@ public class vistaMenu extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelFecha, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(labelHora))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 493, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 518, Short.MAX_VALUE)
                 .addComponent(labelUsuario)
-                .addGap(47, 47, 47))
+                .addGap(20, 20, 20))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

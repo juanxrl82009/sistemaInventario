@@ -14,6 +14,9 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.Timer;
 
 /**
  *
@@ -31,11 +34,12 @@ public class vistaProveedor extends javax.swing.JFrame {
      * Creates new form vistaProvedor
      */
     public vistaProveedor() {
-        this.setUndecorated(true);
+        
         this.setVisible(true);
         initComponents();
         this.setLocationRelativeTo(null);
         listar();
+        
     }
 
         void listar(){
@@ -83,26 +87,94 @@ public class vistaProveedor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tablaProveedores = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
         labelTitulo = new javax.swing.JLabel();
         labelId = new javax.swing.JLabel();
         cajaTextoNit = new javax.swing.JTextField();
         labelNombre = new javax.swing.JLabel();
-        cajaTextoNombre = new javax.swing.JTextField();
+        labelNombre1 = new javax.swing.JLabel();
         labelTelefono = new javax.swing.JLabel();
-        cajaTextoTelefono = new javax.swing.JTextField();
         botonAñadir = new javax.swing.JButton();
         botonModificar = new javax.swing.JButton();
         botonEliminar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaProveedores = new javax.swing.JTable();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
+        cajaTextoNombre = new javax.swing.JTextField();
+        cajaTextoTelefono = new javax.swing.JTextField();
+        jSeparator3 = new javax.swing.JSeparator();
         cajaTextoDireccion = new javax.swing.JTextField();
-        labelNombre1 = new javax.swing.JLabel();
-        BotonCerrar = new javax.swing.JButton();
+        jSeparator4 = new javax.swing.JSeparator();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
-        tablaProveedores.setFont(new java.awt.Font("Quicksand", 0, 11)); // NOI18N
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        labelTitulo.setFont(new java.awt.Font("Decker", 0, 36)); // NOI18N
+        labelTitulo.setForeground(new java.awt.Color(102, 102, 102));
+        labelTitulo.setText("Proveedores");
+        jPanel1.add(labelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 19, -1, 40));
+
+        labelId.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        labelId.setText("NIT");
+        jPanel1.add(labelId, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
+
+        cajaTextoNit.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        cajaTextoNit.setBorder(null);
+        jPanel1.add(cajaTextoNit, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 210, 20));
+
+        labelNombre.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        labelNombre.setText("Nombre");
+        jPanel1.add(labelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, 17));
+
+        labelNombre1.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        labelNombre1.setText("Dirección");
+        jPanel1.add(labelNombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 100, -1, -1));
+
+        labelTelefono.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        labelTelefono.setText("Telefono");
+        jPanel1.add(labelTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 160, -1, -1));
+
+        botonAñadir.setBackground(new java.awt.Color(51, 172, 234));
+        botonAñadir.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        botonAñadir.setForeground(new java.awt.Color(255, 255, 255));
+        botonAñadir.setText("Añadir");
+        botonAñadir.setBorder(null);
+        botonAñadir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAñadirActionPerformed(evt);
+            }
+        });
+        jPanel1.add(botonAñadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, 130, 40));
+
+        botonModificar.setBackground(new java.awt.Color(51, 172, 234));
+        botonModificar.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        botonModificar.setForeground(new java.awt.Color(255, 255, 255));
+        botonModificar.setText("Modificar");
+        botonModificar.setBorder(null);
+        botonModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonModificarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(botonModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 220, 130, 40));
+
+        botonEliminar.setBackground(new java.awt.Color(51, 172, 234));
+        botonEliminar.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        botonEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        botonEliminar.setText("Eliminar");
+        botonEliminar.setBorder(null);
+        botonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEliminarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(botonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 220, 130, 40));
+
+        tablaProveedores.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
         tablaProveedores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -121,6 +193,7 @@ public class vistaProveedor extends javax.swing.JFrame {
         });
         tablaProveedores.setFocusable(false);
         tablaProveedores.setGridColor(new java.awt.Color(153, 153, 153));
+        tablaProveedores.setRowHeight(22);
         tablaProveedores.getTableHeader().setReorderingAllowed(false);
         tablaProveedores.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -129,126 +202,53 @@ public class vistaProveedor extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tablaProveedores);
 
-        labelTitulo.setFont(new java.awt.Font("Quicksand", 0, 36)); // NOI18N
-        labelTitulo.setForeground(new java.awt.Color(102, 102, 102));
-        labelTitulo.setText("Proveedores");
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 285, 700, 351));
 
-        labelId.setText("NIT");
+        jSeparator1.setAlignmentX(1.0F);
+        jSeparator1.setAlignmentY(1.0F);
+        jSeparator1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jSeparator1.setMinimumSize(new java.awt.Dimension(1, 1));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 206, 10));
 
-        labelNombre.setText("Nombre");
+        jSeparator2.setAlignmentX(1.0F);
+        jSeparator2.setAlignmentY(1.0F);
+        jSeparator2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jSeparator2.setMinimumSize(new java.awt.Dimension(1, 1));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 206, 10));
 
-        labelTelefono.setText("Telefono");
+        cajaTextoNombre.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        cajaTextoNombre.setBorder(null);
+        jPanel1.add(cajaTextoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 210, 20));
 
-        botonAñadir.setBackground(new java.awt.Color(51, 172, 234));
-        botonAñadir.setText("Añadir");
-        botonAñadir.setBorder(null);
-        botonAñadir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonAñadirActionPerformed(evt);
-            }
-        });
+        cajaTextoTelefono.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        cajaTextoTelefono.setBorder(null);
+        jPanel1.add(cajaTextoTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 100, 210, 20));
 
-        botonModificar.setBackground(new java.awt.Color(51, 172, 234));
-        botonModificar.setText("Modificar");
-        botonModificar.setBorder(null);
-        botonModificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonModificarActionPerformed(evt);
-            }
-        });
+        jSeparator3.setAlignmentX(1.0F);
+        jSeparator3.setAlignmentY(1.0F);
+        jSeparator3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jSeparator3.setMinimumSize(new java.awt.Dimension(1, 1));
+        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 120, 206, 10));
 
-        botonEliminar.setBackground(new java.awt.Color(51, 172, 234));
-        botonEliminar.setText("Eliminar");
-        botonEliminar.setBorder(null);
-        botonEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonEliminarActionPerformed(evt);
-            }
-        });
+        cajaTextoDireccion.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        cajaTextoDireccion.setBorder(null);
+        jPanel1.add(cajaTextoDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 160, 210, 20));
 
-        labelNombre1.setText("Dirección");
-
-        BotonCerrar.setText("X");
-        BotonCerrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonCerrarActionPerformed(evt);
-            }
-        });
+        jSeparator4.setAlignmentX(1.0F);
+        jSeparator4.setAlignmentY(1.0F);
+        jSeparator4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jSeparator4.setMinimumSize(new java.awt.Dimension(1, 1));
+        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 180, 206, 10));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 523, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(labelTitulo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BotonCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelNombre)
-                            .addComponent(labelId))
-                        .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(cajaTextoNit, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cajaTextoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(48, 48, 48)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(botonAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(botonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(labelTelefono)
-                                        .addGap(27, 27, 27))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(labelNombre1)
-                                        .addGap(26, 26, 26)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(cajaTextoDireccion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cajaTextoTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BotonCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(labelNombre1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cajaTextoDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(labelId)
-                        .addComponent(cajaTextoNit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cajaTextoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelTelefono)
-                    .addComponent(cajaTextoTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -308,49 +308,10 @@ public class vistaProveedor extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null,"Proveedor eliminado con exito");
         listar();// TODO add your handling code here:
     }//GEN-LAST:event_botonEliminarActionPerformed
-
-    private void BotonCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCerrarActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_BotonCerrarActionPerformed
  
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(vistaProveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(vistaProveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(vistaProveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(vistaProveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new vistaProveedor().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BotonCerrar;
     private javax.swing.JButton botonAñadir;
     private javax.swing.JButton botonEliminar;
     private javax.swing.JButton botonModificar;
@@ -358,7 +319,12 @@ public class vistaProveedor extends javax.swing.JFrame {
     private javax.swing.JTextField cajaTextoNit;
     private javax.swing.JTextField cajaTextoNombre;
     private javax.swing.JTextField cajaTextoTelefono;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JLabel labelId;
     private javax.swing.JLabel labelNombre;
     private javax.swing.JLabel labelNombre1;
