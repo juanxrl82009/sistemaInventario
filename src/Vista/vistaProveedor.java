@@ -102,9 +102,9 @@ public class vistaProveedor extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         cajaTextoNombre = new javax.swing.JTextField();
-        cajaTextoTelefono = new javax.swing.JTextField();
-        jSeparator3 = new javax.swing.JSeparator();
         cajaTextoDireccion = new javax.swing.JTextField();
+        jSeparator3 = new javax.swing.JSeparator();
+        cajaTextoTelefono = new javax.swing.JTextField();
         jSeparator4 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -220,9 +220,9 @@ public class vistaProveedor extends javax.swing.JFrame {
         cajaTextoNombre.setBorder(null);
         jPanel1.add(cajaTextoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 210, 20));
 
-        cajaTextoTelefono.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
-        cajaTextoTelefono.setBorder(null);
-        jPanel1.add(cajaTextoTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 100, 210, 20));
+        cajaTextoDireccion.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        cajaTextoDireccion.setBorder(null);
+        jPanel1.add(cajaTextoDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 100, 210, 20));
 
         jSeparator3.setAlignmentX(1.0F);
         jSeparator3.setAlignmentY(1.0F);
@@ -230,9 +230,9 @@ public class vistaProveedor extends javax.swing.JFrame {
         jSeparator3.setMinimumSize(new java.awt.Dimension(1, 1));
         jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 120, 206, 10));
 
-        cajaTextoDireccion.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
-        cajaTextoDireccion.setBorder(null);
-        jPanel1.add(cajaTextoDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 160, 210, 20));
+        cajaTextoTelefono.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        cajaTextoTelefono.setBorder(null);
+        jPanel1.add(cajaTextoTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 160, 210, 20));
 
         jSeparator4.setAlignmentX(1.0F);
         jSeparator4.setAlignmentY(1.0F);

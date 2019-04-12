@@ -316,7 +316,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JTextField" name="cajaTextoTelefono">
+        <Component class="javax.swing.JTextField" name="cajaTextoDireccion">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Decker" size="18" style="0"/>
@@ -348,7 +348,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JTextField" name="cajaTextoDireccion">
+        <Component class="javax.swing.JTextField" name="cajaTextoTelefono">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Decker" size="18" style="0"/>

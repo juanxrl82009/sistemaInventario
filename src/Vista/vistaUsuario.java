@@ -300,10 +300,10 @@ public class vistaUsuario extends javax.swing.JFrame {
     private void tablaUsuariosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaUsuariosMousePressed
         cajaTextoId.setText(String.valueOf(tablaUsuarios.getValueAt(tablaUsuarios.getSelectedRow(), 0))); 
         cajaTextoNombre.setText(String.valueOf(tablaUsuarios.getValueAt(tablaUsuarios.getSelectedRow(), 1))); 
-        if (String.valueOf(tablaUsuarios.getValueAt(tablaUsuarios.getSelectedRow(), 2)) == String.valueOf(1)){
-                cajaComboCategoria.setSelectedItem(0);  
+        if (String.valueOf(tablaUsuarios.getValueAt(tablaUsuarios.getSelectedRow(), 2)).equals(String.valueOf(1))){
+            cajaComboCategoria.setSelectedIndex(0);
         }else{
-                cajaComboCategoria.setSelectedItem(1);
+            cajaComboCategoria.setSelectedIndex(1);
             }
         cajaTextoPassword.setText(""); 
 // TODO add your handling code here:
