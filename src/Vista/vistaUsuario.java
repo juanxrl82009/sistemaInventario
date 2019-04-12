@@ -299,9 +299,7 @@ public class vistaUsuario extends javax.swing.JFrame {
         }
         controlC.agregarCuenta();/*se ejecuta el metodo que agrega una cuenta a la base de datos*/
         limpiarTabla();
-        
-        //puto el que lo lea
-        
+             
     
         }catch(Exception e){}
         JOptionPane.showMessageDialog(null,"Usario registrado con exito");
