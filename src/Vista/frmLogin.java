@@ -138,7 +138,7 @@ public class frmLogin extends javax.swing.JFrame {
         //String sql="SELECT idCuenta, idPassCuenta FROM Cuenta WHERE idCuenta=" + usuarioCajaTexto;
         /*Consulta en postgresql
         donde busca el usuario que se ingreso en la caja de texto en la base de datos*/
-        String sql="SELECT * FROM Cuenta WHERE idCuenta = " + usuarioCajaTexto + "AND idPassCuenta = crypt('" + contrasenna + "', idPassCuenta)";
+        String sql="SELECT * FROM Usuario WHERE idUsuario = " + usuarioCajaTexto + "AND passwordUsuario = crypt('" + contrasenna + "', passwordUsuario)";
         try{
    
             cn=con.getConnection();
@@ -146,7 +146,7 @@ public class frmLogin extends javax.swing.JFrame {
             rs=st.executeQuery(sql);   
        
             while(rs.next()){
-                usuarioBD=rs.getInt("idCuenta");/*deben llamarse exactamente igual a como esta en la tabla*/
+                usuarioBD=rs.getInt("idUsuario");/*deben llamarse exactamente igual a como esta en la tabla*/
            /* b=rs.getString("idPassCuenta"); deben llamarse exactamente igual a como esta en la tabla*/
             }
             usuarioInt=Integer.valueOf(usuarioCajaTexto);/*Convierte lo de la el usuario ingresado en la caja de texto y lo convierte

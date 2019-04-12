@@ -5,7 +5,6 @@
  */
 package Vista;
 
-import Control.ControlCuenta;
 import Control.ControlUsuario;
 import Modelo.Conexion;
 import java.sql.Connection;
@@ -27,7 +26,6 @@ public class vistaUsuario extends javax.swing.JFrame {
     DefaultTableModel modelo;
     int id;
     ControlUsuario controlU=new ControlUsuario();/*un objeto control para manejar los usuarios*/
-    ControlCuenta controlC=new ControlCuenta();/*un objeto control para manejar las cuentas*/
     
     /**
      * Creates new form vistaUsuario
@@ -45,11 +43,7 @@ public class vistaUsuario extends javax.swing.JFrame {
     void listar(){
         modelo=(DefaultTableModel)tablaUsuarios.getModel();
         /*Se almacena la consulta sql en un string*/
-    String sql="SELECT Cuenta.idCuenta, Usuario.nombreusuario,\n" +
-               " CategoriaUsuario.descripcioncategousuario\n" +
-               "FROM Cuenta, Usuario, CategoriaUsuario\n" +
-               "WHERE (Cuenta.idCuenta=Usuario.idUsuario AND \n" +
-               "Cuenta.idCategoCuenta=CategoriaUsuario.idCategoriaUsuario)";
+    String sql="SELECT * FROM Usuario;";
     try{
        /*se establece coneccion con la base de datos y se le introduce la consulta*/
         cn=con.getConnection();
@@ -59,9 +53,9 @@ public class vistaUsuario extends javax.swing.JFrame {
         array debe ser el numero de columnas que tenga nuestra consulta*/
         /*modelo=(DefaultTableModel)tablaUsuarios.getModel();*/
         while(rs.next()){
-        Datos[0]=rs.getInt("idCuenta");/*deben llamarse exactamente igual a como esta en la tabla*/
-        Datos[1]=rs.getString("nombreusuario");/*deben llamarse exactamente igual a como esta en la tabla*/
-        Datos[2]=rs.getString("descripcioncategousuario");/*deben llamarse exactamente igual a como esta en la tabla*/
+        Datos[0]=rs.getInt("idUsuario");/*deben llamarse exactamente igual a como esta en la tabla*/
+        Datos[1]=rs.getString("nombreUsuario");/*deben llamarse exactamente igual a como esta en la tabla*/
+        Datos[2]=rs.getString("idCategoCuenta");/*deben llamarse exactamente igual a como esta en la tabla*/
         modelo.addRow(Datos);
         }
         
@@ -97,11 +91,8 @@ public class vistaUsuario extends javax.swing.JFrame {
         labelTitulo = new javax.swing.JLabel();
         labelId = new javax.swing.JLabel();
         labelNombre = new javax.swing.JLabel();
-        labelTelefono = new javax.swing.JLabel();
-        labelFechaN = new javax.swing.JLabel();
         labelPassword = new javax.swing.JLabel();
         labelCategoria = new javax.swing.JLabel();
-        cajaTextoTelefono = new javax.swing.JTextField();
         cajaTextoPassword = new javax.swing.JTextField();
         cajaTextoNombre = new javax.swing.JTextField();
         cajaTextoId = new javax.swing.JTextField();
@@ -109,12 +100,9 @@ public class vistaUsuario extends javax.swing.JFrame {
         botonModificar = new javax.swing.JButton();
         botonEliminar = new javax.swing.JButton();
         cajaComboCategoria = new javax.swing.JComboBox<>();
-        cajaTextoFormatoFechaN = new javax.swing.JFormattedTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
-        jSeparator4 = new javax.swing.JSeparator();
-        jSeparator5 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -165,14 +153,6 @@ public class vistaUsuario extends javax.swing.JFrame {
         labelNombre.setText("Nombre");
         panelUsuarios.add(labelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
 
-        labelTelefono.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
-        labelTelefono.setText("Telefono");
-        panelUsuarios.add(labelTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
-
-        labelFechaN.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
-        labelFechaN.setText("Fecha de nacimiento");
-        panelUsuarios.add(labelFechaN, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
-
         labelPassword.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
         labelPassword.setText("Password");
         panelUsuarios.add(labelPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, -1, -1));
@@ -181,12 +161,13 @@ public class vistaUsuario extends javax.swing.JFrame {
         labelCategoria.setText("Categoria");
         panelUsuarios.add(labelCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 130, -1, -1));
 
-        cajaTextoTelefono.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
-        cajaTextoTelefono.setBorder(null);
-        panelUsuarios.add(cajaTextoTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, 150, 20));
-
         cajaTextoPassword.setFont(new java.awt.Font("Quicksand", 0, 18)); // NOI18N
         cajaTextoPassword.setBorder(null);
+        cajaTextoPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cajaTextoPasswordActionPerformed(evt);
+            }
+        });
         panelUsuarios.add(cajaTextoPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 80, 150, 20));
 
         cajaTextoNombre.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
@@ -237,26 +218,13 @@ public class vistaUsuario extends javax.swing.JFrame {
         cajaComboCategoria.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
         cajaComboCategoria.setForeground(new java.awt.Color(255, 255, 255));
         cajaComboCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Cajero" }));
-        cajaComboCategoria.setBorder(null);
         panelUsuarios.add(cajaComboCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 130, -1, -1));
         cajaComboCategoria.getAccessibleContext().setAccessibleName("cajaComboCategoria");
         cajaComboCategoria.getAccessibleContext().setAccessibleDescription("");
 
-        cajaTextoFormatoFechaN.setBorder(null);
-        cajaTextoFormatoFechaN.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd-MM-yyyy"))));
-        cajaTextoFormatoFechaN.setToolTipText("dd-mm-aaaa");
-        cajaTextoFormatoFechaN.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
-        cajaTextoFormatoFechaN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cajaTextoFormatoFechaNActionPerformed(evt);
-            }
-        });
-        panelUsuarios.add(cajaTextoFormatoFechaN, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, 150, 20));
         panelUsuarios.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, 150, 10));
         panelUsuarios.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 100, 150, 10));
         panelUsuarios.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 150, 10));
-        panelUsuarios.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 180, 150, 10));
-        panelUsuarios.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 220, 150, 10));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -272,60 +240,73 @@ public class vistaUsuario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
+        try{
+            /*se le asignan los atribujos que se ingreso en las cajas de texto a un objeto usuario*/
+            controlU.getUsuario().setIdUsuario(Integer.valueOf(cajaTextoId.getText()));
+            controlU.eliminar();/*se ejecuta el metodo que agrega una cuenta a la base de datos*/
+            limpiarTabla();
+
+        }catch(Exception e){}
+        JOptionPane.showMessageDialog(null,"Usuario eliminado con exito");
+        listar();// TODO add your handling code here:        // TODO add your handling code here:
+    }//GEN-LAST:event_botonEliminarActionPerformed
+
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
-        
-        this.listar();
+        try{
+            /*se le asignan los atribujos que se ingreso en las cajas de texto a un objeto usuario*/
+            controlU.getUsuario().setIdUsuario(Integer.valueOf(cajaTextoId.getText()));
+            controlU.getUsuario().setNombreUsuario(cajaTextoNombre.getText());
+            controlU.getUsuario().setPassword(cajaTextoPassword.getText());
+            if ("Administrador".equals(String.valueOf(cajaComboCategoria.getSelectedItem()))){
+                controlU.getUsuario().setIdCategoCuenta(1);
+            }else{
+                controlU.getUsuario().setIdCategoCuenta(2);
+            }
+            controlU.modificar();/*se ejecuta el metodo que agrega una cuenta a la base de datos*/
+            limpiarTabla();
+
+        }catch(Exception e){}
+        JOptionPane.showMessageDialog(null,"Usuario modificado con exito");
+        listar();
         // TODO add your handling code here:
     }//GEN-LAST:event_botonModificarActionPerformed
 
     private void botonAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAñadirActionPerformed
         // TODO add your handling code here:
-        
-        try{
-            /*se le asignan los atribujos que se ingreso en las cajas de texto a un objeto usuario*/
-        controlU.getUsuario().setIdUsuario(Integer.valueOf(cajaTextoId.getText()));
-        controlU.getUsuario().setNombre(cajaTextoNombre.getText());
-        controlU.getUsuario().setTelefono(Integer.valueOf(cajaTextoTelefono.getText()));
-        controlU.getUsuario().setFechaNacimiento(cajaTextoFormatoFechaN.getText());
-        controlU.agregar();/*se ejecuta el metodo que agrega un usuario a la base de datos*/
-         
-            /*se le asignan los atribujos que se ingreso en las cajas de texto a un objeto cuenta*/
-        controlC.getCuenta().setIdCuenta(Integer.valueOf(cajaTextoId.getText()));
-        controlC.getCuenta().setContraseña(cajaTextoPassword.getText());
-        if ("Administrador".equals(String.valueOf(cajaComboCategoria.getSelectedItem()))){
-            controlC.getCuenta().setIdCategoCuenta(1);
-        }else{
-            controlC.getCuenta().setIdCategoCuenta(2);
-        }
-        controlC.agregarCuenta();/*se ejecuta el metodo que agrega una cuenta a la base de datos*/
-        limpiarTabla();
-             
-    
-        }catch(Exception e){}
-        JOptionPane.showMessageDialog(null,"Usario registrado con exito");
-        listar();
-    }//GEN-LAST:event_botonAñadirActionPerformed
 
-    private void cajaTextoFormatoFechaNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaTextoFormatoFechaNActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cajaTextoFormatoFechaNActionPerformed
-
-    private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
         try{
             /*se le asignan los atribujos que se ingreso en las cajas de texto a un objeto usuario*/
             controlU.getUsuario().setIdUsuario(Integer.valueOf(cajaTextoId.getText()));
-            controlC.getCuenta().setIdCuenta(Integer.valueOf(cajaTextoId.getText()));
-            controlC.eliminar();
-            controlU.eliminar();/*se ejecuta el metodo que agrega una cuenta a la base de datos*/
+            controlU.getUsuario().setNombreUsuario(cajaTextoNombre.getText());
+            controlU.getUsuario().setPassword(cajaTextoPassword.getText());
+            if ("Administrador".equals(String.valueOf(cajaComboCategoria.getSelectedItem()))){
+                controlU.getUsuario().setIdCategoCuenta(1);
+            }else{
+                controlU.getUsuario().setIdCategoCuenta(2);
+            }
+            controlU.agregar();/*se ejecuta el metodo que agrega un usuario a la base de datos*/
             limpiarTabla();
 
         }catch(Exception e){}
-        JOptionPane.showMessageDialog(null,"Proveedor eliminado con exito");
-        listar();// TODO add your handling code here:        // TODO add your handling code here:
-    }//GEN-LAST:event_botonEliminarActionPerformed
+        JOptionPane.showMessageDialog(null,"Usuario registrado con exito");
+        listar();
+    }//GEN-LAST:event_botonAñadirActionPerformed
+
+    private void cajaTextoPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaTextoPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cajaTextoPasswordActionPerformed
 
     private void tablaUsuariosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaUsuariosMousePressed
-        cajaTextoId.setText(String.valueOf(tablaUsuarios.getValueAt(tablaUsuarios.getSelectedRow(), 0)));        // TODO add your handling code here:
+        cajaTextoId.setText(String.valueOf(tablaUsuarios.getValueAt(tablaUsuarios.getSelectedRow(), 0))); 
+        cajaTextoNombre.setText(String.valueOf(tablaUsuarios.getValueAt(tablaUsuarios.getSelectedRow(), 1))); 
+        if (String.valueOf(tablaUsuarios.getValueAt(tablaUsuarios.getSelectedRow(), 2)) == String.valueOf(1)){
+                cajaComboCategoria.setSelectedItem(0);  
+        }else{
+                cajaComboCategoria.setSelectedItem(1);
+            }
+        cajaTextoPassword.setText(""); 
+// TODO add your handling code here:
     }//GEN-LAST:event_tablaUsuariosMousePressed
 
     /**
@@ -368,23 +349,17 @@ public class vistaUsuario extends javax.swing.JFrame {
     private javax.swing.JButton botonEliminar;
     private javax.swing.JButton botonModificar;
     private javax.swing.JComboBox<String> cajaComboCategoria;
-    private javax.swing.JFormattedTextField cajaTextoFormatoFechaN;
     private javax.swing.JTextField cajaTextoId;
     private javax.swing.JTextField cajaTextoNombre;
     private javax.swing.JTextField cajaTextoPassword;
-    private javax.swing.JTextField cajaTextoTelefono;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JSeparator jSeparator5;
     private javax.swing.JLabel labelCategoria;
-    private javax.swing.JLabel labelFechaN;
     private javax.swing.JLabel labelId;
     private javax.swing.JLabel labelNombre;
     private javax.swing.JLabel labelPassword;
-    private javax.swing.JLabel labelTelefono;
     private javax.swing.JLabel labelTitulo;
     private javax.swing.JPanel panelUsuarios;
     private javax.swing.JTable tablaUsuarios;

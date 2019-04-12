@@ -26,7 +26,7 @@ public class Conexion {
  a la base de datos del proyecto, despues de esto va el usuario de la base de datos y la contraseña que le tienen
 en mi caso el usuario donde esta la base de datos es postgres y la contraseña danielcardona.
 modifiquenlo segun lo tengan ustedes */
- con=DriverManager.getConnection("jdbc:postgresql://localhost:5432/SistemaInventario","postgres","postgres");        
+ con=DriverManager.getConnection("jdbc:postgresql://localhost:5432/ProyectoDS","postgres","1727654");        
     }
     catch(Exception e){}    
     
