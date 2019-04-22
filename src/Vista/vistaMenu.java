@@ -6,6 +6,7 @@
  */
 package Vista;
 
+import Modelo.Conexion;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
@@ -41,6 +42,10 @@ public class vistaMenu extends javax.swing.JFrame {
          
     }
     
+    
+     public void setConexionMenu(Conexion con1){
+       con=con1;
+    }
     /*Se crea esta clase para poder implementar la hora en tiempo real*/
     class horas implements ActionListener{
    
@@ -137,6 +142,11 @@ public class vistaMenu extends javax.swing.JFrame {
         botonCompras.setBackground(new java.awt.Color(255, 255, 255));
         botonCompras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/carro-de-la-compra.png"))); // NOI18N
         botonCompras.setBorder(null);
+        botonCompras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonComprasActionPerformed(evt);
+            }
+        });
 
         botonFacturacion.setBackground(new java.awt.Color(255, 255, 255));
         botonFacturacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/caja.png"))); // NOI18N
@@ -303,7 +313,8 @@ public class vistaMenu extends javax.swing.JFrame {
 
     private void botonClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonClienteActionPerformed
         // TODO add your handling code here:
-        vistaCliente vCliente= new vistaCliente();
+        vistaCliente vCliente= new vistaCliente(con);
+        
         //vistaUsuario vUsuario= new vistaUsuario();
          
     }//GEN-LAST:event_botonClienteActionPerformed
@@ -312,21 +323,28 @@ public class vistaMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         vistaUsuario vUsuario= new vistaUsuario();
+        vUsuario.setConexionUsuario(con);
           
     }//GEN-LAST:event_botonUsuariosActionPerformed
 
     private void botonProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonProveedoresActionPerformed
         vistaProveedor vProveedor= new vistaProveedor();        // TODO add your handling code here:
+        vProveedor.setConexionProveedor(con);
     }//GEN-LAST:event_botonProveedoresActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
          frmLogin login = new frmLogin();
          this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void botonComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonComprasActionPerformed
+        vistaCompra vCompra = new vistaCompra();
+          // TODO add your handling code here:
+    }//GEN-LAST:event_botonComprasActionPerformed
        /**
      * @param args the command line arguments
      */
-    
+    private Conexion con;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonCliente;

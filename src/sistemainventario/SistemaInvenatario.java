@@ -6,6 +6,7 @@
 
 package sistemainventario;
 import Vista.frmLogin;
+import Vista.vistaConexion;
 
 
 
@@ -19,7 +20,8 @@ public class SistemaInvenatario {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        frmLogin login1 = new frmLogin();
+        vistaConexion conex = new vistaConexion();
+       // frmLogin login1 = new frmLogin();
         
     }
     

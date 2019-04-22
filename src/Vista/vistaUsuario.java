@@ -19,7 +19,11 @@ import javax.swing.table.DefaultTableModel;
  * @author daniel
  */
 public class vistaUsuario extends javax.swing.JFrame {
-    Conexion con=new Conexion();
+   
+     public void setConexionUsuario(Conexion con1){
+       con=con1;
+    }
+    
     Connection cn;
     Statement st;
     ResultSet rs;
@@ -343,6 +347,8 @@ public class vistaUsuario extends javax.swing.JFrame {
             }
         });
     }
+    
+    private Conexion con;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAñadir;

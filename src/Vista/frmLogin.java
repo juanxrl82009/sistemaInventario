@@ -17,21 +17,21 @@ import javax.swing.JOptionPane;
  * @author John Castro
  */
 public class frmLogin extends javax.swing.JFrame {
-    Conexion con=new Conexion();
+    
+    private Conexion con;
+    
     Connection cn;
     Statement st;
     ResultSet rs;
     int id;
     boolean verificacion;/*boleano que nos ayudara a identificar si el login es correocto o incorrecto*/
-    /**
-     * Creates new form frmLogin
-     */
+    
     public frmLogin() {
-               
-        //this.setUndecorated(true);
+        
         this.setVisible(true);
         initComponents();
         this.setLocationRelativeTo(null);
+        
     }
 
     /**
@@ -124,7 +124,8 @@ public class frmLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     
-    void verificarLogin(){
+    public void verificarLogin(){
+        
         int usuarioBD=0;
         String b="";
         String usuarioCajaTexto= new String();
@@ -132,13 +133,12 @@ public class frmLogin extends javax.swing.JFrame {
         int usuarioInt;
         usuarioCajaTexto=cajaTextoUsuario.getText();/*Obtiene lo que hay en la caja de texto*/
         contrasenna=String.valueOf(cajaTextoContrasenna.getPassword());
-        /*Obtiene lo que hay en la caja de texto*/
-        /*contrasenna=cajaTextoContrasenna.getPassword(); solo se puede en array de caracteres*/
-      
+       
         //String sql="SELECT idCuenta, idPassCuenta FROM Cuenta WHERE idCuenta=" + usuarioCajaTexto;
         /*Consulta en postgresql
         donde busca el usuario que se ingreso en la caja de texto en la base de datos*/
         String sql="SELECT * FROM Usuario WHERE idUsuario = " + usuarioCajaTexto + "AND passwordUsuario = crypt('" + contrasenna + "', passwordUsuario)";
+        
         try{
    
             cn=con.getConnection();
@@ -159,18 +159,24 @@ public class frmLogin extends javax.swing.JFrame {
    
         }catch(SQLException e){}
    
-        }
+    }
+    
+     public void setConexionLogin(Conexion con){
+       this.con=con;
+     }
     
     private void cajaTextoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaTextoUsuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cajaTextoUsuarioActionPerformed
 
     private void botonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonLoginActionPerformed
-       verificarLogin();
+        verificarLogin();
        
         if(Boolean.TRUE.equals(verificacion)){
             vistaMenu menu = new vistaMenu();
+            menu.setConexionMenu(con);
             this.setVisible(false);
+            
         }
         else JOptionPane.showMessageDialog(jPanel1,"Datos Erroneos, ingreselos de nuevo");
 // TODO add your handling code here:

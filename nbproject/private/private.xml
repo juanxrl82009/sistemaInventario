@@ -5,7 +5,7 @@
             <url>src/Vista/vistaUsuario.java</url>
             <bookmark id="2">
                 <name/>
-                <line>310</line>
+                <line>309</line>
                 <key/>
             </bookmark>
         </file>
@@ -13,14 +13,12 @@
             <url>src/Modelo/Conexion.java</url>
             <bookmark id="1">
                 <name/>
-                <line>21</line>
+                <line>25</line>
                 <key/>
             </bookmark>
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/D:/Users/danie/Documents/NetBeansProjects/sistemaInventario/src/Vista/vistaUsuario.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

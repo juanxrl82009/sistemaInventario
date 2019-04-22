@@ -23,7 +23,9 @@ import javax.swing.Timer;
  * @author Daniel Luna
  */
 public class vistaProveedor extends javax.swing.JFrame {
-    Conexion con=new Conexion();
+     public void setConexionProveedor(Conexion con1){
+       con=con1;
+    }
     Connection cn;
     Statement st;
     ResultSet rs;
@@ -310,7 +312,7 @@ public class vistaProveedor extends javax.swing.JFrame {
     }//GEN-LAST:event_botonEliminarActionPerformed
  
     
-
+    private Conexion con;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAñadir;
     private javax.swing.JButton botonEliminar;

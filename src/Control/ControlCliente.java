@@ -17,7 +17,7 @@ import java.sql.Statement;
  * @author Daniel Luna
  */
 public class ControlCliente {
-     Conexion con=new Conexion();
+    private Conexion con;
     Connection cn;
     Statement st;
     ResultSet rs;
@@ -25,7 +25,8 @@ public class ControlCliente {
     Object[] Datos= new Object[4]; /*Un array donde se almacenan las filas de la tabla. el tamaño del
         array debe ser el numero de columnas que tenga nuestra consulta*/
     
-    public ControlCliente(){
+    public ControlCliente(Conexion con1){
+        con=con1;     
     }
 
     

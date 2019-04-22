@@ -9,7 +9,7 @@ package Modelo;
  *
  * @author danie
  */
-public class Cliente {	
+public class Cliente{	
     private int idCliente;	
     private String nombre;	
     private String direccion;	
