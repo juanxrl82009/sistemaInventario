@@ -523,33 +523,18 @@ public class vistaUsuario extends javax.swing.JFrame {
                     }                  
                 }
                 if(boton.getName().equals("e")){
-                    /*
-                    try{
-                        controlU.getUsuario().setIdUsuario((tablaUsuarios.getValueAt(tablaUsuarios.getSelectedRow(), 0)));
-                        controlU.eliminar();//se ejecuta el metodo que agrega una cuenta a la base de datos
-                        limpiarTabla();
-                    }catch(Exception e){
-                    }
-                    JOptionPane.showMessageDialog(null,"Usuario eliminado con exito");
-                    listar();
-                    */
                     
-                    //En esta parte la idea es que no se elimine sino que se cambie un atributo estado.
-                    /*
-                    Codigo de eliminar
-                    try{
+                      //En esta parte la idea es que no se elimine sino que se cambie un atributo estado.
+                   try{
                         //se le asignan los atribujos que se ingreso en las cajas de texto a un objeto usuario
-                        controlC.getCliente().setIdCliente(Integer.valueOf(cajaTextoNit.getText()));
-                        controlC.getCliente().setNombre(cajaTextoNombre.getText());
-                        controlC.getCliente().setTelefono(cajaTextoTelefono.getText());
-                        controlC.getCliente().setDireccion(cajaTextoDireccion.getText());
-                        controlC.eliminar();//se ejecuta el metodo que agrega una cuenta a la base de datos
-                        limpiarTabla();
-
+                        controlU.getUsuario().setIdUsuario(Integer.valueOf(String.valueOf(tablaUsuarios.getValueAt(tablaUsuarios.getSelectedRow(), 0))));
+                        controlU.eliminar();//se ejecuta el metodo que agrega una cuenta a la base de datos
+                        
                     }catch(Exception e){}
-                    JOptionPane.showMessageDialog(null,"Cliente eliminado con exito");
-                    listar();// TODO add your handling code here:
-                    */
+                    JOptionPane.showMessageDialog(null,"Usuario eliminado con exito");
+                    limpiarTabla();
+                    listar(); 
+                   
                 }
             }      
         } 

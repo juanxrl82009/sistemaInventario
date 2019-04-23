@@ -25,7 +25,8 @@ public class ControlProveedor {
     Object[] Datos= new Object[4]; /*Un array donde se almacenan las filas de la tabla. el tamaño del
         array debe ser el numero de columnas que tenga nuestra consulta*/
     
-    public ControlProveedor(){
+    public ControlProveedor(Conexion con1){
+        con=con1;  
     }
 
     
