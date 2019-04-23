@@ -155,6 +155,11 @@ public class vistaMenu extends javax.swing.JFrame {
         botonReportes.setBackground(new java.awt.Color(255, 255, 255));
         botonReportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/perfiles.png"))); // NOI18N
         botonReportes.setBorder(null);
+        botonReportes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonReportesActionPerformed(evt);
+            }
+        });
 
         botonUsuarios.setBackground(new java.awt.Color(255, 255, 255));
         botonUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/usuario.png"))); // NOI18N
@@ -340,6 +345,11 @@ public class vistaMenu extends javax.swing.JFrame {
         vistaCompra vCompra = new vistaCompra();
           // TODO add your handling code here:
     }//GEN-LAST:event_botonComprasActionPerformed
+
+    private void botonReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonReportesActionPerformed
+        // TODO add your handling code here:
+     
+    }//GEN-LAST:event_botonReportesActionPerformed
        /**
      * @param args the command line arguments
      */
