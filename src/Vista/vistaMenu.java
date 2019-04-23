@@ -217,13 +217,13 @@ public class vistaMenu extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelReportes)
                             .addComponent(botonReportes))))
-                .addGap(110, 110, 110)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(botonUsuarios)
                     .addComponent(botonCompras)
                     .addComponent(labelCompras)
                     .addComponent(labelUsuarios))
-                .addContainerGap(103, Short.MAX_VALUE))
+                .addContainerGap(105, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(291, 291, 291)
                 .addComponent(labelTitulo)
@@ -262,7 +262,7 @@ public class vistaMenu extends javax.swing.JFrame {
                         .addComponent(botonCompras)
                         .addGap(18, 18, 18)
                         .addComponent(labelCompras)))
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addGap(67, 67, 67))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 700, 440));

@@ -102,18 +102,18 @@
                           <EmptySpace min="-2" pref="136" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="labelReportes" min="-2" max="-2" attributes="0"/>
-                              <Component id="botonReportes" min="-2" max="-2" attributes="0"/>
+                              <Component id="botonReportes" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="110" max="-2" attributes="0"/>
+                  <EmptySpace pref="110" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="botonUsuarios" min="-2" max="-2" attributes="0"/>
                       <Component id="botonCompras" min="-2" max="-2" attributes="0"/>
                       <Component id="labelCompras" min="-2" max="-2" attributes="0"/>
                       <Component id="labelUsuarios" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="103" max="32767" attributes="0"/>
+                  <EmptySpace pref="105" max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="291" max="-2" attributes="0"/>
@@ -165,7 +165,7 @@
                           <Component id="labelCompras" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="69" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
