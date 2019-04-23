@@ -322,8 +322,8 @@ public class vistaMenu extends javax.swing.JFrame {
     private void botonUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonUsuariosActionPerformed
         // TODO add your handling code here:
         
-        vistaUsuario vUsuario= new vistaUsuario();
-        vUsuario.setConexionUsuario(con);
+        vistaUsuario vUsuario= new vistaUsuario(con);
+        //vUsuario.setConexionUsuario(con);
           
     }//GEN-LAST:event_botonUsuariosActionPerformed
 
