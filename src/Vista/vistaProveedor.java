@@ -291,7 +291,7 @@ public class vistaProveedor extends javax.swing.JFrame {
         botonModificar.setBackground(new java.awt.Color(64, 132, 253));
         botonModificar.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
         botonModificar.setForeground(new java.awt.Color(255, 255, 255));
-        botonModificar.setText("Modificar Cliente");
+        botonModificar.setText("Modificar Proveedor");
         botonModificar.setBorder(null);
         botonModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -505,10 +505,10 @@ public class vistaProveedor extends javax.swing.JFrame {
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
         try{        
             //Cuando se hagan las respectivas modificaciones en los Jtext, y se presione el boton modificar, se ejecuta el siguiente
-            controlP.getProveedor().setNit(Integer.valueOf(cajaTextoNit.getText()));
-            controlP.getProveedor().setNomProveedor(cajaTextoNombre.getText());
-            controlP.getProveedor().setTelefono(cajaTextoTelefono.getText());
-            controlP.getProveedor().setDireccion(cajaTextoDireccion.getText());
+            controlP.getProveedor().setNit(Integer.valueOf(cajaTextoNitM.getText()));
+            controlP.getProveedor().setNomProveedor(cajaTextoNombreM.getText());
+            controlP.getProveedor().setTelefono(cajaTextoTelefonoM.getText());
+            controlP.getProveedor().setDireccion(cajaTextoDireccionM.getText());
             controlP.modificar();/*se ejecuta el metodo que agrega una cuenta a la base de datos*/                   
         }catch(Exception e){}
         JOptionPane.showMessageDialog(null,"Proveedor modificado con exito");
