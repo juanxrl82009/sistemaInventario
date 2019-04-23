@@ -145,7 +145,6 @@ public class VistaArticulo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        timingTargetAdapter1 = new org.jdesktop.core.animation.timing.TimingTargetAdapter();
         panelArticulo = new javax.swing.JPanel();
         labelTitulo = new javax.swing.JLabel();
         panelTablaArticulo = new javax.swing.JPanel();
@@ -656,6 +655,5 @@ public class VistaArticulo extends javax.swing.JFrame {
     private javax.swing.JPanel panelModificarArticulo;
     private javax.swing.JPanel panelTablaArticulo;
     private rojerusan.RSTableMetro tablaArticulos;
-    private org.jdesktop.core.animation.timing.TimingTargetAdapter timingTargetAdapter1;
     // End of variables declaration//GEN-END:variables
 }
