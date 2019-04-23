@@ -328,8 +328,7 @@ public class vistaMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_botonUsuariosActionPerformed
 
     private void botonProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonProveedoresActionPerformed
-        vistaProveedor vProveedor= new vistaProveedor();        // TODO add your handling code here:
-        vProveedor.setConexionProveedor(con);
+        vistaProveedor vProveedor= new vistaProveedor(con);        // TODO add your handling code here:
     }//GEN-LAST:event_botonProveedoresActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
