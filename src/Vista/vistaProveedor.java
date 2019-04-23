@@ -482,21 +482,16 @@ public class vistaProveedor extends javax.swing.JFrame {
                 }
                 if(boton.getName().equals("e")){
                     //En esta parte la idea es que no se elimine sino que se cambie un atributo estado.
-                    /*
-                    Codigo de eliminar
                     try{
                         //se le asignan los atribujos que se ingreso en las cajas de texto a un objeto usuario
-                        controlC.getCliente().setIdCliente(Integer.valueOf(cajaTextoNit.getText()));
-                        controlC.getCliente().setNombre(cajaTextoNombre.getText());
-                        controlC.getCliente().setTelefono(cajaTextoTelefono.getText());
-                        controlC.getCliente().setDireccion(cajaTextoDireccion.getText());
-                        controlC.eliminar();//se ejecuta el metodo que agrega una cuenta a la base de datos
-                        limpiarTabla();
-
+                        controlP.getProveedor().setNit(Integer.valueOf(String.valueOf(tablaProveedores.getValueAt(tablaProveedores.getSelectedRow(), 0))));
+                        controlP.eliminar();//se ejecuta el metodo que agrega una cuenta a la base de datos
+                        
                     }catch(Exception e){}
-                    JOptionPane.showMessageDialog(null,"Cliente eliminado con exito");
-                    listar();// TODO add your handling code here:
-                    */
+                    JOptionPane.showMessageDialog(null,"Proveedor eliminado con exito");
+                    limpiarTabla();
+                    listar(); // TODO add your handling code here:
+                    
                 }
             }      
         }  

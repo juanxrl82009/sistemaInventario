@@ -481,21 +481,15 @@ public class vistaCliente extends javax.swing.JFrame {
                 }
                 if(boton.getName().equals("e")){
                     //En esta parte la idea es que no se elimine sino que se cambie un atributo estado.
-                    /*
-                    Codigo de eliminar
-                    try{
+                   try{
                         //se le asignan los atribujos que se ingreso en las cajas de texto a un objeto usuario
-                        controlC.getCliente().setIdCliente(Integer.valueOf(cajaTextoNit.getText()));
-                        controlC.getCliente().setNombre(cajaTextoNombre.getText());
-                        controlC.getCliente().setTelefono(cajaTextoTelefono.getText());
-                        controlC.getCliente().setDireccion(cajaTextoDireccion.getText());
+                        controlC.getCliente().setIdCliente(Integer.valueOf(String.valueOf(tablaClientes.getValueAt(tablaClientes.getSelectedRow(), 0))));
                         controlC.eliminar();//se ejecuta el metodo que agrega una cuenta a la base de datos
-                        limpiarTabla();
-
+                        
                     }catch(Exception e){}
                     JOptionPane.showMessageDialog(null,"Cliente eliminado con exito");
-                    listar();// TODO add your handling code here:
-                    */
+                    limpiarTabla();
+                    listar(); // TODO add your handling code here:
                 }
             }      
         }  
