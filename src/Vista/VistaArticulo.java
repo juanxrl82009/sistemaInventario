@@ -38,6 +38,10 @@ public class VistaArticulo extends javax.swing.JFrame {
     DefaultTableModel modelo;
     int id;
 
+    VistaArticulo() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
      
      
      

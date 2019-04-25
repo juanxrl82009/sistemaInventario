@@ -146,20 +146,6 @@ public class vistaCliente extends javax.swing.JFrame {
         panelTablaCliente = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaClientes = new rojerusan.RSTableMetro();
-        panelModificarCliente = new javax.swing.JPanel();
-        cajaTextoNitM = new javax.swing.JTextField();
-        labelId1 = new javax.swing.JLabel();
-        labelNombre2 = new javax.swing.JLabel();
-        jSeparator5 = new javax.swing.JSeparator();
-        cajaTextoNombreM = new javax.swing.JTextField();
-        jSeparator6 = new javax.swing.JSeparator();
-        labelTelefono1 = new javax.swing.JLabel();
-        cajaTextoTelefonoM = new javax.swing.JTextField();
-        jSeparator7 = new javax.swing.JSeparator();
-        labelNombre3 = new javax.swing.JLabel();
-        cajaTextoDireccionM = new javax.swing.JTextField();
-        jSeparator8 = new javax.swing.JSeparator();
-        botonModificar = new javax.swing.JButton();
         panelCrearCliente = new javax.swing.JPanel();
         labelId = new javax.swing.JLabel();
         labelNombre1 = new javax.swing.JLabel();
@@ -174,6 +160,20 @@ public class vistaCliente extends javax.swing.JFrame {
         cajaTextoTelefono = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         botonAñadir = new javax.swing.JButton();
+        panelModificarCliente = new javax.swing.JPanel();
+        cajaTextoNitM = new javax.swing.JTextField();
+        labelId1 = new javax.swing.JLabel();
+        labelNombre2 = new javax.swing.JLabel();
+        jSeparator5 = new javax.swing.JSeparator();
+        cajaTextoNombreM = new javax.swing.JTextField();
+        jSeparator6 = new javax.swing.JSeparator();
+        labelTelefono1 = new javax.swing.JLabel();
+        cajaTextoTelefonoM = new javax.swing.JTextField();
+        jSeparator7 = new javax.swing.JSeparator();
+        labelNombre3 = new javax.swing.JLabel();
+        cajaTextoDireccionM = new javax.swing.JTextField();
+        jSeparator8 = new javax.swing.JSeparator();
+        botonModificar = new javax.swing.JButton();
         panelMenuCliente = new javax.swing.JPanel();
         botonVer = new javax.swing.JButton();
         botonRegresar = new javax.swing.JButton();
@@ -241,9 +241,62 @@ public class vistaCliente extends javax.swing.JFrame {
             tablaClientes.getColumnModel().getColumn(6).setResizable(false);
         }
 
-        panelTablaCliente.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 740, 420));
+        panelTablaCliente.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 740, 390));
 
         panelCliente.add(panelTablaCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 740, 470));
+
+        panelCrearCliente.setBackground(new java.awt.Color(255, 255, 255));
+        panelCrearCliente.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        labelId.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        labelId.setText("NIT");
+        panelCrearCliente.add(labelId, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, -1, 20));
+
+        labelNombre1.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        labelNombre1.setText("Dirección");
+        panelCrearCliente.add(labelNombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, -1, 20));
+
+        cajaTextoNit.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        cajaTextoNit.setBorder(null);
+        panelCrearCliente.add(cajaTextoNit, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 230, 20));
+        panelCrearCliente.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, 230, 10));
+
+        labelNombre.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        labelNombre.setText("Nombre");
+        panelCrearCliente.add(labelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 140, -1, 20));
+
+        cajaTextoNombre.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        cajaTextoNombre.setBorder(null);
+        panelCrearCliente.add(cajaTextoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 140, 230, 20));
+        panelCrearCliente.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 160, 230, 10));
+
+        labelTelefono.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        labelTelefono.setText("Telefono");
+        panelCrearCliente.add(labelTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 220, -1, 20));
+
+        cajaTextoDireccion.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        cajaTextoDireccion.setBorder(null);
+        panelCrearCliente.add(cajaTextoDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 300, 230, 20));
+        panelCrearCliente.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 320, 230, 10));
+
+        cajaTextoTelefono.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        cajaTextoTelefono.setBorder(null);
+        panelCrearCliente.add(cajaTextoTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 220, 230, 20));
+        panelCrearCliente.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 240, 230, 10));
+
+        botonAñadir.setBackground(new java.awt.Color(64, 132, 253));
+        botonAñadir.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        botonAñadir.setForeground(new java.awt.Color(255, 255, 255));
+        botonAñadir.setText("Añadir Cliente");
+        botonAñadir.setBorder(null);
+        botonAñadir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAñadirActionPerformed(evt);
+            }
+        });
+        panelCrearCliente.add(botonAñadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 370, 180, 40));
+
+        panelCliente.add(panelCrearCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 740, 470));
 
         panelModificarCliente.setBackground(new java.awt.Color(255, 255, 255));
         panelModificarCliente.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -301,59 +354,6 @@ public class vistaCliente extends javax.swing.JFrame {
         panelModificarCliente.add(botonModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 370, 180, 40));
 
         panelCliente.add(panelModificarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 740, 470));
-
-        panelCrearCliente.setBackground(new java.awt.Color(255, 255, 255));
-        panelCrearCliente.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        labelId.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
-        labelId.setText("NIT");
-        panelCrearCliente.add(labelId, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, -1, 20));
-
-        labelNombre1.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
-        labelNombre1.setText("Dirección");
-        panelCrearCliente.add(labelNombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, -1, 20));
-
-        cajaTextoNit.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
-        cajaTextoNit.setBorder(null);
-        panelCrearCliente.add(cajaTextoNit, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 230, 20));
-        panelCrearCliente.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, 230, 10));
-
-        labelNombre.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
-        labelNombre.setText("Nombre");
-        panelCrearCliente.add(labelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 140, -1, 20));
-
-        cajaTextoNombre.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
-        cajaTextoNombre.setBorder(null);
-        panelCrearCliente.add(cajaTextoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 140, 230, 20));
-        panelCrearCliente.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 160, 230, 10));
-
-        labelTelefono.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
-        labelTelefono.setText("Telefono");
-        panelCrearCliente.add(labelTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 220, -1, 20));
-
-        cajaTextoDireccion.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
-        cajaTextoDireccion.setBorder(null);
-        panelCrearCliente.add(cajaTextoDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 300, 230, 20));
-        panelCrearCliente.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 320, 230, 10));
-
-        cajaTextoTelefono.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
-        cajaTextoTelefono.setBorder(null);
-        panelCrearCliente.add(cajaTextoTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 220, 230, 20));
-        panelCrearCliente.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 240, 230, 10));
-
-        botonAñadir.setBackground(new java.awt.Color(64, 132, 253));
-        botonAñadir.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
-        botonAñadir.setForeground(new java.awt.Color(255, 255, 255));
-        botonAñadir.setText("Añadir Cliente");
-        botonAñadir.setBorder(null);
-        botonAñadir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonAñadirActionPerformed(evt);
-            }
-        });
-        panelCrearCliente.add(botonAñadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 370, 180, 40));
-
-        panelCliente.add(panelCrearCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 740, 470));
 
         panelMenuCliente.setBackground(new java.awt.Color(0, 0, 0));
         panelMenuCliente.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());

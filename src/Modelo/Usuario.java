@@ -10,6 +10,12 @@ package Modelo;
  * @author John Castro
  */
 public class Usuario {
+    public Usuario(){
+        idUsuario=0;
+        nombreUsuario="";
+        password="";
+        idCategoCuenta=0;
+    }
     
     private int idUsuario;
     private String nombreUsuario;

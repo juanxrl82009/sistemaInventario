@@ -16,7 +16,7 @@ import java.sql.Statement;
  * @author daniel
  */
 public class ControlUsuario {
-    Conexion con=new Conexion();
+    private Conexion con;
     Connection cn;
     Statement st;
     ResultSet rs;
@@ -24,11 +24,9 @@ public class ControlUsuario {
     Object[] Datos= new Object[4]; /*Un array donde se almacenan las filas de la tabla. el tamaño del
         array debe ser el numero de columnas que tenga nuestra consulta*/
     
-    public ControlUsuario(){
+    public ControlUsuario(Conexion con1){
+        con=con1;
     }
-
-    
-    
     public void agregar()
     {
     /*Se le asigna a un string el insert en la base de datos*/

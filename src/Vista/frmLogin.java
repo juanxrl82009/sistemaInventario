@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
  * @author John Castro
  */
 public class frmLogin extends javax.swing.JFrame {
+   
     
     private Conexion con;
     
@@ -31,6 +32,9 @@ public class frmLogin extends javax.swing.JFrame {
         this.setVisible(true);
         initComponents();
         this.setLocationRelativeTo(null);
+        
+        con=new Conexion();
+        con.CrearConexion();
         
     }
 

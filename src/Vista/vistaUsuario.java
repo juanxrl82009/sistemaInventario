@@ -7,10 +7,13 @@ package Vista;
 
 import Control.ControlUsuario;
 import Modelo.Conexion;
+import Modelo.Render;
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -20,26 +23,73 @@ import javax.swing.table.DefaultTableModel;
  */
 public class vistaUsuario extends javax.swing.JFrame {
    
-     public void setConexionUsuario(Conexion con1){
-       con=con1;
-    }
+    
+    private Conexion con;
+    private ControlUsuario controlU;
+    
+    private JButton botonVerTabla;
+    private JButton botonModificarTabla;
+    private JButton botonEliminarTabla;
     
     Connection cn;
     Statement st;
     ResultSet rs;
     DefaultTableModel modelo;
     int id;
-    ControlUsuario controlU=new ControlUsuario();/*un objeto control para manejar los usuarios*/
     
-    /**
-     * Creates new form vistaUsuario
-     */
-    public vistaUsuario() {
-          //this.setUndecorated(true);
-          this.setVisible(true);
-          initComponents();
-          this.setLocationRelativeTo(null);
-          listar();
+     public void setConexionUsuario(Conexion con1){
+       con=con1;
+    }
+    
+    public vistaUsuario(Conexion con1) {
+        
+        
+        this.setVisible(true);
+        initComponents();
+        this.setLocationRelativeTo(null);
+          
+        con=con1;
+          
+        controlU=new ControlUsuario(con);
+          
+        panelCrearUsuario.setVisible(true);
+        panelTablaUsuario.setVisible(false);
+        panelModificarUsuario.setVisible(false);
+        
+        //Esta parte es importante, porque establezco que la tabla va a poder contener botones
+        tablaUsuarios.setDefaultRenderer(Object.class, new Render());
+        //Es para cambiarle el fondo de la parte inferior de la tabla
+        jScrollPane2.getViewport().setBackground(Color.WHITE);
+        
+        //En esta parte instancio los botones de la tabla con sus respectivos valores.
+        botonVerTabla = new JButton("Ver");
+        botonVerTabla.setName("v");
+        botonVerTabla.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/busqueda.png")));
+        botonVerTabla.setBackground(new java.awt.Color(255, 255, 255));
+        botonVerTabla.setForeground(new java.awt.Color(255, 255, 255));  
+        botonVerTabla.setBorder(null);
+        botonVerTabla.setBorderPainted(false);
+        
+        botonModificarTabla = new JButton("Modificar");
+        botonModificarTabla.setName("m");
+        botonModificarTabla.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/girar.png")));
+        botonModificarTabla.setBackground(new java.awt.Color(255, 255, 255));
+        botonModificarTabla.setForeground(new java.awt.Color(255, 255, 255));
+        botonModificarTabla.setBorder(null);
+        botonModificarTabla.setBorderPainted(false);
+        
+        botonEliminarTabla = new JButton("Eliminar");
+        botonEliminarTabla.setName("e"); 
+        botonEliminarTabla.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/eliminar.png")));
+        botonEliminarTabla.setBackground(new java.awt.Color(255, 255, 255));
+        botonEliminarTabla.setForeground(new java.awt.Color(255, 255, 255));
+        botonEliminarTabla.setBorder(null);
+        botonEliminarTabla.setBorderPainted(false);
+        listar();     
+        //Nada importante modificaciones por hacer en la tabla.
+        tablaUsuarios.getColumnModel().getColumn(id);
+          
+         
     }
     
     
@@ -47,38 +97,43 @@ public class vistaUsuario extends javax.swing.JFrame {
     void listar(){
         modelo=(DefaultTableModel)tablaUsuarios.getModel();
         /*Se almacena la consulta sql en un string*/
-    String sql="SELECT * FROM Usuario;";
-    try{
-       /*se establece coneccion con la base de datos y se le introduce la consulta*/
-        cn=con.getConnection();
-        st=cn.createStatement();
-        rs=st.executeQuery(sql);   
-        Object[] Datos= new Object[3]; /*Un array donde se almacenan las filas de la tabla. el tamaño del
-        array debe ser el numero de columnas que tenga nuestra consulta*/
-        /*modelo=(DefaultTableModel)tablaUsuarios.getModel();*/
-        while(rs.next()){
-        Datos[0]=rs.getInt("idUsuario");/*deben llamarse exactamente igual a como esta en la tabla*/
-        Datos[1]=rs.getString("nombreUsuario");/*deben llamarse exactamente igual a como esta en la tabla*/
-        Datos[2]=rs.getString("idCategoCuenta");/*deben llamarse exactamente igual a como esta en la tabla*/
-        modelo.addRow(Datos);
-        }
-        
-      /*  modelo.addRow(Datos);
-        tablaUsuarios.setModel(modelo);*/
+        String sql="SELECT * FROM Usuario;";
+        try{
+        /*se establece coneccion con la base de datos y se le introduce la consulta*/
+         cn=con.getConnection();
+         st=cn.createStatement();
+         rs=st.executeQuery(sql);   
+         Object[] Datos= new Object[7]; /*Un array donde se almacenan las filas de la tabla. el tamaño del
+         array debe ser el numero de columnas que tenga nuestra consulta*/
+         /*modelo=(DefaultTableModel)tablaUsuarios.getModel();*/
+         while(rs.next()){
+         Datos[0]=rs.getInt("idUsuario");/*deben llamarse exactamente igual a como esta en la tabla*/
+         Datos[1]=rs.getString("nombreUsuario");/*deben llamarse exactamente igual a como esta en la tabla*/
+         Datos[2]=rs.getString("passwordUsuario");
+         Datos[3]=rs.getString("idCategoCuenta");
+         
+         if("1".equals(rs.getString("idCategoCuenta"))){
+             Datos[3]="Administrador";
+         }else{
+             Datos[3]="Cajero";
+         }
+         
+         Datos[4]=botonVerTabla;
+         Datos[5]=botonModificarTabla;
+         Datos[6]=botonEliminarTabla;
+         modelo.addRow(Datos);
+        }      
     }catch(SQLException e){}
     }
-    
-    void limpiarTabla(){
-        
-        for(int i=0; i<=tablaUsuarios.getRowCount(); i++){
-            
-            modelo.removeRow(i);
-            i=i-1;
-        
-        }
-    
+    void limpiarTabla(){       
+        while(modelo.getRowCount()>0)modelo.removeRow(0);
     }
-
+    
+    public void limpiarCajasTexto(){
+        cajaTextoId.setText("");
+        cajaTextoNombre.setText("");
+        cajaTextoPassword.setText("");
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -90,23 +145,40 @@ public class vistaUsuario extends javax.swing.JFrame {
     private void initComponents() {
 
         panelUsuarios = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tablaUsuarios = new javax.swing.JTable();
-        labelTitulo = new javax.swing.JLabel();
-        labelId = new javax.swing.JLabel();
-        labelNombre = new javax.swing.JLabel();
-        labelPassword = new javax.swing.JLabel();
-        labelCategoria = new javax.swing.JLabel();
-        cajaTextoPassword = new javax.swing.JTextField();
-        cajaTextoNombre = new javax.swing.JTextField();
-        cajaTextoId = new javax.swing.JTextField();
-        botonAñadir = new javax.swing.JButton();
+        panelTablaUsuario = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablaUsuarios = new rojerusan.RSTableMetro();
+        panelModificarUsuario = new javax.swing.JPanel();
+        labelId1 = new javax.swing.JLabel();
+        labelNombre1 = new javax.swing.JLabel();
+        cajaTextoIdM = new javax.swing.JTextField();
+        jSeparator4 = new javax.swing.JSeparator();
+        labelPassword1 = new javax.swing.JLabel();
+        cajaTextoNombreM = new javax.swing.JTextField();
+        jSeparator5 = new javax.swing.JSeparator();
+        labelCategoria1 = new javax.swing.JLabel();
+        cajaTextoPasswordM = new javax.swing.JTextField();
+        jSeparator6 = new javax.swing.JSeparator();
+        cajaComboCategoriaM = new javax.swing.JComboBox<>();
         botonModificar = new javax.swing.JButton();
-        botonEliminar = new javax.swing.JButton();
-        cajaComboCategoria = new javax.swing.JComboBox<>();
+        panelCrearUsuario = new javax.swing.JPanel();
+        labelId = new javax.swing.JLabel();
+        cajaTextoId = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
-        jSeparator2 = new javax.swing.JSeparator();
+        labelNombre = new javax.swing.JLabel();
+        cajaTextoNombre = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
+        labelPassword = new javax.swing.JLabel();
+        cajaTextoPassword = new javax.swing.JTextField();
+        jSeparator2 = new javax.swing.JSeparator();
+        cajaComboCategoria = new javax.swing.JComboBox<>();
+        labelCategoria = new javax.swing.JLabel();
+        botonAñadir = new javax.swing.JButton();
+        labelTitulo = new javax.swing.JLabel();
+        panelMenuUsuario = new javax.swing.JPanel();
+        botonVer = new javax.swing.JButton();
+        botonRegresar = new javax.swing.JButton();
+        botonCrear = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -114,85 +186,79 @@ public class vistaUsuario extends javax.swing.JFrame {
         panelUsuarios.setBackground(new java.awt.Color(255, 255, 255));
         panelUsuarios.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        tablaUsuarios.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        panelTablaUsuario.setBackground(new java.awt.Color(255, 255, 255));
+        panelTablaUsuario.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         tablaUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "idCuenta", "Nombre", "Categoria"
+                "Id", "Nombre", "Contraseña", "Categoria", "Ver", "Modificar", "Eliminar"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tablaUsuarios.setFocusable(false);
-        tablaUsuarios.setGridColor(new java.awt.Color(153, 153, 153));
-        tablaUsuarios.setRowHeight(22);
-        tablaUsuarios.getTableHeader().setReorderingAllowed(false);
+        ));
+        tablaUsuarios.setColorBackgoundHead(new java.awt.Color(51, 153, 255));
+        tablaUsuarios.setFuenteFilas(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        tablaUsuarios.setFuenteFilasSelect(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        tablaUsuarios.setFuenteHead(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        tablaUsuarios.setRowHeight(25);
         tablaUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                tablaUsuariosMousePressed(evt);
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaUsuariosMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tablaUsuarios);
+        jScrollPane2.setViewportView(tablaUsuarios);
 
-        panelUsuarios.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 740, 270));
+        panelTablaUsuario.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, 350));
 
-        labelTitulo.setFont(new java.awt.Font("Decker", 0, 36)); // NOI18N
-        labelTitulo.setForeground(new java.awt.Color(102, 102, 102));
-        labelTitulo.setText("usuarios");
-        panelUsuarios.add(labelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, 40));
+        panelUsuarios.add(panelTablaUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 740, 350));
 
-        labelId.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
-        labelId.setText("ID");
-        panelUsuarios.add(labelId, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
+        panelModificarUsuario.setBackground(new java.awt.Color(255, 255, 255));
+        panelModificarUsuario.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        labelNombre.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
-        labelNombre.setText("Nombre");
-        panelUsuarios.add(labelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
+        labelId1.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        labelId1.setText("ID");
+        panelModificarUsuario.add(labelId1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, -1, -1));
 
-        labelPassword.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
-        labelPassword.setText("Password");
-        panelUsuarios.add(labelPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, -1, -1));
+        labelNombre1.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        labelNombre1.setText("Nombre");
+        panelModificarUsuario.add(labelNombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, -1, -1));
 
-        labelCategoria.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
-        labelCategoria.setText("Categoria");
-        panelUsuarios.add(labelCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 130, -1, -1));
+        cajaTextoIdM.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        cajaTextoIdM.setBorder(null);
+        panelModificarUsuario.add(cajaTextoIdM, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 230, 20));
+        panelModificarUsuario.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, 230, 10));
 
-        cajaTextoPassword.setFont(new java.awt.Font("Quicksand", 0, 18)); // NOI18N
-        cajaTextoPassword.setBorder(null);
-        cajaTextoPassword.addActionListener(new java.awt.event.ActionListener() {
+        labelPassword1.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        labelPassword1.setText("Password");
+        panelModificarUsuario.add(labelPassword1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, -1, -1));
+
+        cajaTextoNombreM.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        cajaTextoNombreM.setBorder(null);
+        panelModificarUsuario.add(cajaTextoNombreM, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, 230, 20));
+        panelModificarUsuario.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 140, 230, 10));
+
+        labelCategoria1.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        labelCategoria1.setText("Categoria");
+        panelModificarUsuario.add(labelCategoria1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 240, -1, -1));
+
+        cajaTextoPasswordM.setFont(new java.awt.Font("Quicksand", 0, 18)); // NOI18N
+        cajaTextoPasswordM.setBorder(null);
+        cajaTextoPasswordM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cajaTextoPasswordActionPerformed(evt);
+                cajaTextoPasswordMActionPerformed(evt);
             }
         });
-        panelUsuarios.add(cajaTextoPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 80, 150, 20));
+        panelModificarUsuario.add(cajaTextoPasswordM, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 180, 230, 20));
+        panelModificarUsuario.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, 230, 10));
 
-        cajaTextoNombre.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
-        cajaTextoNombre.setBorder(null);
-        panelUsuarios.add(cajaTextoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 150, 20));
-
-        cajaTextoId.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
-        cajaTextoId.setBorder(null);
-        panelUsuarios.add(cajaTextoId, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, 150, 20));
-
-        botonAñadir.setBackground(new java.awt.Color(51, 172, 234));
-        botonAñadir.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
-        botonAñadir.setForeground(new java.awt.Color(255, 255, 255));
-        botonAñadir.setText("Añadir");
-        botonAñadir.setBorder(null);
-        botonAñadir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonAñadirActionPerformed(evt);
-            }
-        });
-        panelUsuarios.add(botonAñadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, 130, 40));
+        cajaComboCategoriaM.setBackground(new java.awt.Color(64, 132, 253));
+        cajaComboCategoriaM.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
+        cajaComboCategoriaM.setForeground(new java.awt.Color(255, 255, 255));
+        cajaComboCategoriaM.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Cajero" }));
+        panelModificarUsuario.add(cajaComboCategoriaM, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 240, -1, -1));
 
         botonModificar.setBackground(new java.awt.Color(51, 172, 234));
         botonModificar.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
@@ -204,31 +270,116 @@ public class vistaUsuario extends javax.swing.JFrame {
                 botonModificarActionPerformed(evt);
             }
         });
-        panelUsuarios.add(botonModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 300, 130, 40));
+        panelModificarUsuario.add(botonModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 320, 180, 40));
 
-        botonEliminar.setBackground(new java.awt.Color(51, 172, 234));
-        botonEliminar.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
-        botonEliminar.setForeground(new java.awt.Color(255, 255, 255));
-        botonEliminar.setText("Eliminar");
-        botonEliminar.setBorder(null);
-        botonEliminar.addActionListener(new java.awt.event.ActionListener() {
+        panelUsuarios.add(panelModificarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 740, 520));
+
+        panelCrearUsuario.setBackground(new java.awt.Color(255, 255, 255));
+        panelCrearUsuario.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        labelId.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        labelId.setText("ID");
+        panelCrearUsuario.add(labelId, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, -1, -1));
+
+        cajaTextoId.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        cajaTextoId.setBorder(null);
+        panelCrearUsuario.add(cajaTextoId, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 230, 20));
+        panelCrearUsuario.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, 230, 10));
+
+        labelNombre.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        labelNombre.setText("Nombre");
+        panelCrearUsuario.add(labelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, -1, -1));
+
+        cajaTextoNombre.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        cajaTextoNombre.setBorder(null);
+        panelCrearUsuario.add(cajaTextoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, 230, 20));
+        panelCrearUsuario.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 140, 230, 10));
+
+        labelPassword.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        labelPassword.setText("Password");
+        panelCrearUsuario.add(labelPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, -1, -1));
+
+        cajaTextoPassword.setFont(new java.awt.Font("Quicksand", 0, 18)); // NOI18N
+        cajaTextoPassword.setBorder(null);
+        cajaTextoPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonEliminarActionPerformed(evt);
+                cajaTextoPasswordActionPerformed(evt);
             }
         });
-        panelUsuarios.add(botonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 300, 130, 40));
+        panelCrearUsuario.add(cajaTextoPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 180, 230, 20));
+        panelCrearUsuario.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, 230, 10));
 
         cajaComboCategoria.setBackground(new java.awt.Color(64, 132, 253));
         cajaComboCategoria.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
         cajaComboCategoria.setForeground(new java.awt.Color(255, 255, 255));
         cajaComboCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Cajero" }));
-        panelUsuarios.add(cajaComboCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 130, -1, -1));
+        panelCrearUsuario.add(cajaComboCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 240, -1, -1));
         cajaComboCategoria.getAccessibleContext().setAccessibleName("cajaComboCategoria");
         cajaComboCategoria.getAccessibleContext().setAccessibleDescription("");
 
-        panelUsuarios.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, 150, 10));
-        panelUsuarios.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 100, 150, 10));
-        panelUsuarios.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 150, 10));
+        labelCategoria.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        labelCategoria.setText("Categoria");
+        panelCrearUsuario.add(labelCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 240, -1, -1));
+
+        botonAñadir.setBackground(new java.awt.Color(51, 172, 234));
+        botonAñadir.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        botonAñadir.setForeground(new java.awt.Color(255, 255, 255));
+        botonAñadir.setText("Añadir Usuario");
+        botonAñadir.setBorder(null);
+        botonAñadir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAñadirActionPerformed(evt);
+            }
+        });
+        panelCrearUsuario.add(botonAñadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 330, 180, 40));
+
+        panelUsuarios.add(panelCrearUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 740, 520));
+
+        labelTitulo.setFont(new java.awt.Font("Decker", 0, 36)); // NOI18N
+        labelTitulo.setForeground(new java.awt.Color(102, 102, 102));
+        labelTitulo.setText("usuarios");
+        panelUsuarios.add(labelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 100, -1, 40));
+
+        panelMenuUsuario.setBackground(new java.awt.Color(0, 0, 0));
+        panelMenuUsuario.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        botonVer.setBackground(new java.awt.Color(0, 0, 0));
+        botonVer.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        botonVer.setForeground(new java.awt.Color(255, 255, 255));
+        botonVer.setText("Ver Usuario");
+        botonVer.setBorder(null);
+        botonVer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonVerActionPerformed(evt);
+            }
+        });
+        panelMenuUsuario.add(botonVer, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, 130, 70));
+
+        botonRegresar.setBackground(new java.awt.Color(0, 0, 0));
+        botonRegresar.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        botonRegresar.setForeground(new java.awt.Color(255, 255, 255));
+        botonRegresar.setText("Regresar");
+        botonRegresar.setBorder(null);
+        botonRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonRegresarActionPerformed(evt);
+            }
+        });
+        panelMenuUsuario.add(botonRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 0, 150, 70));
+
+        botonCrear.setBackground(new java.awt.Color(0, 0, 0));
+        botonCrear.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        botonCrear.setForeground(new java.awt.Color(255, 255, 255));
+        botonCrear.setText("Crear Usuario");
+        botonCrear.setBorder(null);
+        botonCrear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCrearActionPerformed(evt);
+            }
+        });
+        panelMenuUsuario.add(botonCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 130, 70));
+
+        panelUsuarios.add(panelMenuUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, 70));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -243,18 +394,6 @@ public class vistaUsuario extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
-        try{
-            /*se le asignan los atribujos que se ingreso en las cajas de texto a un objeto usuario*/
-            controlU.getUsuario().setIdUsuario(Integer.valueOf(cajaTextoId.getText()));
-            controlU.eliminar();/*se ejecuta el metodo que agrega una cuenta a la base de datos*/
-            limpiarTabla();
-
-        }catch(Exception e){}
-        JOptionPane.showMessageDialog(null,"Usuario eliminado con exito");
-        listar();// TODO add your handling code here:        // TODO add your handling code here:
-    }//GEN-LAST:event_botonEliminarActionPerformed
 
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
         try{
@@ -277,8 +416,6 @@ public class vistaUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_botonModificarActionPerformed
 
     private void botonAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAñadirActionPerformed
-        // TODO add your handling code here:
-
         try{
             /*se le asignan los atribujos que se ingreso en las cajas de texto a un objeto usuario*/
             controlU.getUsuario().setIdUsuario(Integer.valueOf(cajaTextoId.getText()));
@@ -290,85 +427,158 @@ public class vistaUsuario extends javax.swing.JFrame {
                 controlU.getUsuario().setIdCategoCuenta(2);
             }
             controlU.agregar();/*se ejecuta el metodo que agrega un usuario a la base de datos*/
-            limpiarTabla();
 
         }catch(Exception e){}
         JOptionPane.showMessageDialog(null,"Usuario registrado con exito");
-        listar();
+        limpiarCajasTexto();
     }//GEN-LAST:event_botonAñadirActionPerformed
 
     private void cajaTextoPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaTextoPasswordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cajaTextoPasswordActionPerformed
 
-    private void tablaUsuariosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaUsuariosMousePressed
-        cajaTextoId.setText(String.valueOf(tablaUsuarios.getValueAt(tablaUsuarios.getSelectedRow(), 0))); 
-        cajaTextoNombre.setText(String.valueOf(tablaUsuarios.getValueAt(tablaUsuarios.getSelectedRow(), 1))); 
-        if (String.valueOf(tablaUsuarios.getValueAt(tablaUsuarios.getSelectedRow(), 2)).equals(String.valueOf(1))){
-            cajaComboCategoria.setSelectedIndex(0);
-        }else{
-            cajaComboCategoria.setSelectedIndex(1);
-            }
-        cajaTextoPassword.setText(""); 
-// TODO add your handling code here:
-    }//GEN-LAST:event_tablaUsuariosMousePressed
+    private void botonVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVerActionPerformed
+        //Para poder ver los clientes es necesario poner visible el panel tablaCliente, y el resto invisible
+        panelCrearUsuario.setVisible(false);
+        panelModificarUsuario.setVisible(false);
+        panelTablaUsuario.setVisible(true);
+        limpiarTabla();
+        listar();
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
+    }//GEN-LAST:event_botonVerActionPerformed
+
+    private void botonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarActionPerformed
+        dispose();
+    }//GEN-LAST:event_botonRegresarActionPerformed
+
+    private void botonCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCrearActionPerformed
+        panelCrearUsuario.setVisible(true);
+        panelTablaUsuario.setVisible(false);
+        panelModificarUsuario.setVisible(false);
+    }//GEN-LAST:event_botonCrearActionPerformed
+
+    private void cajaTextoPasswordMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaTextoPasswordMActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cajaTextoPasswordMActionPerformed
+
+    private void tablaUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaUsuariosMouseClicked
+        //En esta parte creo dos variables las cualves van almacenar la posicion en X y Y donde he dado click
+        int column = tablaUsuarios.getColumnModel().getColumnIndexAtX(evt.getX());
+        int row = evt.getY()/tablaUsuarios.getRowHeight();
+        
+        //En esta parte me aseguro de que la posicion este dentro de los limites de la tabla
+        if(row<tablaUsuarios.getRowCount() && row>=0 && column<tablaUsuarios.getColumnCount() && column >=0){
+            //En esta parte se crea un objeto que toma el valor del componente que se clickio
+            Object value = tablaUsuarios.getValueAt(row, column);
+            //En esta parte me aseguro que ese objeto sea un boton.
+            if(value instanceof JButton){
+                ((JButton)value).doClick();
+                //En esta parte creo un boton el cual va tomar los valores del objeto value.
+                JButton boton= (JButton) value;
+                //En esta parte diferencio cual boton fue presionado para que se ejecute los respectivos eventos.
+                if(boton.getName().equals("v")){
+                    panelCrearUsuario.setVisible(false);
+                    panelTablaUsuario.setVisible(false);
+                    panelModificarUsuario.setVisible(true);
+                    botonModificar.setVisible(false);
+                    cajaTextoIdM.setEnabled(false);
+                    cajaTextoNombreM.setEnabled(false);
+                    cajaTextoPasswordM.setEnabled(false);
+                    cajaComboCategoriaM.setEnabled(false);
+                    
+                    cajaTextoIdM.setText(String.valueOf(tablaUsuarios.getValueAt(tablaUsuarios.getSelectedRow(), 0))); 
+                    cajaTextoNombreM.setText(String.valueOf(tablaUsuarios.getValueAt(tablaUsuarios.getSelectedRow(), 1))); 
+                    cajaTextoPasswordM.setText(String.valueOf(tablaUsuarios.getValueAt(tablaUsuarios.getSelectedRow(), 2))); 
+                    if(tablaUsuarios.getValueAt(tablaUsuarios.getSelectedRow(),3)=="Administrador"){
+                        cajaComboCategoriaM.setSelectedIndex(0);
+                    }
+                    else{
+                        cajaComboCategoriaM.setSelectedIndex(1);
+                    }
+                    //Para borrar sino funciona lo de arriba
+                    //cajaComboCategoriaM.setText(String.valueOf(tablaUsuarios.getValueAt(tablaUsuarios.getSelectedRow(), 3))); 
+                   // "Administrador".equals(String.valueOf(cajaComboCategoria.getSelectedItem()))
+                            
                 }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(vistaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(vistaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(vistaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(vistaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+                
+                if(boton.getName().equals("m")){
+                    panelCrearUsuario.setVisible(false);
+                    panelTablaUsuario.setVisible(false);
+                    panelModificarUsuario.setVisible(true);
+                    botonModificar.setVisible(true);
+                    cajaTextoIdM.setEnabled(true);
+                    cajaTextoNombreM.setEnabled(true);
+                    cajaTextoPasswordM.setEnabled(true);
+                    cajaComboCategoriaM.setEnabled(true);
+         
+                    
+                    cajaTextoIdM.setText(String.valueOf(tablaUsuarios.getValueAt(tablaUsuarios.getSelectedRow(), 0))); 
+                    cajaTextoNombreM.setText(String.valueOf(tablaUsuarios.getValueAt(tablaUsuarios.getSelectedRow(), 1))); 
+                    cajaTextoPasswordM.setText(String.valueOf(tablaUsuarios.getValueAt(tablaUsuarios.getSelectedRow(), 2))); 
+                    if(tablaUsuarios.getValueAt(tablaUsuarios.getSelectedRow(),3)=="Administrador"){
+                        cajaComboCategoriaM.setSelectedIndex(0);
+                    }
+                    else{
+                        cajaComboCategoriaM.setSelectedIndex(1);
+                    }                  
+                }
+                if(boton.getName().equals("e")){
+                    
+                      //En esta parte la idea es que no se elimine sino que se cambie un atributo estado.
+                   try{
+                        //se le asignan los atribujos que se ingreso en las cajas de texto a un objeto usuario
+                        controlU.getUsuario().setIdUsuario(Integer.valueOf(String.valueOf(tablaUsuarios.getValueAt(tablaUsuarios.getSelectedRow(), 0))));
+                        controlU.eliminar();//se ejecuta el metodo que agrega una cuenta a la base de datos
+                        
+                    }catch(Exception e){}
+                    JOptionPane.showMessageDialog(null,"Usuario eliminado con exito");
+                    limpiarTabla();
+                    listar(); 
+                   
+                }
+            }      
+        } 
+    }//GEN-LAST:event_tablaUsuariosMouseClicked
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new vistaUsuario().setVisible(true);
-            }
-        });
-    }
+   
     
-    private Conexion con;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAñadir;
-    private javax.swing.JButton botonEliminar;
+    private javax.swing.JButton botonCrear;
     private javax.swing.JButton botonModificar;
+    private javax.swing.JButton botonRegresar;
+    private javax.swing.JButton botonVer;
     private javax.swing.JComboBox<String> cajaComboCategoria;
+    private javax.swing.JComboBox<String> cajaComboCategoriaM;
     private javax.swing.JTextField cajaTextoId;
+    private javax.swing.JTextField cajaTextoIdM;
     private javax.swing.JTextField cajaTextoNombre;
+    private javax.swing.JTextField cajaTextoNombreM;
     private javax.swing.JTextField cajaTextoPassword;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField cajaTextoPasswordM;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
     private javax.swing.JLabel labelCategoria;
+    private javax.swing.JLabel labelCategoria1;
     private javax.swing.JLabel labelId;
+    private javax.swing.JLabel labelId1;
     private javax.swing.JLabel labelNombre;
+    private javax.swing.JLabel labelNombre1;
     private javax.swing.JLabel labelPassword;
+    private javax.swing.JLabel labelPassword1;
     private javax.swing.JLabel labelTitulo;
+    private javax.swing.JPanel panelCrearUsuario;
+    private javax.swing.JPanel panelMenuUsuario;
+    private javax.swing.JPanel panelModificarUsuario;
+    private javax.swing.JPanel panelTablaUsuario;
     private javax.swing.JPanel panelUsuarios;
-    private javax.swing.JTable tablaUsuarios;
+    private rojerusan.RSTableMetro tablaUsuarios;
     // End of variables declaration//GEN-END:variables
 }
 
