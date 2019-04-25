@@ -66,7 +66,4 @@ public class Articulo {
     this.costo = costo;
     }
     
-    
-    
-    
 }
