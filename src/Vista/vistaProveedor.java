@@ -111,7 +111,7 @@ public class vistaProveedor extends javax.swing.JFrame {
             array debe ser el numero de columnas que tenga nuestra consulta*/
             while(rs.next()){
             Datos[0]=rs.getInt("nitproveedor");/*deben llamarse exactamente igual a como esta en la tabla*/
-            Datos[1]=rs.getString("nombreprovedor");/*deben llamarse exactamente igual a como esta en la tabla*/
+            Datos[1]=rs.getString("nombreproveedor");/*deben llamarse exactamente igual a como esta en la tabla*/
             Datos[2]=rs.getString("direccionproveedor");
             Datos[3]=rs.getString("telefonoproveedor");/*deben llamarse exactamente igual a como esta en la tabla*/
             Datos[4]=botonVerTabla;//En esta parte estoy añadiendo por cada fila los tres botones(ver,modificar,eliminar)

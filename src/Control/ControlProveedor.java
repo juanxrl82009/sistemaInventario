@@ -49,7 +49,7 @@ public class ControlProveedor {
     {
     /*Se le asigna a un string el insert en la base de datos*/
          String sqlProveedor="UPDATE Proveedor "
-                 + "SET nombreprovedor = '"+proveedor.getNomProveedor()+"', direccionproveedor = '"+proveedor.getDireccion()+"', telefonoproveedor = '"+proveedor.getTelefono()+"' WHERE nitproveedor = " +proveedor.getNit()+";";
+                 + "SET nombreproveedor = '"+proveedor.getNomProveedor()+"', direccionproveedor = '"+proveedor.getDireccion()+"', telefonoproveedor = '"+proveedor.getTelefono()+"' WHERE nitproveedor = " +proveedor.getNit()+";";
         
     try{
        /*se establece coneccion con la base de datos y se le introduce la consulta*/

@@ -398,7 +398,8 @@ public class vistaMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_botonReportesActionPerformed
 
     private void botonInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInventarioActionPerformed
-        // TODO add your handling code here:
+          // TODO add your handling code here:
+          vistaCategoria vCatego=new vistaCategoria(con);
     }//GEN-LAST:event_botonInventarioActionPerformed
 
     private void botonArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonArticuloActionPerformed
