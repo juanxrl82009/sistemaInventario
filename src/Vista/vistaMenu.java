@@ -155,6 +155,11 @@ public class vistaMenu extends javax.swing.JFrame {
         botonFacturacion.setBackground(new java.awt.Color(255, 255, 255));
         botonFacturacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/caja.png"))); // NOI18N
         botonFacturacion.setBorder(null);
+        botonFacturacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonFacturacionActionPerformed(evt);
+            }
+        });
 
         botonReportes.setBackground(new java.awt.Color(255, 255, 255));
         botonReportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/perfiles.png"))); // NOI18N
@@ -404,6 +409,11 @@ public class vistaMenu extends javax.swing.JFrame {
     private void botonArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonArticuloActionPerformed
         VistaArticulo vArticulo = new VistaArticulo(con);                // TODO add your handling code here:
     }//GEN-LAST:event_botonArticuloActionPerformed
+
+    private void botonFacturacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonFacturacionActionPerformed
+        vistaFactura vFactura = new vistaFactura();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonFacturacionActionPerformed
        /**
      * @param args the command line arguments
      */

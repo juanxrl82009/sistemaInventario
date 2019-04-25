@@ -20,6 +20,7 @@ public class vistaFactura extends javax.swing.JFrame {
         initComponents();
         setVisible(true);
         setLocationRelativeTo(null);
+        panelModificarFactura.setVisible(false);
     }
 
     /**
