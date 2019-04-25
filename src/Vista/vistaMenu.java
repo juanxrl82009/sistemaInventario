@@ -393,7 +393,7 @@ public class vistaMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void botonComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonComprasActionPerformed
-        vistaCompra vCompra = new vistaCompra();
+        vistaCompra vCompra = new vistaCompra(con);
           // TODO add your handling code here:
     }//GEN-LAST:event_botonComprasActionPerformed
 
