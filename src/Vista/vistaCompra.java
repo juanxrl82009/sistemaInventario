@@ -77,10 +77,12 @@ public class vistaCompra extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         IdCompraLabel = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        idproveedortxt = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaCompra = new rojerusan.RSTableMetro();
         jLabel6 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        proveedornombrelbl = new javax.swing.JLabel();
         panelCompraTabla = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaCompras = new rojerusan.RSTableMetro();
@@ -116,13 +118,25 @@ public class vistaCompra extends javax.swing.JFrame {
         jLabel5.setText("Proveedor");
         panelCompraCrear.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 40, -1, -1));
 
-        jTextField4.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+        idproveedortxt.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        idproveedortxt.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                idproveedortxtInputMethodTextChanged(evt);
+            }
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
-        panelCompraCrear.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 30, 240, 30));
+        idproveedortxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idproveedortxtActionPerformed(evt);
+            }
+        });
+        idproveedortxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                idproveedortxtKeyTyped(evt);
+            }
+        });
+        panelCompraCrear.add(idproveedortxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 30, 170, 30));
 
         tablaCompra.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -143,6 +157,17 @@ public class vistaCompra extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
         jLabel6.setText("Número de Compra");
         panelCompraCrear.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
+
+        jButton1.setText("...");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        panelCompraCrear.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 30, 30, -1));
+
+        proveedornombrelbl.setText("jLabel2");
+        panelCompraCrear.add(proveedornombrelbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 90, -1, -1));
 
         panelCompra.add(panelCompraCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 910, 400));
 
@@ -238,9 +263,9 @@ public class vistaCompra extends javax.swing.JFrame {
         listar();  
     }//GEN-LAST:event_botonVerActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void idproveedortxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idproveedortxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_idproveedortxtActionPerformed
 
     private void botonCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCrearActionPerformed
         panelCompraCrear.setVisible(true);
@@ -258,6 +283,28 @@ public class vistaCompra extends javax.swing.JFrame {
         }catch(SQLException e){}
     }//GEN-LAST:event_botonCrearActionPerformed
 
+    private void idproveedortxtInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_idproveedortxtInputMethodTextChanged
+               // TODO add your handling code here:
+    }//GEN-LAST:event_idproveedortxtInputMethodTextChanged
+
+    private void idproveedortxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idproveedortxtKeyTyped
+        
+    }//GEN-LAST:event_idproveedortxtKeyTyped
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String sql="SELECT nombreproveedor FROM PROVEEDOR WHERE nitproveedor =" +idproveedortxt.getText()+";";
+        try{
+            /*se establece coneccion con la base de datos y se le introduce la consulta*/
+            cn=con.getConnection();
+            st=cn.createStatement();
+            rs=st.executeQuery(sql);   /*Un array donde se almacenan las filas de la tabla. el tamaño del
+            array debe ser el numero de columnas que tenga nuestra consulta*/
+            while(rs.next()){
+            proveedornombrelbl.setText(rs.getString(1));
+            }    
+        }catch(SQLException e){}
+    }//GEN-LAST:event_jButton1ActionPerformed
+
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -265,6 +312,8 @@ public class vistaCompra extends javax.swing.JFrame {
     private javax.swing.JToggleButton botonCrear;
     private javax.swing.JToggleButton botonRegresar;
     private javax.swing.JToggleButton botonVer;
+    private javax.swing.JTextField idproveedortxt;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
@@ -272,11 +321,11 @@ public class vistaCompra extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JPanel panelCompra;
     private javax.swing.JPanel panelCompraCrear;
     private javax.swing.JPanel panelCompraMenu;
     private javax.swing.JPanel panelCompraTabla;
+    private javax.swing.JLabel proveedornombrelbl;
     private rojerusan.RSTableMetro tablaCompra;
     private rojerusan.RSTableMetro tablaCompras;
     // End of variables declaration//GEN-END:variables
