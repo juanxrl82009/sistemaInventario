@@ -9,42 +9,61 @@ package Modelo;
  *
  * @author danie
  */
+
+import java.util.Date;
+
 public class Compra{	
-    private int idCliente;	
-    private String nombre;	
-    private String direccion;	
-    private String telefono;	
+    private int IdCompra;
+    private int IdFacturacompra;
+    private int IdUsuario;
+    private int NitProveedor;
+    private Date FechaCompra;
+    private int TotalCompra;
+    	
 
-     public int getIdCliente() {	
-        return idCliente;	
+     public int getIdCompra() {	
+        return IdCompra;	
     }	
 
-     public void setIdCliente(int idCliente) {	
-        this.idCliente = idCliente;	
+     public void setIdCompra(int IdCompra) {	
+        this.IdCompra = IdCompra;	
     }	
 
-     public String getNombre() {	
-        return nombre;	
+     public int getIdFacturacompra() {	
+        return IdFacturacompra;	
     }	
 
-     public void setNombre(String nombre) {	
-        this.nombre = nombre;	
+     public void setIdFacturacompra(int IdFacturacompra) {	
+        this.IdFacturacompra = IdFacturacompra;	
+    }	
+     public int getIdUsuario() {	
+        return IdUsuario;	
     }	
 
-     public String getDireccion() {	
-        return direccion;	
+     public void setIdUsuario(int IdUsuario) {	
+        this.IdUsuario = IdUsuario;	
+    }	
+     public int getNitProveedor() {	
+        return NitProveedor;	
     }	
 
-     public void setDireccion(String direccion) {	
-        this.direccion = direccion;	
+     public void setNitProveedor(int NitProveedor) {	
+        this.NitProveedor = NitProveedor;	
+    }	
+     public Date getFechaCompra() {	
+        return FechaCompra;	
     }	
 
-     public String getTelefono() {	
-        return telefono;	
+     public void setFechaCompra(Date FechaCompra) {	
+        this.FechaCompra = FechaCompra;	
+    }	
+     
+     public int getTotalCompra() {	
+        return TotalCompra;	
     }	
 
-     public void setTelefono(String telefono) {	
-        this.telefono = telefono;	
+     public void setTotalCompra(int TotalCompra) {	
+        this.TotalCompra = TotalCompra;	
     }	
 
 

@@ -35,7 +35,7 @@ public class ControlCompras {
     {
     /*Se le asigna a un string el insert en la base de datos*/
          String sqlCliente="INSERT INTO Compra VALUES"
-                 + "("+compra.getIdCliente()+",'"+ compra.getNombre()+"', '"+compra.getDireccion()+"', '"+compra.getTelefono()+"');";
+                 + "(DEFAULT, "+ compra.getIdFacturacompra()+"', '"+compra.getIdUsuario()+"', '"+compra.getNitProveedor()+"');";
         
     try{
        /*se establece coneccion con la base de datos y se le introduce la consulta*/
@@ -49,7 +49,7 @@ public class ControlCompras {
     {
     /*Se le asigna a un string el insert en la base de datos*/
          String sqlCliente="UPDATE Compra "
-                 + "SET nombrecliente = '"+compra.getNombre()+"', telefonocliente = '"+compra.getTelefono()+"', direccioncliente = '"+compra.getDireccion()+"' WHERE idcliente = " +compra.getIdCliente()+";";
+                + "SET idfacturacompra = '"+compra.getIdFacturacompra()+"', nitproveedor = '"+compra.getNitProveedor()+"', totalcompra = '"+compra.getTotalCompra()+"' WHERE idcompra = " +compra.getIdCompra()+";";
         
     try{
        /*se establece coneccion con la base de datos y se le introduce la consulta*/
@@ -63,7 +63,7 @@ public class ControlCompras {
     {
     /*Se le asigna a un string el insert en la base de datos*/
          String sqlCliente="DELETE FROM Compra"
-                 + "WHERE idCompra = " +compra.getIdCliente()+";";
+                 + "WHERE idCompra = " +compra.getIdCompra()+";";
         
     try{
        /*se establece coneccion con la base de datos y se le introduce la consulta*/
@@ -73,7 +73,7 @@ public class ControlCompras {
         }catch(SQLException e){}
     }
 
-    public Compra getCliente() {
+    public Compra getCompra() {
         return compra;
     }
 
