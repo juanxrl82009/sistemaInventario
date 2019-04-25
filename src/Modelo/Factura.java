@@ -13,28 +13,27 @@ package Modelo;
 import java.util.Date;
 
 public class Factura{	
-    private int IdCompra;
-    private int IdFacturacompra;
+    private int IdFactura;
+    private int IdCliente;
     private int IdUsuario;
-    private int NitProveedor;
-    private Date FechaCompra;
-    private int TotalCompra;
+    private Date FechaFactura;
+    private int TotalFactura;
     	
 
-     public int getIdCompra() {	
-        return IdCompra;	
+     public int getIdFactura() {	
+        return IdFactura;	
     }	
 
-     public void setIdCompra(int IdCompra) {	
-        this.IdCompra = IdCompra;	
+     public void setIdFactura(int IdFactura) {	
+        this.IdFactura = IdFactura;	
     }	
 
-     public int getIdFacturacompra() {	
-        return IdFacturacompra;	
+     public int getIdCliente() {	
+        return IdCliente;	
     }	
 
-     public void setIdFacturacompra(int IdFacturacompra) {	
-        this.IdFacturacompra = IdFacturacompra;	
+     public void setIdCliente(int IdCliente) {	
+        this.IdCliente = IdCliente;	
     }	
      public int getIdUsuario() {	
         return IdUsuario;	
@@ -43,28 +42,18 @@ public class Factura{
      public void setIdUsuario(int IdUsuario) {	
         this.IdUsuario = IdUsuario;	
     }	
-     public int getNitProveedor() {	
-        return NitProveedor;	
+     public Date getFechaFactura() {	
+        return FechaFactura;	
     }	
 
-     public void setNitProveedor(int NitProveedor) {	
-        this.NitProveedor = NitProveedor;	
+     public void setFechaFactura(Date FechaFactura) {	
+        this.FechaFactura = FechaFactura;	
     }	
-     public Date getFechaCompra() {	
-        return FechaCompra;	
-    }	
-
-     public void setFechaCompra(Date FechaCompra) {	
-        this.FechaCompra = FechaCompra;	
-    }	
-     
-     public int getTotalCompra() {	
-        return TotalCompra;	
+     public int getTotalFactura() {	
+        return TotalFactura;	
     }	
 
-     public void setTotalCompra(int TotalCompra) {	
-        this.TotalCompra = TotalCompra;	
+     public void setTotalFactura(int TotalFactura) {	
+        this.TotalFactura = TotalFactura;	
     }	
-
-
- } 
+} 

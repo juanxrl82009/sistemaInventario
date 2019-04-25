@@ -35,7 +35,7 @@ public class ControlFacturas {
     {
     /*Se le asigna a un string el insert en la base de datos*/
          String sqlCliente="INSERT INTO factura VALUES"
-                 + "(DEFAULT, "+ factura.getIdFacturacompra()+"', '"+factura.getIdUsuario()+"', '"+factura.getNitProveedor()+"');";
+                 + "(DEFAULT, "+ factura.getIdCliente()+"', '"+factura.getIdUsuario()+"', '"+factura.getFechaFactura()+"', '"+factura.getTotalFactura()+"');";
         
     try{
        /*se establece coneccion con la base de datos y se le introduce la consulta*/
@@ -49,7 +49,7 @@ public class ControlFacturas {
     {
     /*Se le asigna a un string el insert en la base de datos*/
          String sqlCliente="UPDATE factura "
-                + "SET idfacturacompra = '"+factura.getIdFacturacompra()+"', nitproveedor = '"+factura.getNitProveedor()+"', totalcompra = '"+factura.getTotalCompra()+"' WHERE idcompra = " +factura.getIdCompra()+";";
+                + "SET idcliente = '"+factura.getIdCliente()+"', fechafactura = '"+factura.getFechaFactura()+"', totalfactura = '"+factura.getTotalFactura()+"' WHERE idcompra = " +factura.getIdFactura()+";";
         
     try{
        /*se establece coneccion con la base de datos y se le introduce la consulta*/
@@ -63,7 +63,7 @@ public class ControlFacturas {
     {
     /*Se le asigna a un string el insert en la base de datos*/
          String sqlCliente="DELETE FROM factura"
-                 + "WHERE idCompra = " +factura.getIdCompra()+";";
+                 + "WHERE idfactura = " +factura.getIdFactura()+";";
         
     try{
        /*se establece coneccion con la base de datos y se le introduce la consulta*/
