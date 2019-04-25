@@ -164,7 +164,7 @@ public class vistaFacturaClienteSeleccion extends javax.swing.JFrame {
     @SuppressWarnings("empty-statement")
     private void AgregarCompraButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarCompraButtonActionPerformed
         try{
-        vistaCompra.cargarNit(String.valueOf(tablaClientes.getValueAt(tablaClientes.getSelectedRow(), 0)), String.valueOf(tablaClientes.getValueAt(tablaClientes.getSelectedRow(), 1)),String.valueOf(tablaClientes.getValueAt(tablaClientes.getSelectedRow(), 3)), String.valueOf(tablaClientes.getValueAt(tablaClientes.getSelectedRow(), 2)));
+        vistaFactura.cargarCliente(String.valueOf(tablaClientes.getValueAt(tablaClientes.getSelectedRow(), 0)), String.valueOf(tablaClientes.getValueAt(tablaClientes.getSelectedRow(), 1)),String.valueOf(tablaClientes.getValueAt(tablaClientes.getSelectedRow(), 3)), String.valueOf(tablaClientes.getValueAt(tablaClientes.getSelectedRow(), 2)));
         dispose();
         }catch(Exception e){ JOptionPane.showMessageDialog(null,"Selecciona a un cliente");}
     }//GEN-LAST:event_AgregarCompraButtonActionPerformed

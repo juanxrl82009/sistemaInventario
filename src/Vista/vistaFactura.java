@@ -6,6 +6,16 @@
 package Vista;
 
 import javax.swing.JButton;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.table.DefaultTableModel;
+import Control.ControlCompras;
+import Modelo.Conexion;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,13 +26,77 @@ public class vistaFactura extends javax.swing.JFrame {
     /**
      * Creates new form vistaFactura
      */
-    public vistaFactura() {
+    
+    private Conexion con;
+    private ControlCompras controlC;
+    private int NitProveedor;
+    Connection cn;
+    Statement st;
+    ResultSet rs;
+    DefaultTableModel modelo;
+    public static int nitProveedor;
+    
+    public vistaFactura(Conexion con1) {
         initComponents();
         setVisible(true);
         setLocationRelativeTo(null);
-        panelModificarFactura.setVisible(false);
+        con=con1;
+        Date sistFecha=new Date();
+        SimpleDateFormat formato= new SimpleDateFormat("dd-MM-yyyy");
+        txtFecha.setText(formato.format(sistFecha));
+        cargarNumFactura();
+    }
+    
+    void cargarNumFactura(){
+        String sql="SELECT MAX(idfactura)FROM FACTURA;";
+            try{
+                /*se establece coneccion con la base de datos y se le introduce la consulta*/
+                cn=con.getConnection();
+                st=cn.createStatement();
+                rs=st.executeQuery(sql);   /*Un array donde se almacenan las filas de la tabla. el tamaño del
+                array debe ser el numero de columnas que tenga nuestra consulta*/
+                while(rs.next()){
+                IdCompraLabel.setText(String.valueOf(rs.getInt(1)+1));
+                }    
+            }catch(SQLException e){}
+    }
+    
+    public void listar(){    
+        modelo=(DefaultTableModel)tablaFacturas.getModel();
+        /*Se almacena la consulta sql en un string*/
+        String sql="SELECT * FROM Factura";
+        try{
+            /*se establece coneccion con la base de datos y se le introduce la consulta*/
+            cn=con.getConnection();
+            st=cn.createStatement();
+            rs=st.executeQuery(sql);   
+            Object[] Datos= new Object[5]; /*Un array donde se almacenan las filas de la tabla. el tamaño del
+            array debe ser el numero de columnas que tenga nuestra consulta*/
+            while(rs.next()){
+            Datos[0]=rs.getInt("idfactura");/*deben llamarse exactamente igual a como esta en la tabla*/
+            Datos[1]=rs.getString("idcliente");/*deben llamarse exactamente igual a como esta en la tabla*/
+            Datos[2]=rs.getString("idusuario");
+            Datos[3]=rs.getString("fechafactura");/*/*deben llamarse exactamente igual a como esta en la tabla*/
+            Datos[4]=rs.getString("totalfactura");
+            modelo.addRow(Datos);
+            }    
+        }catch(SQLException e){}
+    }
+        
+    void limpiarTabla(){
+        
+        modelo=(DefaultTableModel)tablaFacturas.getModel();
+        while(modelo.getRowCount()>0)modelo.removeRow(0);
     }
 
+    public static void cargarCliente(String Nit, String Nombre, String Telefono, String Direccion){
+        lblidproveedor.setText(Nit);
+        lblproveedornombre.setText(Nombre);
+        lbltelefono.setText(Telefono);
+        lbldireccion.setText(Direccion);
+        nitProveedor = Integer.parseInt(Nit);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,22 +109,25 @@ public class vistaFactura extends javax.swing.JFrame {
         panelFactura = new javax.swing.JPanel();
         labelTitulo = new javax.swing.JLabel();
         panelCrearFactura = new javax.swing.JPanel();
-        labelId = new javax.swing.JLabel();
-        labelNombre1 = new javax.swing.JLabel();
-        cajaTextoIdFac = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
-        labelNombre = new javax.swing.JLabel();
-        cajaTextoNombreClie = new javax.swing.JTextField();
-        jSeparator3 = new javax.swing.JSeparator();
-        labelTelefono = new javax.swing.JLabel();
-        cajaTextoFecha = new javax.swing.JTextField();
-        jSeparator4 = new javax.swing.JSeparator();
-        cajaTextNombreCajero = new javax.swing.JTextField();
-        jSeparator2 = new javax.swing.JSeparator();
         botonAñadir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         rSTableMetro1 = new rojerusan.RSTableMetro();
         jLabel1 = new javax.swing.JLabel();
+        botonCliente = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        lblidproveedor = new javax.swing.JLabel();
+        lbltelefono = new javax.swing.JLabel();
+        lbldireccion = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        txtFecha = new javax.swing.JTextField();
+        IdCompraLabel = new javax.swing.JLabel();
+        lblproveedornombre = new javax.swing.JLabel();
         panelTablaFactura = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaFacturas = new rojerusan.RSTableMetro();
@@ -68,10 +145,10 @@ public class vistaFactura extends javax.swing.JFrame {
         cajaTextoDireccionM = new javax.swing.JTextField();
         jSeparator8 = new javax.swing.JSeparator();
         botonModificar = new javax.swing.JButton();
-        panelMenuCliente = new javax.swing.JPanel();
+        panelCompraMenu = new javax.swing.JPanel();
+        botonCrear = new javax.swing.JButton();
         botonVer = new javax.swing.JButton();
         botonRegresar = new javax.swing.JButton();
-        botonCrear = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -86,42 +163,7 @@ public class vistaFactura extends javax.swing.JFrame {
 
         panelCrearFactura.setBackground(new java.awt.Color(255, 255, 255));
         panelCrearFactura.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        labelId.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
-        labelId.setText("Id Factura");
-        panelCrearFactura.add(labelId, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, 20));
-
-        labelNombre1.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
-        labelNombre1.setText("Fecha");
-        panelCrearFactura.add(labelNombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 70, -1, 20));
-
-        cajaTextoIdFac.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
-        cajaTextoIdFac.setBorder(null);
-        panelCrearFactura.add(cajaTextoIdFac, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 230, 20));
-        panelCrearFactura.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, 230, 10));
-
-        labelNombre.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
-        labelNombre.setText("Cliente");
-        panelCrearFactura.add(labelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 20, -1, 20));
-
-        cajaTextoNombreClie.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
-        cajaTextoNombreClie.setBorder(null);
-        panelCrearFactura.add(cajaTextoNombreClie, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 20, 230, 20));
-        panelCrearFactura.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 40, 230, 10));
-
-        labelTelefono.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
-        labelTelefono.setText("Cajero");
-        panelCrearFactura.add(labelTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, 20));
-
-        cajaTextoFecha.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
-        cajaTextoFecha.setBorder(null);
-        panelCrearFactura.add(cajaTextoFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 70, 230, 20));
-        panelCrearFactura.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 90, 230, 10));
-
-        cajaTextNombreCajero.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
-        cajaTextNombreCajero.setBorder(null);
-        panelCrearFactura.add(cajaTextNombreCajero, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, 230, 20));
-        panelCrearFactura.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 230, 10));
+        panelCrearFactura.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 100, 10));
 
         botonAñadir.setBackground(new java.awt.Color(64, 132, 253));
         botonAñadir.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
@@ -154,6 +196,70 @@ public class vistaFactura extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Decker", 0, 48)); // NOI18N
         jLabel1.setText("Total:");
         panelCrearFactura.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, -1, 40));
+
+        botonCliente.setBackground(new java.awt.Color(255, 255, 255));
+        botonCliente.setForeground(new java.awt.Color(255, 255, 255));
+        botonCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/busqueda.png"))); // NOI18N
+        botonCliente.setBorder(null);
+        botonCliente.setBorderPainted(false);
+        botonCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonClienteActionPerformed(evt);
+            }
+        });
+        panelCrearFactura.add(botonCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 10, 30, 30));
+
+        jLabel7.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        jLabel7.setText("Fecha:");
+        panelCrearFactura.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
+
+        jLabel9.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        jLabel9.setText("Cliente");
+        panelCrearFactura.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, -1, -1));
+
+        jLabel10.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        jLabel10.setText("Dirección:");
+        panelCrearFactura.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 90, -1, -1));
+
+        jLabel11.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        jLabel11.setText("NIT:");
+        panelCrearFactura.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 40, -1, -1));
+
+        jLabel12.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        jLabel12.setText("Nombre:");
+        panelCrearFactura.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 40, -1, -1));
+
+        jLabel13.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        jLabel13.setText("Teléfono:");
+        panelCrearFactura.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, -1, -1));
+
+        lblidproveedor.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        lblidproveedor.setText("-");
+        panelCrearFactura.add(lblidproveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 40, -1, -1));
+
+        lbltelefono.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        lbltelefono.setText("-");
+        panelCrearFactura.add(lbltelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 90, 110, -1));
+
+        lbldireccion.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        lbldireccion.setText("-");
+        panelCrearFactura.add(lbldireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 90, 170, -1));
+
+        jLabel3.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        jLabel3.setText("Factura N°:");
+        panelCrearFactura.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
+
+        txtFecha.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        txtFecha.setBorder(null);
+        panelCrearFactura.add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 100, 20));
+
+        IdCompraLabel.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        IdCompraLabel.setText("-");
+        panelCrearFactura.add(IdCompraLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, -1, -1));
+
+        lblproveedornombre.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        lblproveedornombre.setText("-");
+        panelCrearFactura.add(lblproveedornombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 40, -1, -1));
 
         panelFactura.add(panelCrearFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 740, 470));
 
@@ -258,32 +364,8 @@ public class vistaFactura extends javax.swing.JFrame {
 
         panelFactura.add(panelModificarFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 740, 470));
 
-        panelMenuCliente.setBackground(new java.awt.Color(0, 0, 0));
-        panelMenuCliente.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        botonVer.setBackground(new java.awt.Color(0, 0, 0));
-        botonVer.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
-        botonVer.setForeground(new java.awt.Color(255, 255, 255));
-        botonVer.setText("Ver Facturas");
-        botonVer.setBorder(null);
-        botonVer.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonVerActionPerformed(evt);
-            }
-        });
-        panelMenuCliente.add(botonVer, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, 130, 70));
-
-        botonRegresar.setBackground(new java.awt.Color(0, 0, 0));
-        botonRegresar.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
-        botonRegresar.setForeground(new java.awt.Color(255, 255, 255));
-        botonRegresar.setText("Regresar");
-        botonRegresar.setBorder(null);
-        botonRegresar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonRegresarActionPerformed(evt);
-            }
-        });
-        panelMenuCliente.add(botonRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 0, 150, 70));
+        panelCompraMenu.setBackground(new java.awt.Color(0, 0, 0));
+        panelCompraMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         botonCrear.setBackground(new java.awt.Color(0, 0, 0));
         botonCrear.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
@@ -295,9 +377,33 @@ public class vistaFactura extends javax.swing.JFrame {
                 botonCrearActionPerformed(evt);
             }
         });
-        panelMenuCliente.add(botonCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 130, 70));
+        panelCompraMenu.add(botonCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 190, 70));
 
-        panelFactura.add(panelMenuCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, 70));
+        botonVer.setBackground(new java.awt.Color(0, 0, 0));
+        botonVer.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        botonVer.setForeground(new java.awt.Color(255, 255, 255));
+        botonVer.setText("Ver Facturas");
+        botonVer.setBorder(null);
+        botonVer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonVerActionPerformed(evt);
+            }
+        });
+        panelCompraMenu.add(botonVer, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, 190, 70));
+
+        botonRegresar.setBackground(new java.awt.Color(0, 0, 0));
+        botonRegresar.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        botonRegresar.setForeground(new java.awt.Color(255, 255, 255));
+        botonRegresar.setText("Regresar");
+        botonRegresar.setBorder(null);
+        botonRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonRegresarActionPerformed(evt);
+            }
+        });
+        panelCompraMenu.add(botonRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, 150, 70));
+
+        panelFactura.add(panelCompraMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 912, -1));
 
         getContentPane().add(panelFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, 640));
 
@@ -398,70 +504,76 @@ public class vistaFactura extends javax.swing.JFrame {
         //Falta verificar que no se modifique a clientes con la misma identificacion;
         */
     }//GEN-LAST:event_botonModificarActionPerformed
-    
+
+    private void botonCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCrearActionPerformed
+        panelCrearFactura.setVisible(true);
+        panelTablaFactura.setVisible(false);
+        cargarNumFactura();
+    }//GEN-LAST:event_botonCrearActionPerformed
+
     private void botonVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVerActionPerformed
         //Para poder ver los clientes es necesario poner visible el panel tablaCliente, y el resto invisible
         panelCrearFactura.setVisible(false);
-        panelModificarFactura.setVisible(false);
         panelTablaFactura.setVisible(true);
-       // limpiarTabla();
+        //limpiarTabla();
         //listar();
-
     }//GEN-LAST:event_botonVerActionPerformed
 
     private void botonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarActionPerformed
         dispose();
     }//GEN-LAST:event_botonRegresarActionPerformed
 
-    private void botonCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCrearActionPerformed
-        panelCrearFactura.setVisible(true);
-        panelTablaFactura.setVisible(false);
-        panelModificarFactura.setVisible(false);
-    }//GEN-LAST:event_botonCrearActionPerformed
+    private void botonClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonClienteActionPerformed
 
+        vistaFacturaClienteSeleccion vFacturaClienteSeleccion= new vistaFacturaClienteSeleccion(con);
+    }//GEN-LAST:event_botonClienteActionPerformed
+    
     
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel IdCompraLabel;
     private javax.swing.JButton botonAñadir;
+    private javax.swing.JButton botonCliente;
     private javax.swing.JButton botonCrear;
     private javax.swing.JButton botonModificar;
     private javax.swing.JButton botonRegresar;
     private javax.swing.JButton botonVer;
-    private javax.swing.JTextField cajaTextNombreCajero;
     private javax.swing.JTextField cajaTextoDireccionM;
-    private javax.swing.JTextField cajaTextoFecha;
-    private javax.swing.JTextField cajaTextoIdFac;
     private javax.swing.JTextField cajaTextoNitM;
-    private javax.swing.JTextField cajaTextoNombreClie;
     private javax.swing.JTextField cajaTextoNombreM;
     private javax.swing.JTextField cajaTextoTelefonoM;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
-    private javax.swing.JLabel labelId;
     private javax.swing.JLabel labelId1;
-    private javax.swing.JLabel labelNombre;
-    private javax.swing.JLabel labelNombre1;
     private javax.swing.JLabel labelNombre2;
     private javax.swing.JLabel labelNombre3;
-    private javax.swing.JLabel labelTelefono;
     private javax.swing.JLabel labelTelefono1;
     private javax.swing.JLabel labelTitulo;
+    public static javax.swing.JLabel lbldireccion;
+    public static javax.swing.JLabel lblidproveedor;
+    public static javax.swing.JLabel lblproveedornombre;
+    public static javax.swing.JLabel lbltelefono;
+    private javax.swing.JPanel panelCompraMenu;
     private javax.swing.JPanel panelCrearFactura;
     private javax.swing.JPanel panelFactura;
-    private javax.swing.JPanel panelMenuCliente;
     private javax.swing.JPanel panelModificarFactura;
     private javax.swing.JPanel panelTablaFactura;
     private rojerusan.RSTableMetro rSTableMetro1;
     private rojerusan.RSTableMetro tablaFacturas;
+    private javax.swing.JTextField txtFecha;
     // End of variables declaration//GEN-END:variables
 }

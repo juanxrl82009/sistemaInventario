@@ -411,7 +411,7 @@ public class vistaMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_botonArticuloActionPerformed
 
     private void botonFacturacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonFacturacionActionPerformed
-        vistaFactura vFactura = new vistaFactura();
+        vistaFactura vFactura = new vistaFactura(con);
         // TODO add your handling code here:
     }//GEN-LAST:event_botonFacturacionActionPerformed
        /**
