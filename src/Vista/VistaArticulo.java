@@ -38,10 +38,6 @@ public class VistaArticulo extends javax.swing.JFrame {
     DefaultTableModel modelo;
     int id;
 
-    VistaArticulo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
      
      
      
@@ -116,10 +112,10 @@ public class VistaArticulo extends javax.swing.JFrame {
             while(rs.next()){
             Datos[0]=rs.getInt("idarticulo");/*deben llamarse exactamente igual a como esta en la tabla*/
             Datos[1]=rs.getString("nombrearticulo");/*deben llamarse exactamente igual a como esta en la tabla*/
-            Datos[2]=rs.getString("idcategoarticulo");
+            Datos[2]=rs.getString("idcategoriaarticulo");
             Datos[3]=rs.getString("nitproveedor");/*deben llamarse exactamente igual a como esta en la tabla*/
             Datos[4]=rs.getString("codbarraarticulo");
-            Datos[5]=rs.getString("costoarticulo");
+            Datos[5]=rs.getString("precioarticulo");
             Datos[6]=botonVerTabla;//En esta parte estoy añadiendo por cada fila los tres botones(ver,modificar,eliminar)
             Datos[7]=botonModificarTabla;
             Datos[8]=botonEliminarTabla;
@@ -276,26 +272,26 @@ public class VistaArticulo extends javax.swing.JFrame {
                 cajaTextoCostoMActionPerformed(evt);
             }
         });
-        panelModificarArticulo.add(cajaTextoCostoM, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 410, 230, 20));
+        panelModificarArticulo.add(cajaTextoCostoM, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 320, 230, 20));
 
         labelId1.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
         labelId1.setText("Costo");
-        panelModificarArticulo.add(labelId1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 410, -1, 20));
+        panelModificarArticulo.add(labelId1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 320, -1, 20));
 
         labelNombre2.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
         labelNombre2.setText("Nombre");
-        panelModificarArticulo.add(labelNombre2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, -1, 20));
-        panelModificarArticulo.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 430, 230, 10));
+        panelModificarArticulo.add(labelNombre2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, -1, 20));
+        panelModificarArticulo.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 340, 230, 10));
 
         cajaTextoNombreM.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
         cajaTextoNombreM.setBorder(null);
         cajaTextoNombreM.setDisabledTextColor(new java.awt.Color(102, 102, 102));
-        panelModificarArticulo.add(cajaTextoNombreM, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, 230, 20));
-        panelModificarArticulo.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, 230, 10));
+        panelModificarArticulo.add(cajaTextoNombreM, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, 230, 20));
+        panelModificarArticulo.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 130, 230, 10));
 
         labelTelefono1.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
         labelTelefono1.setText("Categoria");
-        panelModificarArticulo.add(labelTelefono1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 220, -1, 20));
+        panelModificarArticulo.add(labelTelefono1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, -1, 20));
 
         cajaTextoCategoriaM.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
         cajaTextoCategoriaM.setBorder(null);
@@ -305,44 +301,44 @@ public class VistaArticulo extends javax.swing.JFrame {
                 cajaTextoCategoriaMActionPerformed(evt);
             }
         });
-        panelModificarArticulo.add(cajaTextoCategoriaM, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 220, 230, 20));
-        panelModificarArticulo.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 240, 230, 10));
+        panelModificarArticulo.add(cajaTextoCategoriaM, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, 230, 20));
+        panelModificarArticulo.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 170, 230, 10));
 
         labelNombre3.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
         labelNombre3.setText("Codigo barra");
-        panelModificarArticulo.add(labelNombre3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 360, -1, 20));
+        panelModificarArticulo.add(labelNombre3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, -1, 20));
 
         cajaTextoCodigoM.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
         cajaTextoCodigoM.setBorder(null);
         cajaTextoCodigoM.setDisabledTextColor(new java.awt.Color(102, 102, 102));
-        panelModificarArticulo.add(cajaTextoCodigoM, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 360, 230, 20));
-        panelModificarArticulo.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 380, 230, 10));
+        panelModificarArticulo.add(cajaTextoCodigoM, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 270, 230, 20));
+        panelModificarArticulo.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 290, 230, 10));
 
         botonModificar.setBackground(new java.awt.Color(64, 132, 253));
         botonModificar.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
         botonModificar.setForeground(new java.awt.Color(255, 255, 255));
-        botonModificar.setText("Modificar Proveedor");
+        botonModificar.setText("Modificar Articulo");
         botonModificar.setBorder(null);
         botonModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonModificarActionPerformed(evt);
             }
         });
-        panelModificarArticulo.add(botonModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 510, 180, 40));
+        panelModificarArticulo.add(botonModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 390, 180, 40));
 
         labelNombre4.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
         labelNombre4.setText("Proveedor");
-        panelModificarArticulo.add(labelNombre4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 300, -1, 20));
+        panelModificarArticulo.add(labelNombre4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, -1, 20));
 
         cajaTextoProveedorM.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
         cajaTextoProveedorM.setBorder(null);
         cajaTextoProveedorM.setDisabledTextColor(new java.awt.Color(102, 102, 102));
-        panelModificarArticulo.add(cajaTextoProveedorM, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 300, 230, 20));
-        panelModificarArticulo.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 320, 230, 10));
+        panelModificarArticulo.add(cajaTextoProveedorM, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 210, 230, 20));
+        panelModificarArticulo.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 230, 230, 10));
 
         labelId2.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
         labelId2.setText("ID");
-        panelModificarArticulo.add(labelId2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, -1, 20));
+        panelModificarArticulo.add(labelId2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, -1, 20));
 
         cajaTextoIDm.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
         cajaTextoIDm.setBorder(null);
@@ -395,7 +391,7 @@ public class VistaArticulo extends javax.swing.JFrame {
         botonAñadir.setBackground(new java.awt.Color(64, 132, 253));
         botonAñadir.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
         botonAñadir.setForeground(new java.awt.Color(255, 255, 255));
-        botonAñadir.setText("Añadir Proveedor");
+        botonAñadir.setText("Añadir Articulo");
         botonAñadir.setBorder(null);
         botonAñadir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -566,10 +562,6 @@ public class VistaArticulo extends javax.swing.JFrame {
                     cajaTextoCodigoM.setEnabled(true);
                     cajaTextoCodigoM.setEnabled(true);
                     cajaTextoCategoriaM.setEnabled(true);
-                    cajaTextoCostoM.setText(String.valueOf(tablaArticulos.getValueAt(tablaArticulos.getSelectedRow(), 0)));
-                    cajaTextoNombreM.setText(String.valueOf(tablaArticulos.getValueAt(tablaArticulos.getSelectedRow(), 1)));
-                    cajaTextoCodigoM.setText(String.valueOf(tablaArticulos.getValueAt(tablaArticulos.getSelectedRow(), 2)));
-                    cajaTextoCategoriaM.setText(String.valueOf(tablaArticulos.getValueAt(tablaArticulos.getSelectedRow(), 3)));
                     cajaTextoIDm.setText(String.valueOf(tablaArticulos.getValueAt(tablaArticulos.getSelectedRow(), 0)));
                     cajaTextoNombreM.setText(String.valueOf(tablaArticulos.getValueAt(tablaArticulos.getSelectedRow(), 1)));
                     cajaTextoCategoriaM.setText(String.valueOf(tablaArticulos.getValueAt(tablaArticulos.getSelectedRow(), 2)));

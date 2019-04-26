@@ -227,7 +227,7 @@ public class vistaMenu extends javax.swing.JFrame {
 
         labelReportes1.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
         labelReportes1.setForeground(new java.awt.Color(102, 102, 102));
-        labelReportes1.setText("Inventario");
+        labelReportes1.setText("Categoria Articulo");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -268,7 +268,7 @@ public class vistaMenu extends javax.swing.JFrame {
                             .addComponent(labelUsuarios)))
                     .addComponent(botonArticulo)
                     .addComponent(labelFacturacion1))
-                .addContainerGap(103, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -403,7 +403,7 @@ public class vistaMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_botonReportesActionPerformed
 
     private void botonInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInventarioActionPerformed
-        // TODO add your handling code here:
+        vistaCategoria vCategoria = new vistaCategoria(con);
     }//GEN-LAST:event_botonInventarioActionPerformed
 
     private void botonArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonArticuloActionPerformed
