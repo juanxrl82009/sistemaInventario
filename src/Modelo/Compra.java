@@ -14,10 +14,10 @@ import java.util.Date;
 
 public class Compra{	
     private int IdCompra;
-    private int IdFacturacompra;
+    private String IdFacturacompra;
     private int IdUsuario;
     private int NitProveedor;
-    private Date FechaCompra;
+    private String FechaCompra;
     private int TotalCompra;
     	
 
@@ -29,11 +29,11 @@ public class Compra{
         this.IdCompra = IdCompra;	
     }	
 
-     public int getIdFacturacompra() {	
+     public String getIdFacturacompra() {	
         return IdFacturacompra;	
     }	
 
-     public void setIdFacturacompra(int IdFacturacompra) {	
+     public void setIdFacturacompra(String IdFacturacompra) {	
         this.IdFacturacompra = IdFacturacompra;	
     }	
      public int getIdUsuario() {	
@@ -50,11 +50,11 @@ public class Compra{
      public void setNitProveedor(int NitProveedor) {	
         this.NitProveedor = NitProveedor;	
     }	
-     public Date getFechaCompra() {	
+     public String getFechaCompra() {	
         return FechaCompra;	
     }	
 
-     public void setFechaCompra(Date FechaCompra) {	
+     public void setFechaCompra(String FechaCompra) {	
         this.FechaCompra = FechaCompra;	
     }	
      

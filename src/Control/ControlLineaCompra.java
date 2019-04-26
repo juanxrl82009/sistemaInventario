@@ -6,7 +6,7 @@
 package Control;
 
 import Modelo.Conexion;
-import Modelo.Compra;
+import Modelo.LineaCompra;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,16 +16,16 @@ import java.sql.Statement;
  *
  * @author Daniel Luna
  */
-public class ControlCompras {
+public class ControlLineaCompra {
     private Conexion con;
     Connection cn;
     Statement st;
     ResultSet rs;
-    Compra compra=new Compra();
+    LineaCompra lineaCompra=new LineaCompra();
     Object[] Datos= new Object[4]; /*Un array donde se almacenan las filas de la tabla. el tamaño del
         array debe ser el numero de columnas que tenga nuestra consulta*/
     
-    public ControlCompras(Conexion con1){
+    public ControlLineaCompra(Conexion con1){
         con=con1;     
     }
 
@@ -34,8 +34,8 @@ public class ControlCompras {
     public void agregar()
     {
     /*Se le asigna a un string el insert en la base de datos*/
-         String sqlCliente="INSERT INTO Compra VALUES"
-                 + "(DEFAULT, "+ compra.getIdFacturacompra()+", "+compra.getIdUsuario()+", "+compra.getNitProveedor()+", '"+compra.getFechaCompra()+"', "+compra.getTotalCompra()+");";
+         String sqlCliente="INSERT INTO LineaCompra VALUES"
+                 + "(DEFAULT, "+ lineaCompra.getIdArticulo()+", "+lineaCompra.getIdCompra()+", "+lineaCompra.getCantidadArticulo()+", "+lineaCompra.getCostoArticulo()+", "+lineaCompra.getSubtotal()+");";
         System.out.println(sqlCliente);
     try{
        /*se establece coneccion con la base de datos y se le introduce la consulta*/
@@ -48,8 +48,8 @@ public class ControlCompras {
     public void modificar()
     {
     /*Se le asigna a un string el insert en la base de datos*/
-         String sqlCliente="UPDATE Compra "
-                + "SET idfacturacompra = '"+compra.getIdFacturacompra()+"', nitproveedor = '"+compra.getNitProveedor()+"', totalcompra = '"+compra.getTotalCompra()+"' WHERE idcompra = " +compra.getIdCompra()+";";
+         String sqlCliente="UPDATE LineaCompra "
+                + "SET idarticulo = '"+lineaCompra.getIdArticulo()+"', idcompra = '"+lineaCompra.getIdCompra()+"', cantidadarticulo = '"+lineaCompra.getCantidadArticulo()+"', costoarticulo = '"+lineaCompra.getCostoArticulo()+"', subtotal = '"+lineaCompra.getSubtotal()+"' WHERE idcompra = " +lineaCompra.getIdLinea()+";";
         
     try{
        /*se establece coneccion con la base de datos y se le introduce la consulta*/
@@ -62,8 +62,8 @@ public class ControlCompras {
     public void eliminar()
     {
     /*Se le asigna a un string el insert en la base de datos*/
-         String sqlCliente="DELETE FROM Compra"
-                 + "WHERE idCompra = " +compra.getIdCompra()+";";
+         String sqlCliente="DELETE FROM LineaCompra"
+                 + "WHERE idCompra = " +lineaCompra.getIdLinea()+";";
         
     try{
        /*se establece coneccion con la base de datos y se le introduce la consulta*/
@@ -73,8 +73,8 @@ public class ControlCompras {
         }catch(SQLException e){}
     }
 
-    public Compra getCompra() {
-        return compra;
+    public LineaCompra getLineaCompra() {
+        return lineaCompra;
     }
 
     public Object[] getDatos() {
