@@ -16,6 +16,8 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 
 /**
@@ -31,6 +33,7 @@ public class VistaArticulo extends javax.swing.JFrame {
     private JButton botonVerTabla;
     private JButton botonModificarTabla;
     private JButton botonEliminarTabla;
+    private boolean bandera = true;
     
     Connection cn;
     Statement st;
@@ -123,6 +126,24 @@ public class VistaArticulo extends javax.swing.JFrame {
             }    
         }catch(SQLException e){}
     }
+    
+    void listarCategorias(){
+        String sql = "SELECT * FROM CategoriaArticulo";
+     
+        try {
+            st=cn.createStatement();
+            rs=st.executeQuery(sql);
+            while(rs.next()){
+                CBOcategoria.addItem(rs.getString(2));
+                CBOcategoria1.addItem(rs.getString(2));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(VistaArticulo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+             
+    }
+    
+    
         
     void limpiarTabla(){
         while(modelo.getRowCount()>0)modelo.removeRow(0);
@@ -131,7 +152,6 @@ public class VistaArticulo extends javax.swing.JFrame {
     public void limpiarCajasTexto(){
         cajaTextoid.setText("");
         cajaTextoNombre.setText("");
-        cajaTextoCatego.setText("");
         cajaTextoProveedor.setText("");
         cajaTextoCodigo.setText("");
         cajaTextoCosto.setText("");
@@ -157,9 +177,6 @@ public class VistaArticulo extends javax.swing.JFrame {
         jSeparator5 = new javax.swing.JSeparator();
         cajaTextoNombreM = new javax.swing.JTextField();
         jSeparator6 = new javax.swing.JSeparator();
-        labelTelefono1 = new javax.swing.JLabel();
-        cajaTextoCategoriaM = new javax.swing.JTextField();
-        jSeparator7 = new javax.swing.JSeparator();
         labelNombre3 = new javax.swing.JLabel();
         cajaTextoCodigoM = new javax.swing.JTextField();
         jSeparator8 = new javax.swing.JSeparator();
@@ -170,6 +187,8 @@ public class VistaArticulo extends javax.swing.JFrame {
         labelId2 = new javax.swing.JLabel();
         cajaTextoIDm = new javax.swing.JTextField();
         jSeparator10 = new javax.swing.JSeparator();
+        CBOcategoria1 = new javax.swing.JComboBox<>();
+        labelTelefono3 = new javax.swing.JLabel();
         panelCrearArticulo = new javax.swing.JPanel();
         labelNombre1 = new javax.swing.JLabel();
         cajaTextoid = new javax.swing.JTextField();
@@ -180,8 +199,6 @@ public class VistaArticulo extends javax.swing.JFrame {
         labelTelefono = new javax.swing.JLabel();
         cajaTextoCodigo = new javax.swing.JTextField();
         jSeparator4 = new javax.swing.JSeparator();
-        cajaTextoCatego = new javax.swing.JTextField();
-        jSeparator2 = new javax.swing.JSeparator();
         botonAñadir = new javax.swing.JButton();
         labelId3 = new javax.swing.JLabel();
         labelId4 = new javax.swing.JLabel();
@@ -190,6 +207,7 @@ public class VistaArticulo extends javax.swing.JFrame {
         jSeparator11 = new javax.swing.JSeparator();
         cajaTextoProveedor = new javax.swing.JTextField();
         jSeparator12 = new javax.swing.JSeparator();
+        CBOcategoria = new javax.swing.JComboBox<>();
         panelMenuArticulo = new javax.swing.JPanel();
         botonVer = new javax.swing.JButton();
         botonRegresar = new javax.swing.JButton();
@@ -272,47 +290,32 @@ public class VistaArticulo extends javax.swing.JFrame {
                 cajaTextoCostoMActionPerformed(evt);
             }
         });
-        panelModificarArticulo.add(cajaTextoCostoM, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 320, 230, 20));
+        panelModificarArticulo.add(cajaTextoCostoM, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 270, 230, 20));
 
         labelId1.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
         labelId1.setText("Costo");
-        panelModificarArticulo.add(labelId1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 320, -1, 20));
+        panelModificarArticulo.add(labelId1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 270, -1, 20));
 
         labelNombre2.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
         labelNombre2.setText("Nombre");
-        panelModificarArticulo.add(labelNombre2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, -1, 20));
-        panelModificarArticulo.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 340, 230, 10));
+        panelModificarArticulo.add(labelNombre2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, -1, 20));
+        panelModificarArticulo.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 290, 230, 10));
 
         cajaTextoNombreM.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
         cajaTextoNombreM.setBorder(null);
         cajaTextoNombreM.setDisabledTextColor(new java.awt.Color(102, 102, 102));
-        panelModificarArticulo.add(cajaTextoNombreM, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, 230, 20));
-        panelModificarArticulo.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 130, 230, 10));
-
-        labelTelefono1.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
-        labelTelefono1.setText("Categoria");
-        panelModificarArticulo.add(labelTelefono1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, -1, 20));
-
-        cajaTextoCategoriaM.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
-        cajaTextoCategoriaM.setBorder(null);
-        cajaTextoCategoriaM.setDisabledTextColor(new java.awt.Color(102, 102, 102));
-        cajaTextoCategoriaM.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cajaTextoCategoriaMActionPerformed(evt);
-            }
-        });
-        panelModificarArticulo.add(cajaTextoCategoriaM, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, 230, 20));
-        panelModificarArticulo.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 170, 230, 10));
+        panelModificarArticulo.add(cajaTextoNombreM, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, 230, 20));
+        panelModificarArticulo.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 100, 230, 10));
 
         labelNombre3.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
         labelNombre3.setText("Codigo barra");
-        panelModificarArticulo.add(labelNombre3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, -1, 20));
+        panelModificarArticulo.add(labelNombre3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, -1, 20));
 
         cajaTextoCodigoM.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
         cajaTextoCodigoM.setBorder(null);
         cajaTextoCodigoM.setDisabledTextColor(new java.awt.Color(102, 102, 102));
-        panelModificarArticulo.add(cajaTextoCodigoM, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 270, 230, 20));
-        panelModificarArticulo.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 290, 230, 10));
+        panelModificarArticulo.add(cajaTextoCodigoM, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 210, 230, 20));
+        panelModificarArticulo.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 230, 230, 10));
 
         botonModificar.setBackground(new java.awt.Color(64, 132, 253));
         botonModificar.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
@@ -324,21 +327,21 @@ public class VistaArticulo extends javax.swing.JFrame {
                 botonModificarActionPerformed(evt);
             }
         });
-        panelModificarArticulo.add(botonModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 390, 180, 40));
+        panelModificarArticulo.add(botonModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 400, 180, 40));
 
         labelNombre4.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
         labelNombre4.setText("Proveedor");
-        panelModificarArticulo.add(labelNombre4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, -1, 20));
+        panelModificarArticulo.add(labelNombre4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, -1, 20));
 
         cajaTextoProveedorM.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
         cajaTextoProveedorM.setBorder(null);
         cajaTextoProveedorM.setDisabledTextColor(new java.awt.Color(102, 102, 102));
-        panelModificarArticulo.add(cajaTextoProveedorM, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 210, 230, 20));
-        panelModificarArticulo.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 230, 230, 10));
+        panelModificarArticulo.add(cajaTextoProveedorM, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, 230, 20));
+        panelModificarArticulo.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 170, 230, 10));
 
         labelId2.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
         labelId2.setText("ID");
-        panelModificarArticulo.add(labelId2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, -1, 20));
+        panelModificarArticulo.add(labelId2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, -1, 20));
 
         cajaTextoIDm.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
         cajaTextoIDm.setBorder(null);
@@ -348,8 +351,23 @@ public class VistaArticulo extends javax.swing.JFrame {
                 cajaTextoIDmActionPerformed(evt);
             }
         });
-        panelModificarArticulo.add(cajaTextoIDm, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, 230, 20));
-        panelModificarArticulo.add(jSeparator10, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, 230, 10));
+        panelModificarArticulo.add(cajaTextoIDm, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 30, 230, 20));
+        panelModificarArticulo.add(jSeparator10, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, 230, 10));
+
+        CBOcategoria1.setBackground(new java.awt.Color(64, 132, 253));
+        CBOcategoria1.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
+        CBOcategoria1.setForeground(new java.awt.Color(255, 255, 255));
+        CBOcategoria1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
+        CBOcategoria1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CBOcategoria1MouseClicked(evt);
+            }
+        });
+        panelModificarArticulo.add(CBOcategoria1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 340, -1, -1));
+
+        labelTelefono3.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        labelTelefono3.setText("Categoria");
+        panelModificarArticulo.add(labelTelefono3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 340, -1, 20));
 
         panelArticulo.add(panelModificarArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 740, 470));
 
@@ -358,7 +376,7 @@ public class VistaArticulo extends javax.swing.JFrame {
 
         labelNombre1.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
         labelNombre1.setText("Proveedor");
-        panelCrearArticulo.add(labelNombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, -1, 20));
+        panelCrearArticulo.add(labelNombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, -1, 20));
 
         cajaTextoid.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
         cajaTextoid.setBorder(null);
@@ -376,17 +394,12 @@ public class VistaArticulo extends javax.swing.JFrame {
 
         labelTelefono.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
         labelTelefono.setText("Categoria");
-        panelCrearArticulo.add(labelTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, -1, 20));
+        panelCrearArticulo.add(labelTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, -1, 20));
 
         cajaTextoCodigo.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
         cajaTextoCodigo.setBorder(null);
-        panelCrearArticulo.add(cajaTextoCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 250, 230, 20));
-        panelCrearArticulo.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 270, 230, 10));
-
-        cajaTextoCatego.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
-        cajaTextoCatego.setBorder(null);
-        panelCrearArticulo.add(cajaTextoCatego, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, 230, 20));
-        panelCrearArticulo.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 230, 10));
+        panelCrearArticulo.add(cajaTextoCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 200, 230, 20));
+        panelCrearArticulo.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 220, 230, 10));
 
         botonAñadir.setBackground(new java.awt.Color(64, 132, 253));
         botonAñadir.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
@@ -398,15 +411,15 @@ public class VistaArticulo extends javax.swing.JFrame {
                 botonAñadirActionPerformed(evt);
             }
         });
-        panelCrearArticulo.add(botonAñadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 400, 180, 40));
+        panelCrearArticulo.add(botonAñadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 380, 180, 40));
 
         labelId3.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
         labelId3.setText("Costo");
-        panelCrearArticulo.add(labelId3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 300, -1, 20));
+        panelCrearArticulo.add(labelId3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 250, -1, 20));
 
         labelId4.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
         labelId4.setText("Codigo Barras");
-        panelCrearArticulo.add(labelId4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 250, -1, 20));
+        panelCrearArticulo.add(labelId4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 200, -1, 20));
 
         labelId5.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
         labelId5.setText("ID");
@@ -414,13 +427,24 @@ public class VistaArticulo extends javax.swing.JFrame {
 
         cajaTextoCosto.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
         cajaTextoCosto.setBorder(null);
-        panelCrearArticulo.add(cajaTextoCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 300, 230, 20));
-        panelCrearArticulo.add(jSeparator11, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 320, 230, 10));
+        panelCrearArticulo.add(cajaTextoCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 250, 230, 20));
+        panelCrearArticulo.add(jSeparator11, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 270, 230, 10));
 
         cajaTextoProveedor.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
         cajaTextoProveedor.setBorder(null);
-        panelCrearArticulo.add(cajaTextoProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, 230, 20));
-        panelCrearArticulo.add(jSeparator12, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 210, 230, 10));
+        panelCrearArticulo.add(cajaTextoProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, 230, 20));
+        panelCrearArticulo.add(jSeparator12, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 230, 10));
+
+        CBOcategoria.setBackground(new java.awt.Color(64, 132, 253));
+        CBOcategoria.setFont(new java.awt.Font("Decker", 0, 14)); // NOI18N
+        CBOcategoria.setForeground(new java.awt.Color(255, 255, 255));
+        CBOcategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
+        CBOcategoria.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CBOcategoriaMouseClicked(evt);
+            }
+        });
+        panelCrearArticulo.add(CBOcategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 310, -1, -1));
 
         panelArticulo.add(panelCrearArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 740, 470));
 
@@ -500,7 +524,7 @@ public class VistaArticulo extends javax.swing.JFrame {
             //Cuando se hagan las respectivas modificaciones en los Jtext, y se presione el boton modificar, se ejecuta el siguiente
             controlA.getArticulo().setIdArticulo(Integer.valueOf(cajaTextoIDm.getText()));
             controlA.getArticulo().setNombre(cajaTextoNombreM.getText());
-            controlA.getArticulo().setCategoria(Integer.valueOf(cajaTextoCategoriaM.getText()));
+            controlA.getArticulo().setCategoria(CBOcategoria1.getSelectedIndex());
             controlA.getArticulo().setNitProveedor(Integer.valueOf(cajaTextoProveedorM.getText()));
             controlA.getArticulo().setCodBarra(Integer.valueOf(cajaTextoCodigoM.getText()));
             controlA.getArticulo().setCosto(Integer.valueOf(cajaTextoCostoM.getText()));
@@ -509,10 +533,6 @@ public class VistaArticulo extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null,"Articulo modificado con exito");
         //Falta verificar que no se modifique a clientes con la misma identificacion;
     }//GEN-LAST:event_botonModificarActionPerformed
-
-    private void cajaTextoCategoriaMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaTextoCategoriaMActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cajaTextoCategoriaMActionPerformed
 
     private void cajaTextoCostoMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaTextoCostoMActionPerformed
         // TODO add your handling code here:
@@ -541,11 +561,11 @@ public class VistaArticulo extends javax.swing.JFrame {
                     cajaTextoCostoM.setEnabled(false);
                     cajaTextoNombreM.setEnabled(false);
                     cajaTextoCodigoM.setEnabled(false);
-                    cajaTextoCategoriaM.setEnabled(false);
+                    
 
                     cajaTextoIDm.setText(String.valueOf(tablaArticulos.getValueAt(tablaArticulos.getSelectedRow(), 0)));
                     cajaTextoNombreM.setText(String.valueOf(tablaArticulos.getValueAt(tablaArticulos.getSelectedRow(), 1)));
-                    cajaTextoCategoriaM.setText(String.valueOf(tablaArticulos.getValueAt(tablaArticulos.getSelectedRow(), 2)));
+                 
                     cajaTextoProveedorM.setText(String.valueOf(tablaArticulos.getValueAt(tablaArticulos.getSelectedRow(), 3)));
                     cajaTextoCodigoM.setText(String.valueOf(tablaArticulos.getValueAt(tablaArticulos.getSelectedRow(), 4)));
                     cajaTextoCostoM.setText(String.valueOf(tablaArticulos.getValueAt(tablaArticulos.getSelectedRow(), 5)));
@@ -561,10 +581,10 @@ public class VistaArticulo extends javax.swing.JFrame {
                     cajaTextoNombreM.setEnabled(true);
                     cajaTextoCodigoM.setEnabled(true);
                     cajaTextoCodigoM.setEnabled(true);
-                    cajaTextoCategoriaM.setEnabled(true);
+              
                     cajaTextoIDm.setText(String.valueOf(tablaArticulos.getValueAt(tablaArticulos.getSelectedRow(), 0)));
                     cajaTextoNombreM.setText(String.valueOf(tablaArticulos.getValueAt(tablaArticulos.getSelectedRow(), 1)));
-                    cajaTextoCategoriaM.setText(String.valueOf(tablaArticulos.getValueAt(tablaArticulos.getSelectedRow(), 2)));
+                    
                     cajaTextoProveedorM.setText(String.valueOf(tablaArticulos.getValueAt(tablaArticulos.getSelectedRow(), 3)));
                     cajaTextoCodigoM.setText(String.valueOf(tablaArticulos.getValueAt(tablaArticulos.getSelectedRow(), 4)));
                     cajaTextoCostoM.setText(String.valueOf(tablaArticulos.getValueAt(tablaArticulos.getSelectedRow(), 5)));
@@ -591,7 +611,7 @@ public class VistaArticulo extends javax.swing.JFrame {
             /*se le asignan los atribujos que se ingreso en las cajas de texto a un objeto usuario*/
             controlA.getArticulo().setIdArticulo(Integer.valueOf(cajaTextoid.getText()));
             controlA.getArticulo().setNombre(cajaTextoNombre.getText());
-            controlA.getArticulo().setCategoria(Integer.valueOf(cajaTextoCatego.getText()));
+            controlA.getArticulo().setCategoria(CBOcategoria.getSelectedIndex());
             controlA.getArticulo().setNitProveedor(Integer.valueOf( cajaTextoProveedor.getText()));
             controlA.getArticulo().setCodBarra(Integer.valueOf(cajaTextoCodigo.getText()));
             controlA.getArticulo().setCosto(Integer.valueOf(cajaTextoCosto.getText()));
@@ -600,15 +620,31 @@ public class VistaArticulo extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null,"Articulo registrado con exito");
         limpiarCajasTexto();
     }//GEN-LAST:event_botonAñadirActionPerformed
+
+    private void CBOcategoria1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CBOcategoria1MouseClicked
+        // TODO add your handling code here:
+       if(bandera==true){
+        listarCategorias();
+       bandera=false;
+       }
+    }//GEN-LAST:event_CBOcategoria1MouseClicked
+
+    private void CBOcategoriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CBOcategoriaMouseClicked
+        // TODO add your handling code here:
+        if(bandera==true){
+        listarCategorias();
+       bandera=false;
+       }
+    }//GEN-LAST:event_CBOcategoriaMouseClicked
         
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> CBOcategoria;
+    private javax.swing.JComboBox<String> CBOcategoria1;
     private javax.swing.JButton botonAñadir;
     private javax.swing.JButton botonCrear;
     private javax.swing.JButton botonModificar;
     private javax.swing.JButton botonRegresar;
     private javax.swing.JButton botonVer;
-    private javax.swing.JTextField cajaTextoCatego;
-    private javax.swing.JTextField cajaTextoCategoriaM;
     private javax.swing.JTextField cajaTextoCodigo;
     private javax.swing.JTextField cajaTextoCodigoM;
     private javax.swing.JTextField cajaTextoCosto;
@@ -624,12 +660,10 @@ public class VistaArticulo extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator11;
     private javax.swing.JSeparator jSeparator12;
-    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
-    private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
     private javax.swing.JLabel labelId1;
@@ -643,7 +677,7 @@ public class VistaArticulo extends javax.swing.JFrame {
     private javax.swing.JLabel labelNombre3;
     private javax.swing.JLabel labelNombre4;
     private javax.swing.JLabel labelTelefono;
-    private javax.swing.JLabel labelTelefono1;
+    private javax.swing.JLabel labelTelefono3;
     private javax.swing.JLabel labelTitulo;
     private javax.swing.JPanel panelArticulo;
     private javax.swing.JPanel panelCrearArticulo;

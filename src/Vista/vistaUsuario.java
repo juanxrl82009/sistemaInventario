@@ -110,9 +110,9 @@ public class vistaUsuario extends javax.swing.JFrame {
          Datos[0]=rs.getInt("idUsuario");/*deben llamarse exactamente igual a como esta en la tabla*/
          Datos[1]=rs.getString("nombreUsuario");/*deben llamarse exactamente igual a como esta en la tabla*/
          Datos[2]=rs.getString("passwordUsuario");
-         Datos[3]=rs.getString("idCategoCuenta");
+         Datos[3]=rs.getString("idCategCuenta");
          
-         if("1".equals(rs.getString("idCategoCuenta"))){
+         if("1".equals(rs.getString("idCategCuenta"))){
              Datos[3]="Administrador";
          }else{
              Datos[3]="Cajero";

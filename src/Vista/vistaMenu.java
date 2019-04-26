@@ -92,6 +92,8 @@ public class vistaMenu extends javax.swing.JFrame {
         labelFacturacion1 = new javax.swing.JLabel();
         botonInventario = new javax.swing.JButton();
         labelReportes1 = new javax.swing.JLabel();
+        botonCategoriaArticulo = new javax.swing.JButton();
+        labelReportes2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         labelFecha = new javax.swing.JLabel();
         labelHora = new javax.swing.JLabel();
@@ -155,6 +157,11 @@ public class vistaMenu extends javax.swing.JFrame {
         botonFacturacion.setBackground(new java.awt.Color(255, 255, 255));
         botonFacturacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/caja.png"))); // NOI18N
         botonFacturacion.setBorder(null);
+        botonFacturacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonFacturacionActionPerformed(evt);
+            }
+        });
 
         botonReportes.setBackground(new java.awt.Color(255, 255, 255));
         botonReportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/perfiles.png"))); // NOI18N
@@ -224,6 +231,19 @@ public class vistaMenu extends javax.swing.JFrame {
         labelReportes1.setForeground(new java.awt.Color(102, 102, 102));
         labelReportes1.setText("Inventario");
 
+        botonCategoriaArticulo.setBackground(new java.awt.Color(255, 255, 255));
+        botonCategoriaArticulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/almacenamiento.png"))); // NOI18N
+        botonCategoriaArticulo.setBorder(null);
+        botonCategoriaArticulo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCategoriaArticuloActionPerformed(evt);
+            }
+        });
+
+        labelReportes2.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        labelReportes2.setForeground(new java.awt.Color(102, 102, 102));
+        labelReportes2.setText("Categoria Articulo");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -236,34 +256,42 @@ public class vistaMenu extends javax.swing.JFrame {
                 .addGap(79, 79, 79)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(botonCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(166, 166, 166)
+                        .addComponent(botonProveedores))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(labelCliente)
+                        .addGap(167, 167, 167)
+                        .addComponent(labelProveedores))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(botonCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(166, 166, 166)
-                                .addComponent(botonProveedores))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(labelCliente)
-                                .addGap(167, 167, 167)
-                                .addComponent(labelProveedores))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(botonFacturacion)
-                                    .addComponent(labelFacturacion))
-                                .addGap(136, 136, 136)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(labelReportes)
-                                    .addComponent(botonReportes)
-                                    .addComponent(labelReportes1)
-                                    .addComponent(botonInventario))))
-                        .addGap(110, 110, 110)
+                            .addComponent(botonFacturacion)
+                            .addComponent(labelFacturacion))
+                        .addGap(136, 136, 136)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botonUsuarios)
-                            .addComponent(botonCompras)
-                            .addComponent(labelCompras)
-                            .addComponent(labelUsuarios)))
+                            .addComponent(labelReportes)
+                            .addComponent(botonReportes)))
                     .addComponent(botonArticulo)
                     .addComponent(labelFacturacion1))
-                .addContainerGap(103, Short.MAX_VALUE))
+                .addGap(148, 148, 148)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botonInventario)
+                    .addComponent(botonUsuarios)
+                    .addComponent(botonCompras)
+                    .addComponent(labelCompras)
+                    .addComponent(labelUsuarios)
+                    .addComponent(labelReportes1))
+                .addContainerGap(61, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addContainerGap(319, Short.MAX_VALUE)
+                    .addComponent(botonCategoriaArticulo)
+                    .addGap(316, 316, 316)))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addContainerGap(319, Short.MAX_VALUE)
+                    .addComponent(labelReportes2)
+                    .addGap(239, 239, 239)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -298,17 +326,28 @@ public class vistaMenu extends javax.swing.JFrame {
                         .addComponent(botonCompras)
                         .addGap(18, 18, 18)
                         .addComponent(labelCompras)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(botonArticulo)
                         .addGap(18, 18, 18)
                         .addComponent(labelFacturacion1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
                         .addComponent(botonInventario)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(labelReportes1)))
-                .addGap(38, 38, 38))
+                .addGap(29, 29, 29))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addContainerGap(465, Short.MAX_VALUE)
+                    .addComponent(botonCategoriaArticulo)
+                    .addGap(70, 70, 70)))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addContainerGap(548, Short.MAX_VALUE)
+                    .addComponent(labelReportes2)
+                    .addGap(28, 28, 28)))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 700, 600));
@@ -363,7 +402,7 @@ public class vistaMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonClienteActionPerformed
-        // TODO add your handling code here:
+
         vistaCliente vCliente= new vistaCliente(con);
         
         //vistaUsuario vUsuario= new vistaUsuario();
@@ -371,8 +410,7 @@ public class vistaMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_botonClienteActionPerformed
 
     private void botonUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonUsuariosActionPerformed
-        // TODO add your handling code here:
-        
+ 
         vistaUsuario vUsuario= new vistaUsuario(con);
         //vUsuario.setConexionUsuario(con);
           
@@ -388,23 +426,28 @@ public class vistaMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void botonComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonComprasActionPerformed
-        vistaCompra vCompra = new vistaCompra();
-          // TODO add your handling code here:
+        vistaCompra vCompra = new vistaCompra(con);
     }//GEN-LAST:event_botonComprasActionPerformed
 
     private void botonReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonReportesActionPerformed
-        // TODO add your handling code here:
-     
+        vistaReportes vReportes = new vistaReportes(con);
     }//GEN-LAST:event_botonReportesActionPerformed
 
     private void botonInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInventarioActionPerformed
-          // TODO add your handling code here:
-          vistaCategoria vCatego=new vistaCategoria(con);
+        VistaInventario vInventario = new VistaInventario(con);
     }//GEN-LAST:event_botonInventarioActionPerformed
 
     private void botonArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonArticuloActionPerformed
         VistaArticulo vArticulo = new VistaArticulo(con);                // TODO add your handling code here:
     }//GEN-LAST:event_botonArticuloActionPerformed
+
+    private void botonFacturacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonFacturacionActionPerformed
+        vistaFactura vFactura = new vistaFactura(con);
+    }//GEN-LAST:event_botonFacturacionActionPerformed
+
+    private void botonCategoriaArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCategoriaArticuloActionPerformed
+        vistaCategoria vCategoria = new vistaCategoria(con);
+    }//GEN-LAST:event_botonCategoriaArticuloActionPerformed
        /**
      * @param args the command line arguments
      */
@@ -412,6 +455,7 @@ public class vistaMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonArticulo;
+    private javax.swing.JButton botonCategoriaArticulo;
     private javax.swing.JButton botonCliente;
     private javax.swing.JButton botonCompras;
     private javax.swing.JButton botonFacturacion;
@@ -432,6 +476,7 @@ public class vistaMenu extends javax.swing.JFrame {
     private javax.swing.JLabel labelProveedores;
     private javax.swing.JLabel labelReportes;
     private javax.swing.JLabel labelReportes1;
+    private javax.swing.JLabel labelReportes2;
     private javax.swing.JLabel labelTitulo;
     private javax.swing.JLabel labelUsuario;
     private javax.swing.JLabel labelUsuarios;

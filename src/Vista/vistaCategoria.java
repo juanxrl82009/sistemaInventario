@@ -232,7 +232,7 @@ public class vistaCategoria extends javax.swing.JFrame {
         panelCrearCategoria.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelId.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
-        labelId.setText("NIT");
+        labelId.setText("Id");
         panelCrearCategoria.add(labelId, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, -1, 20));
 
         cajaTextoID.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
