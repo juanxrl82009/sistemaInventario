@@ -20,14 +20,10 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/sistemaInventario-master%20(16)/sistemaInventario-master/src/Control/ControlCliente.java</file>
-            <file>file:/D:/sistemaInventario-master%20(16)/sistemaInventario-master/src/Control/ControlProveedor.java</file>
-            <file>file:/D:/sistemaInventario-master%20(16)/sistemaInventario-master/src/Vista/vistaProveedor.java</file>
-            <file>file:/D:/sistemaInventario-master%20(16)/sistemaInventario-master/src/Vista/vistaCategoria.java</file>
-            <file>file:/D:/sistemaInventario-master%20(16)/sistemaInventario-master/src/Vista/VistaArticulo.java</file>
-            <file>file:/D:/sistemaInventario-master%20(16)/sistemaInventario-master/src/Vista/vistaMenu.java</file>
-            <file>file:/D:/sistemaInventario-master%20(16)/sistemaInventario-master/src/Modelo/Categoria.java</file>
-            <file>file:/D:/sistemaInventario-master%20(16)/sistemaInventario-master/src/Control/ControlCategoria.java</file>
+            <file>file:/D:/sistemaInventario-master%20(17)/sistemaInventario-master/src/Modelo/Articulo.java</file>
+            <file>file:/D:/sistemaInventario-master%20(17)/sistemaInventario-master/src/Vista/vistaReportes.java</file>
+            <file>file:/D:/sistemaInventario-master%20(17)/sistemaInventario-master/src/Vista/vistaUsuario.java</file>
+            <file>file:/D:/sistemaInventario-master%20(17)/sistemaInventario-master/src/Vista/VistaArticulo.java</file>
         </group>
     </open-files>
 </project-private>

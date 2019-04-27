@@ -554,6 +554,9 @@ public class VistaArticulo extends javax.swing.JFrame {
                 JButton boton= (JButton) value;
                 //En esta parte diferencio cual boton fue presionado para que se ejecute los respectivos eventos.
                 if(boton.getName().equals("v")){
+                
+                  
+                    
                     panelCrearArticulo.setVisible(false);
                     panelTablaArticulo.setVisible(false);
                     panelModificarArticulo.setVisible(true);
@@ -565,13 +568,14 @@ public class VistaArticulo extends javax.swing.JFrame {
 
                     cajaTextoIDm.setText(String.valueOf(tablaArticulos.getValueAt(tablaArticulos.getSelectedRow(), 0)));
                     cajaTextoNombreM.setText(String.valueOf(tablaArticulos.getValueAt(tablaArticulos.getSelectedRow(), 1)));
-                 
                     cajaTextoProveedorM.setText(String.valueOf(tablaArticulos.getValueAt(tablaArticulos.getSelectedRow(), 3)));
                     cajaTextoCodigoM.setText(String.valueOf(tablaArticulos.getValueAt(tablaArticulos.getSelectedRow(), 4)));
                     cajaTextoCostoM.setText(String.valueOf(tablaArticulos.getValueAt(tablaArticulos.getSelectedRow(), 5)));
+                    CBOcategoria1.setEnabled(false);
                     
                 }
                 if(boton.getName().equals("m")){
+         
                     panelCrearArticulo.setVisible(false);
                     panelTablaArticulo.setVisible(false);
                     panelModificarArticulo.setVisible(true);
@@ -581,10 +585,9 @@ public class VistaArticulo extends javax.swing.JFrame {
                     cajaTextoNombreM.setEnabled(true);
                     cajaTextoCodigoM.setEnabled(true);
                     cajaTextoCodigoM.setEnabled(true);
-              
+     
                     cajaTextoIDm.setText(String.valueOf(tablaArticulos.getValueAt(tablaArticulos.getSelectedRow(), 0)));
                     cajaTextoNombreM.setText(String.valueOf(tablaArticulos.getValueAt(tablaArticulos.getSelectedRow(), 1)));
-                    
                     cajaTextoProveedorM.setText(String.valueOf(tablaArticulos.getValueAt(tablaArticulos.getSelectedRow(), 3)));
                     cajaTextoCodigoM.setText(String.valueOf(tablaArticulos.getValueAt(tablaArticulos.getSelectedRow(), 4)));
                     cajaTextoCostoM.setText(String.valueOf(tablaArticulos.getValueAt(tablaArticulos.getSelectedRow(), 5)));
