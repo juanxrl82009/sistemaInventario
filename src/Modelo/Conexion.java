@@ -34,8 +34,9 @@ public class Conexion {
          try{
             Class.forName("org.postgresql.Driver"); 
             /*En esta parte nos conectamos con la base de datos, se pone la base de datos, el usuario y la contraseña.*/
-            //connection=DriverManager.getConnection("jdbc:postgresql://localhost:5432/"+baseDatos,usuario,contrasena); 
-            connection=DriverManager.getConnection("jdbc:postgresql://localhost:5432/sistemainventariofinal","postgres","postgres"); 
+            connection=DriverManager.getConnection("jdbc:postgresql://localhost:5432/"+baseDatos,usuario,contrasena); 
+            
+            // connection=DriverManager.getConnection("jdbc:postgresql://localhost:5432","postgres","sandra123"); 
          
             if(connection!=null){
                 System.out.println("La conexión es exitosa");

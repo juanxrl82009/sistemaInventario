@@ -20,8 +20,8 @@ public class SistemaInvenatario {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        //vistaConexion conex = new vistaConexion();
-        frmLogin login1 = new frmLogin();
+        vistaConexion conex = new vistaConexion();
+        //frmLogin login1 = new frmLogin();
         
     }
     

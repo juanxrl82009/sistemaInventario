@@ -36,7 +36,9 @@ public class ControlArticulo {
     {
     /*Se le asigna a un string el insert en la base de datos*/
          String sqlArticulo="INSERT INTO Articulo VALUES"
-                 + "("+articulo.getIdArticulo()+",'"+ articulo.getNombre()+"','"+articulo.getCategoria()+"',"+articulo.getNitProveedor()+","+articulo.getCodBarra()+","+articulo.getCosto()+");";
+                 + "("+articulo.getIdArticulo()+",'"+ articulo.getNombre()+"','"+articulo.getCategoria()+"',"+articulo.getNitProveedor()+","+articulo.getCodBarra()+","+articulo.getCosto()+");"
+                 + "INSERT INTO registroinventario VALUES"
+                 + "("+articulo.getIdArticulo()+",0);";
         
     try{
        /*se establece coneccion con la base de datos y se le introduce la consulta*/
